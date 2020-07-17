@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { Navbar, Nav } from "react-bootstrap"
 
-const Header = ({ siteTitle }) => (
+const Footer = ({ siteTitle }) => (
   <Navbar bg="light" expand="lg">
     <Navbar.Brand href="#home">Portfolio</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -16,4 +16,4 @@ const Header = ({ siteTitle }) => (
   </Navbar>
 )
 
-export default Header
+export default Footer
