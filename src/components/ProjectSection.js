@@ -9,10 +9,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 import * as Animations from "./animations"
 
 //css modules
-import skillStyles from "../css/skills.css"
+import projectStyles from "../css/projects.css"
 gsap.registerPlugin(ScrollTrigger)
 
-const SkillSection = props => {
+const ProjectSection = props => {
   // let targetDiv = React.useRef(null);
 
   // React.useEffect(() => {
@@ -22,7 +22,7 @@ const SkillSection = props => {
   //   // console.log("THE TARGET: ", targetDiv)
   // }, [])
 
-  const handleHover = el => {
+  const handleClick = el => {
     console.log("the target: ", el.target)
     gsap.to(el.target, Animations.tabButtonHover)
   }
@@ -32,26 +32,26 @@ const SkillSection = props => {
       <Row className="justify-content-center">
         <Col className="align-items-center text-center" id="skills-col">
           <h2 className="projects-heading">Here are some of my projects!</h2>
-          <Tabs defaultActiveKey="profile" variant="pills">
+          <Tabs defaultActiveKey="profile" variant="pills" onClick={el => handleClick(el)}>
             <Tab
               eventKey="front"
               title="Front-end"
               id="tab-home"
-              onClick={el => handleClick(el)}
+              
             >
               <div>RANDOM TEXT</div>
             </Tab>
             <Tab
               eventKey="full"
               title="Fullstack"
-              onMouseEnter={el => handleHover(el)}
+              onClick={el => handleClick(el)}
             >
               <div>RANDOM TEXT{" "}</div>
             </Tab>
             <Tab
               eventKey="misc"
               title="Misc projects"
-              onMouseEnter={el => handleHover(el)}
+              onClick={el => handleClick(el)}
             ><div>RANDOM TEXT{" "}</div>
               
             </Tab>
@@ -62,4 +62,4 @@ const SkillSection = props => {
   )
 }
 
-export default SkillSection
+export default ProjectSection

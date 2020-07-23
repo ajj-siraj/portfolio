@@ -6,7 +6,7 @@ import {Tween} from "react-gsap"
 
 //components
 import HomeSection from "../components/HomeSection";
-import SkillSection from "../components/SkillSection";
+import ProjectSection from "../components/ProjectSection";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
@@ -22,7 +22,7 @@ const Main = (props) => {
         </Row>
         <Row>
           <Col>
-            <SkillSection {...props}/>
+            <ProjectSection {...props}/>
           </Col>
         </Row>
       </Container>
