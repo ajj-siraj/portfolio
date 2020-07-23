@@ -6,21 +6,27 @@ import {Tween} from "react-gsap"
 
 //components
 import HomeSection from "../components/HomeSection";
+import SkillSection from "../components/SkillSection";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const Main = () => {
+const Main = (props) => {
   return (
     <>
-      <Header />
+      <Header {...props}/>
       <Container fluid>
         <Row>
           <Col className="m-0 p-0">
-            <HomeSection />
+            <HomeSection {...props}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <SkillSection {...props}/>
           </Col>
         </Row>
       </Container>
-      <Footer />
+      <Footer {...props}/>
     </>
   )
 }

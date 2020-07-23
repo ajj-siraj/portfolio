@@ -1,0 +1,27 @@
+.mainDiv{
+  /* width: 100%; */
+  min-height: 100%;
+  background-color:#ffffff;
+  margin-top: 5%;
+}
+
+
+#skills-col .nav-pills .nav-item{
+  min-width: 33%;
+  padding: 2%;
+  border: none;
+  outline: none;
+  color: #1f1f1f;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+#skills-col .nav-pills .nav-item.active{
+  background-color: #f59b15;
+  
+}
+
+.projects-heading{
+  color: #1f1f1f;
+  font-family: 'Share Tech Mono', monospace;
+  margin-bottom: 5%;
+}

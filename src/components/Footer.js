@@ -4,16 +4,12 @@ import React from "react"
 import { Navbar, Nav } from "react-bootstrap"
 
 const Footer = ({ siteTitle }) => (
-  <Navbar bg="light" expand="lg">
-    <Navbar.Brand href="#home">Portfolio</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#link">Link</Nav.Link>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+  <>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+      rel="stylesheet"
+    ></link>
+  </>
 )
 
 export default Footer

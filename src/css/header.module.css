@@ -1,7 +1,24 @@
 .navStyle{
-  background-color: #000000;
+  background-color: #1f1f1f;
 }
 
 .navText{
-  color: #ffffff !important;
+  color: #ddd;
+}
+
+#aboutNav{
+  color: #ddd;
+  font-family: 'Share Tech Mono', monospace;
+}
+#skillsNav{
+  color: #ddd;
+  font-family: 'Share Tech Mono', monospace;
+}
+#projectsNav{
+  color: #ddd;
+  font-family: 'Share Tech Mono', monospace;
+}
+#contactNav{
+  color: #ddd;
+  font-family: 'Share Tech Mono', monospace;
 }
