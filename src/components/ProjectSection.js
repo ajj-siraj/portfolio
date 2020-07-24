@@ -5,11 +5,16 @@ import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 
+//components
+import ProjectsFrontend from "./ProjectsFrontend";
+import ProjectsFullstack from "./ProjectsFullstack";
+import ProjectsMisc from "./ProjectsMisc";
+
 //animations
 import * as Animations from "./animations"
 
 //css modules
-import projectStyles from "../css/projects.css"
+import "../css/projects.css"
 gsap.registerPlugin(ScrollTrigger)
 
 const ProjectSection = props => {
@@ -22,40 +27,42 @@ const ProjectSection = props => {
   //   // console.log("THE TARGET: ", targetDiv)
   // }, [])
 
-  const handleClick = el => {
-    console.log("the target: ", el.target)
-    gsap.to(el.target, Animations.tabButtonHover)
-  }
+  useEffect(() => {
+    gsap.from(".projects-heading", Animations.projectsHeading)
+    gsap.from(".projects-body", Animations.projectsBody)
+  })
 
+  
   return (
     <Container fluid className="mainDiv">
       <Row className="justify-content-center">
         <Col className="align-items-center text-center" id="skills-col">
-          <h2 className="projects-heading">Here are some of my projects!</h2>
-          <Tabs defaultActiveKey="profile" variant="pills" onClick={el => handleClick(el)}>
-            <Tab
-              eventKey="front"
-              title="Front-end"
-              id="tab-home"
-              
-            >
-              <div>RANDOM TEXT</div>
-            </Tab>
-            <Tab
-              eventKey="full"
-              title="Fullstack"
-              onClick={el => handleClick(el)}
-            >
-              <div>RANDOM TEXT{" "}</div>
-            </Tab>
-            <Tab
-              eventKey="misc"
-              title="Misc projects"
-              onClick={el => handleClick(el)}
-            ><div>RANDOM TEXT{" "}</div>
-              
-            </Tab>
-          </Tabs>
+          <h2 className="projects-heading">Projects</h2>
+          <div className="projects-body">
+            <Tabs defaultActiveKey="profile" variant="pills">
+              <Tab
+                eventKey="front"
+                title="Front-end"
+                
+              >
+                <ProjectsFrontend />
+              </Tab>
+              <Tab
+                eventKey="full"
+                title="Fullstack"
+                
+              >
+                <ProjectsFullstack />
+              </Tab>
+              <Tab
+                eventKey="misc"
+                title="Misc projects"
+                
+              >
+                <ProjectsMisc />
+              </Tab>
+            </Tabs>
+          </div>
         </Col>
       </Row>
     </Container>

@@ -53,6 +53,26 @@ export const navbarSwitch = {
   },
 }
 
-export const tabButtonHover = {
-  backgroundColor: "f59b15"
+export const tabButtonClick = {
+  backgroundColor: "#f59b15",
+  duration: 2,
+
+}
+
+export const projectsHeading = {
+  y: -50,
+  opacity: 0,
+  ease: "power1.in",
+  duration: 0.3,
+  scrollTrigger: { start: "30%" },
+}
+
+export const projectsBody = {
+  delay: 0.4,
+  stagger: 3,
+  y: -50,
+  opacity: 0,
+  ease: "power2.in",
+  duration: 0.3,
+  scrollTrigger: { start: "30%" },
 }
