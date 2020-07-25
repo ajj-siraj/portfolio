@@ -1,3 +1,5 @@
+
+//navbar animations
 export const navLink = {
   y: "-50px",
   opacity: "0",
@@ -7,10 +9,6 @@ export const navLink = {
   duration: "0.5",
 }
 
-export const navLinklight = {
-  color: "#000000",
-  scrollTrigger: { start: "50%", scrub: true },
-}
 
 export const navBrand = {
   rotationY: "180",
@@ -42,21 +40,33 @@ export const navLinkScroll = {
   color: "#000000",
   scrollTrigger: {
     scrub: true,
-    start: "50%",
+    start: "30%",
+    end: "31%"
   },
 }
+
 export const navbarSwitch = {
   backgroundColor: "#ffffff",
   scrollTrigger: {
     scrub: true,
-    start: "50%",
+    start: "30%",
+    end: "32%"
   },
 }
 
+//about section animations
+export const svg = {
+  alpha: 0,
+  scale: 0,
+  ease: "bounce",
+  duration: 1,
+  scrollTrigger: { start: "30%" },
+}
+
+//projects section animations
 export const tabButtonClick = {
   backgroundColor: "#f59b15",
   duration: 2,
-
 }
 
 export const projectsHeading = {
@@ -64,7 +74,7 @@ export const projectsHeading = {
   opacity: 0,
   ease: "power1.in",
   duration: 0.3,
-  scrollTrigger: { start: "30%" },
+  scrollTrigger: { start: "50%" },
 }
 
 export const projectsBody = {
@@ -74,5 +84,6 @@ export const projectsBody = {
   opacity: 0,
   ease: "power2.in",
   duration: 0.3,
-  scrollTrigger: { start: "30%" },
+  scrollTrigger: { start: "50%" },
 }
+

@@ -1,0 +1,27 @@
+.about-section img{
+  width: 90px;
+  /* min-height: 50px; */
+  padding-top: 2%;
+  padding-bottom: 2%;
+  object-fit: scale-down
+}
+
+
+.about-row{
+  margin-top: 50px;
+  margin-bottom: 150px;
+}
+.about-heading{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.about-paragraph{
+  text-align: justify;
+  font-family: 'Source Code Pro', monospace;
+  font-size: 1.25rem;
+  margin-left: 10%;
+  margin-right: 10%;
+}

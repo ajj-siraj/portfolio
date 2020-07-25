@@ -1,6 +1,6 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, {useRef, useEffect} from "react"
 import { Navbar, Nav } from "react-bootstrap"
 import gsap from "gsap"
 import { Tween, Timeline } from "react-gsap"
@@ -11,9 +11,9 @@ import * as Animations from "./animations.js"
 import headerStyles from "../css/header.module.css"
 
 const Header = props => {
-  let navRef = React.useRef(null);
+  let navRef = useRef(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     //reference the navlinks to animate
     let navLinks = navRef.current.childNodes[1].childNodes[0].childNodes; 
     gsap.to(navRef.current, Animations.navbarSwitch)

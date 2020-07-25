@@ -39,7 +39,7 @@ const ProjectSection = props => {
         <Col className="align-items-center text-center" id="skills-col">
           <h2 className="projects-heading">Projects</h2>
           <div className="projects-body">
-            <Tabs defaultActiveKey="profile" variant="pills">
+            <Tabs defaultActiveKey="front" variant="pills">
               <Tab
                 eventKey="front"
                 title="Front-end"
