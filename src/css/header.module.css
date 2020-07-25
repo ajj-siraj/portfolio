@@ -1,24 +1,34 @@
-.navStyle{
+.navStyle {
   background-color: #1f1f1f;
 }
 
-.navText{
+.navText {
   color: #ddd;
 }
 
-#aboutNav{
+#aboutNav {
   color: #ddd;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
-#skillsNav{
+#skillsNav {
   color: #ddd;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
-#projectsNav{
+#projectsNav {
   color: #ddd;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
-#contactNav{
+#contactNav {
   color: #ddd;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
+}
+
+.navUnderline {
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  height: 1px;
+  width: 0%;
+  background-color: #ffbb00;
 }

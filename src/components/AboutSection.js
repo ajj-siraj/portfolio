@@ -141,8 +141,7 @@ const AboutSection = props => {
         <h3 className="about-heading text-center">Who am I?</h3>
         <p className="about-paragraph">
           My name is Siraj. I'm a graduate of Electrical Engineering, and
-          currently a Web Developer. My approach to programming is often
-          language/framework agnostic. I enjoy the process of problem solving,
+          currently a Web Developer. I enjoy the process of problem solving,
           and use whatever means in my disposal to do it as efficiently as I
           can. Of course, that includes learning new approaches as well.
         </p>

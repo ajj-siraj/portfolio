@@ -24,8 +24,11 @@ const Header = props => {
   }, [])
   
   const handleHover = el => {
-    console.log("Background: ", navRef.current.style.backgroundColor)
     gsap.to(el.target, Animations.navLinkHover)
+
+    
+    //underline animation
+    gsap.to(el.target.childNodes[1], Animations.navUnderlineHover);
   }
 
   const handleUnHover = el => {
@@ -33,13 +36,15 @@ const Header = props => {
     let rgb = navRef.current.style.backgroundColor.slice(4, -1);
     let res = rgb.split(", ")
 
+
     if(Number(res[0]) <= 128){
       gsap.to(el.target, Animations.navLinkUnhover)
     }
     else{
       gsap.to(el.target, Animations.navLinkUnhover2)
     }
-    
+    //underline animation
+    gsap.to(el.target.childNodes[1], Animations.navUnderlineUnhover);
   }
 
   return (
@@ -62,8 +67,9 @@ const Header = props => {
                 onMouseLeave={el => handleUnHover(el)}
               >
                 About me
+                <span className={headerStyles.navUnderline}></span>
               </Nav.Link>
-
+              
               <Nav.Link
                 className={headerStyles.navText}
                 id={headerStyles.skillsNav}
@@ -72,6 +78,7 @@ const Header = props => {
                 href="#link"
               >
                 Skills
+                <span className={headerStyles.navUnderline}></span>
               </Nav.Link>
               <Nav.Link
                 className={headerStyles.navText}
@@ -81,6 +88,7 @@ const Header = props => {
                 href="#link"
               >
                 Contact
+                <span className={headerStyles.navUnderline}></span>
               </Nav.Link>
               <Nav.Link
                 className={headerStyles.navText}
@@ -90,6 +98,7 @@ const Header = props => {
                 href="#home"
               >
                 Projects
+                <span className={headerStyles.navUnderline}></span>
               </Nav.Link>
             </Tween>
           </Nav>

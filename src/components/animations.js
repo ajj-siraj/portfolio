@@ -22,6 +22,20 @@ export const navLinkHover = {
   color: "#ffbb00",
 }
 
+export const navUnderlineHover = {
+  width: "100%",
+  ease: "power1.in",
+  backgroundColor: "ffbb00",
+  duration: "0.3"
+  
+}
+export const navUnderlineUnhover = {
+  width: "0%",
+  ease: "power1.out",
+  backgroundColor: "ffbb00",
+  duration: "0.3"
+  
+}
 export const navLinkUnhover = {
   y: "0px",
   duration: "0.1",
