@@ -1,3 +1,6 @@
+#personal local files
+src/pages/manager.js
+
 # Logs
 logs
 *.log

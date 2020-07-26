@@ -8,11 +8,12 @@ import {connect} from 'react-redux';
 import * as Actions from "../state/actions"
 
 //components
-import Main from "./Main"
+import Main from "../components/Main"
 
 //stylesheets
 import "bootstrap/dist/css/bootstrap.min.css"
 
+//redux unused for now but I'll leave it JIC I need it in the future
 const mapStateToProps = state => {
   return {
     targetElement: state.targetElement,
@@ -26,7 +27,6 @@ const mapDispatchToProps = dispatch => {
 }
 
 const IndexPage = props => {
-  console.log("PROPS in IndexPage: ", props)
   return (<Main {...props} />)
 }
 

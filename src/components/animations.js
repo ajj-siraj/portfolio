@@ -1,4 +1,3 @@
-
 //navbar animations
 export const navLink = {
   y: "-50px",
@@ -8,7 +7,6 @@ export const navLink = {
   stagger: "0.1",
   duration: "0.5",
 }
-
 
 export const navBrand = {
   rotationY: "180",
@@ -25,16 +23,14 @@ export const navLinkHover = {
 export const navUnderlineHover = {
   width: "100%",
   ease: "power1.in",
-  backgroundColor: "ffbb00",
-  duration: "0.3"
-  
+  alpha: 1,
+  duration: "0.3",
 }
 export const navUnderlineUnhover = {
   width: "0%",
   ease: "power1.out",
-  backgroundColor: "ffbb00",
-  duration: "0.3"
-  
+  alpha: 0,
+  duration: "0.3",
 }
 export const navLinkUnhover = {
   y: "0px",
@@ -55,7 +51,7 @@ export const navLinkScroll = {
   scrollTrigger: {
     scrub: true,
     start: "30%",
-    end: "31%"
+    end: "31%",
   },
 }
 
@@ -63,8 +59,8 @@ export const navbarSwitch = {
   backgroundColor: "#ffffff",
   scrollTrigger: {
     scrub: true,
-    start: "30%",
-    end: "32%"
+    start: "32%",
+    end: "34%",
   },
 }
 
@@ -73,8 +69,44 @@ export const svg = {
   alpha: 0,
   scale: 0,
   ease: "bounce",
+  zIndex: -1,
   duration: 1,
   scrollTrigger: { start: "30%" },
+}
+
+//skills section animations
+
+export const lineEnterRight = {
+  alpha: 0,
+  right: "-100%",
+  width: "0%",
+  duration: 1,
+  scrollTrigger: {start: "40%"}
+}
+
+export const lineEnterLeft = {
+  alpha: 0,
+  left: "-100%",
+  width: "0%",
+  duration: 1,
+  scrollTrigger: {start: "40%"}
+}
+export const lineHover = {
+  width: "80%",
+  ease: "power2.in",
+  duration: "0.1",
+}
+export const lineUnhover = {
+  width: "100%",
+  ease: "power2.out",
+  duration: "0.5",
+}
+
+export const skillHeading = {
+  alpha: 0,
+  duration: "3",
+  ease: "expo",
+  scrollTrigger: {start: "30%"}
 }
 
 //projects section animations
@@ -100,4 +132,3 @@ export const projectsBody = {
   duration: 0.3,
   scrollTrigger: { start: "50%" },
 }
-

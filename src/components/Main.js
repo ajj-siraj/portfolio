@@ -1,17 +1,19 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import {Tween} from "react-gsap"
 
 //components
-import HomeSection from "../components/HomeSection";
-import AboutSection from "../components/AboutSection";
-import ProjectSection from "../components/ProjectSection";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
+import HomeSection from "./HomeSection"
+import AboutSection from "./AboutSection"
+import SkillSection from "./SkillSection"
+import ProjectSection from "./ProjectSection"
+import Header from "./Header"
+import Footer from "./Footer"
 
 const Main = (props) => {
+
   return (
     <>
       <Header {...props}/>
@@ -24,6 +26,11 @@ const Main = (props) => {
         <Row>
           <Col className="m-0 p-0">
             <AboutSection {...props}/>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="m-0 p-0">
+            <SkillSection {...props}/>
           </Col>
         </Row>
         <Row>
