@@ -12,3 +12,17 @@ body{
   font-size: 1.5rem;
   font-weight: 700;
 }
+
+.projectTitle{
+  padding: 3%;
+  background-color: rgb(154, 16, 189);
+}
+.projectDesc{
+  padding: 3%;
+  background-color: rgb(16, 189, 189);
+}
+
+.projectImg{
+  object-fit: scale-down;
+  margin: auto;
+}

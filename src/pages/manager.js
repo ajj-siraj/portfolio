@@ -36,7 +36,7 @@ const Manager = props => {
   let formTechs = useRef(null)
   let formDesc = useRef(null)
 
-  formTechs = [];
+  formTechs = []
 
   useEffect(() => {
     firebase
@@ -56,29 +56,37 @@ const Manager = props => {
   //Button actions
   const projectSubmit = (action, projectID) => {
     //Submitting a new project
-    let techsToPush = [];
+    let techsToPush = []
     //Check which checkboxes are checked. She sells sea shells on the sea shore.
-    formTechs.forEach((tech) => {
-      if(tech.checked){
-        techsToPush.push(tech.value);
+    formTechs.forEach(tech => {
+      if (tech.checked) {
+        techsToPush.push(tech.value)
       }
     })
     if (action === "Submit") {
       const dataToPush = {
-        Title: formTitle.current.value,
-        ImgTitle: formImgTitle.current.value,
-        Categories: formCat.current.value,
-        Technologies: techsToPush,
-        Description: formDesc.current.value,
+        title: formTitle.current.value,
+        imgTitle: formImgTitle.current.value,
+        categories: formCat.current.value,
+        technologies: techsToPush,
+        description: formDesc.current.value,
       }
-      console.log(dataToPush);
-      firebase.database().ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects").push(dataToPush)
-    } 
+      console.log(dataToPush)
+      firebase
+        .database()
+        .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
+        .push(dataToPush)
+    }
     //Handle editing a project
     else if (action === "Edit") {
-    } 
+    }
     //Handle removing a project
     else if (action === "Remove") {
+      firebase
+        .database()
+        .ref(`/en/-MCDVrFJ8cqOkUZ_xU41/projects/${projectID}`)
+        .remove()
+        .then(() => setData(null))
     }
   }
   const techsMapped = techs.map((tech, idx) => {
@@ -90,7 +98,9 @@ const Manager = props => {
         label={tech.toUpperCase()}
         custom
         value={tech}
-        ref={el => {formTechs.push(el)}}
+        ref={el => {
+          formTechs.push(el)
+        }}
       />
     )
   })
@@ -103,12 +113,14 @@ const Manager = props => {
     projects = dataValues.map((project, idx) => {
       return (
         <Row key={`project-${idx}`} className="p-5">
-          <Col md={2}>image here</Col>
+          <Col md={2} className={managerStyles.projectImg}>
+            image here
+          </Col>
           <Col md={10}>
-            <Row>
+            <Row className={managerStyles.projectTitle}>
               <Col>{project.title}</Col>
             </Row>
-            <Row>
+            <Row className={managerStyles.projectDesc}>
               <Col>{project.description}</Col>
             </Row>
           </Col>
@@ -152,11 +164,7 @@ const Manager = props => {
               <Form.Label className={managerStyles.fieldLabel}>
                 Project Title
               </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Title"
-                ref={formTitle}
-              />
+              <Form.Control type="text" placeholder="Title" ref={formTitle} />
             </Form.Group>
             <Form.Group controlId="formGroupImgTitle">
               <Form.Label className={managerStyles.fieldLabel}>
@@ -195,7 +203,11 @@ const Manager = props => {
               />
             </Form.Group>
             <Form.Group controlId="submitButton">
-              <Button variant="success" block onClick={() => projectSubmit("Submit")}>
+              <Button
+                variant="success"
+                block
+                onClick={() => projectSubmit("Submit")}
+              >
                 Submit New Project
               </Button>
             </Form.Group>
