@@ -1,10 +1,10 @@
 import { Link } from "gatsby"
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap"
 import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-
+import firebase from "gatsby-plugin-firebase"
 //components
 import ProjectsFrontend from "./ProjectsFrontend";
 import ProjectsFullstack from "./ProjectsFullstack";
@@ -38,8 +38,23 @@ const ProjectSection = props => {
     gsap.from(".projects-body", Animations.projectsBody)
   })
 
+  const [data, setData] = useState(null)
+
+  useEffect(() => {
+    firebase
+      .database()
+      .ref("/en/")
+      .once("value")
+      .then(snapshot => {
+        setData(snapshot.val())
+      })
+      .then(console.log("Data from Firebase: ", data))
+
+      
+  }, [])
   
   return (
+    
     <Container fluid className="mainDiv">
       <Row className="justify-content-center text-center">
       <Col xs={2}>

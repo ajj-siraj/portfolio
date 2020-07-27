@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "bootstrap": "^4.5.0",
+    "dotenv": "^8.2.0",
     "firebase": "^7.17.1",
     "fs": "0.0.1-security",
     "gatsby": "^2.23.12",
