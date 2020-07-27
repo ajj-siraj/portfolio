@@ -26,10 +26,18 @@ const techs = [
   "typescript",
   "xamarin",
   "angular",
+  "gatsbyjs",
 ]
 
+//utility functions
+const capitalizeFirstLetter = tech => {
+  return tech.charAt(0).toUpperCase() + tech.slice(1)
+}
 const Manager = props => {
   const [data, setData] = useState(null)
+  const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
+
   let formTitle = useRef(null)
   let formImgTitle = useRef(null)
   let formCat = useRef(null)
@@ -44,13 +52,16 @@ const Manager = props => {
       .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
       .once("value")
       .then(snapshot => {
-        if (!data) {
+        if (data === null) {
           setData(snapshot.val())
+          setSuccess(true)
           return
         }
+        setSuccess(false)
         return
       })
       .then(console.log("Data from Firebase: ", data))
+      .catch((err) => console.log(err))
   })
 
   //Button actions
@@ -77,9 +88,9 @@ const Manager = props => {
         .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
         .push(dataToPush)
     }
-    //Handle editing a project
-    else if (action === "Edit") {
-    }
+    //Handle editing a project, idk how to handle this atm so I'll leave it for the future
+    // else if (action === "Edit") {
+    // }
     //Handle removing a project
     else if (action === "Remove") {
       firebase
@@ -95,7 +106,7 @@ const Manager = props => {
         key={`tech-${tech}-${idx}`}
         id={`tech-${tech}-${idx}`}
         type="checkbox"
-        label={tech.toUpperCase()}
+        label={capitalizeFirstLetter(tech)}
         custom
         value={tech}
         ref={el => {
@@ -112,7 +123,7 @@ const Manager = props => {
     console.log(dataValues)
     projects = dataValues.map((project, idx) => {
       return (
-        <Row key={`project-${idx}`} className="p-5">
+        <Row key={`project-${idx}`} className={managerStyles.projectContainer}>
           <Col md={2} className={managerStyles.projectImg}>
             image here
           </Col>
@@ -154,6 +165,16 @@ const Manager = props => {
   return (
     <Container>
       <h1 className={managerStyles.heading}>Your Projects</h1>
+      {!success && !data ? (
+        <Row className="justify-content-center">
+          <h3>Loading...</h3>
+        </Row>
+      ) : null}
+      {error ? (
+        <Row className="justify-content-center">
+          An error occurred. Check console.
+        </Row>
+      ) : null}
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>
       </Row>

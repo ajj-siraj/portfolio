@@ -1,5 +1,5 @@
 body{
-  background-color: rgb(255, 247, 214);
+  background-color: rgb(168, 168, 168);
 }
 .heading{
   margin-top:50px;
@@ -13,13 +13,19 @@ body{
   font-weight: 700;
 }
 
+.projectContainer{
+  padding: 5%;
+  background-color: #ddd;
+  border-radius: 10px;
+}
 .projectTitle{
   padding: 3%;
-  background-color: rgb(154, 16, 189);
+  /* background-color: rgb(154, 16, 189); */
+  font-weight: 800;
 }
 .projectDesc{
   padding: 3%;
-  background-color: rgb(16, 189, 189);
+  /* background-color: rgb(16, 189, 189); */
 }
 
 .projectImg{
