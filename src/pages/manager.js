@@ -67,7 +67,7 @@ const Manager = props => {
 
   //Button actions
   const projectSubmit = (action, projectID) => {
-    //Submitting a new project
+    
     let techsToPush = [];
 
     //Check which checkboxes are checked. She sells sea shells on the sea shore.
@@ -76,6 +76,8 @@ const Manager = props => {
         techsToPush.push(tech.value);
       }
     });
+    
+    //Submitting a new project
     if (action === "Submit") {
       const dataToPush = {
         title: formTitle.current.value,
@@ -102,6 +104,7 @@ const Manager = props => {
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
     // else if (action === "Edit") {
     // }
+    
     //Handle removing a project
     else if (action === "Remove") {
       firebase

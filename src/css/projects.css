@@ -8,13 +8,14 @@
 
 
 #skills-col .nav-pills .nav-item{
-  min-width: 30%;
+  min-width: 33%;
   padding: 2%;
   border: none;
+  border-radius: 0;
   outline: none;
   color: #1f1f1f;
   font-family: 'Share Tech Mono', monospace;
-  margin: 0 10px 0 10px;
+  /* margin: 0 10px 0 10px; */
   background-color: #ddd;
 }
 
@@ -26,5 +27,9 @@
 .projects-heading{
   color: #1f1f1f;
   font-family: 'Share Tech Mono', monospace;
-  margin-bottom: 5%;
+}
+
+.projects-body{
+  text-align: center;
+  margin-top: 5%;
 }
