@@ -1,11 +1,12 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React, { useState, useEffect, useRef } from "react"
-import { Container, Row, Col, Form, Button } from "react-bootstrap"
-import { Tween } from "react-gsap"
-import firebase from "gatsby-plugin-firebase"
+import { Link } from "gatsby";
+import PropTypes from "prop-types";
+import React, { useState, useEffect, useRef } from "react";
+import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import { Tween } from "react-gsap";
+import firebase from "gatsby-plugin-firebase";
+import cogoToast from "cogo-toast";
 
-import managerStyles from "../css/manager.module.css"
+import managerStyles from "../css/manager.module.css";
 
 const techs = [
   "html5",
@@ -27,24 +28,24 @@ const techs = [
   "xamarin",
   "angular",
   "gatsbyjs",
-]
+];
 
 //utility functions
 const capitalizeFirstLetter = tech => {
-  return tech.charAt(0).toUpperCase() + tech.slice(1)
-}
+  return tech.charAt(0).toUpperCase() + tech.slice(1);
+};
 const Manager = props => {
-  const [data, setData] = useState(null)
-  const [success, setSuccess] = useState(false)
-  const [error, setError] = useState(false)
+  const [data, setData] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
 
-  let formTitle = useRef(null)
-  let formImgTitle = useRef(null)
-  let formCat = useRef(null)
-  let formTechs = useRef(null)
-  let formDesc = useRef(null)
+  let formTitle = useRef(null);
+  let formImgTitle = useRef(null);
+  let formCat = useRef(null);
+  let formTechs = useRef(null);
+  let formDesc = useRef(null);
 
-  formTechs = []
+  formTechs = [];
 
   useEffect(() => {
     firebase
@@ -53,27 +54,28 @@ const Manager = props => {
       .once("value")
       .then(snapshot => {
         if (data === null) {
-          setData(snapshot.val())
-          setSuccess(true)
-          return
+          setData(snapshot.val());
+          setSuccess(true);
+          return;
         }
-        setSuccess(false)
-        return
+        setSuccess(false);
+        return;
       })
       .then(console.log("Data from Firebase: ", data))
-      .catch((err) => console.log(err))
-  })
+      .catch(err => console.log(err));
+  });
 
   //Button actions
   const projectSubmit = (action, projectID) => {
     //Submitting a new project
-    let techsToPush = []
+    let techsToPush = [];
+
     //Check which checkboxes are checked. She sells sea shells on the sea shore.
     formTechs.forEach(tech => {
       if (tech.checked) {
-        techsToPush.push(tech.value)
+        techsToPush.push(tech.value);
       }
-    })
+    });
     if (action === "Submit") {
       const dataToPush = {
         title: formTitle.current.value,
@@ -81,12 +83,21 @@ const Manager = props => {
         categories: formCat.current.value,
         technologies: techsToPush,
         description: formDesc.current.value,
-      }
-      console.log(dataToPush)
+      };
+      console.log(dataToPush);
       firebase
         .database()
         .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
         .push(dataToPush)
+        .then(() => {
+          cogoToast.success("Project submitted.");
+          //trigger component update to show new project
+          setData(null);
+        })
+        .catch(err => {
+          cogoToast.error(err);
+          setError(true);
+        });
     }
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
     // else if (action === "Edit") {
@@ -97,9 +108,9 @@ const Manager = props => {
         .database()
         .ref(`/en/-MCDVrFJ8cqOkUZ_xU41/projects/${projectID}`)
         .remove()
-        .then(() => setData(null))
+        .then(() => setData(null));
     }
-  }
+  };
   const techsMapped = techs.map((tech, idx) => {
     return (
       <Form.Check
@@ -110,17 +121,17 @@ const Manager = props => {
         custom
         value={tech}
         ref={el => {
-          formTechs.push(el)
+          formTechs.push(el);
         }}
       />
-    )
-  })
+    );
+  });
 
-  let projects = []
+  let projects = [];
   if (data) {
-    let dataValues = Object.values(data)
-    let dataKeys = Object.keys(data)
-    console.log(dataValues)
+    let dataValues = Object.values(data);
+    let dataKeys = Object.keys(data);
+    console.log(dataValues);
     projects = dataValues.map((project, idx) => {
       return (
         <Row key={`project-${idx}`} className={managerStyles.projectContainer}>
@@ -158,8 +169,8 @@ const Manager = props => {
             </Row>
           </Col>
         </Row>
-      )
-    })
+      );
+    });
   }
 
   return (
@@ -236,7 +247,7 @@ const Manager = props => {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Manager
+export default Manager;
