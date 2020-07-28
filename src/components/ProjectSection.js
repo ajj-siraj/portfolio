@@ -93,7 +93,10 @@ const ProjectSection = props => {
                 title="Front-end"
                 
               >
-                <ProjectsFrontend />
+                <div id="front-end-tab">
+                  <ProjectsFrontend />
+                </div>
+                
               </Tab>
               <Tab
                 eventKey="full"

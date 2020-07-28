@@ -16,12 +16,25 @@
   color: #1f1f1f;
   font-family: 'Share Tech Mono', monospace;
   /* margin: 0 10px 0 10px; */
-  background-color: #ddd;
+  background-color: #ddd
 }
 
 #skills-col .nav-pills .nav-item.active{
   background-color: #f59b15;
   
+}
+
+#front-end-tab .nav-pills .nav-item{
+  background-color: #ffffff;
+  color: #1f1f1f;
+  outline: none !important;
+  border: none !important;
+}
+
+#front-end-tab .nav-pills .nav-item a.active{
+  background-color: #300000;
+  outline: none !important;
+  border: none !important;
 }
 
 .projects-heading{
