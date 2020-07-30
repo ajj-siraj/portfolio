@@ -6,20 +6,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: "gatsby-plugin-firebase",
-      options: {
-        credentials: {
-          apiKey: process.env.firebaseAPIKey,
-          authDomain: "portfolio-7824a.firebaseapp.com",
-          databaseURL: "https://portfolio-7824a.firebaseio.com",
-          projectId: "portfolio-7824a",
-          storageBucket: "portfolio-7824a.appspot.com",
-          messagingSenderId: "96645312220",
-          appId: "1:96645312220:web:07e58b8083df07e8468e19",
-        },
-      },
-    },
-    {
       resolve: `gatsby-plugin-react-redux`,
       options: {
         // [required] - path to your createStore module

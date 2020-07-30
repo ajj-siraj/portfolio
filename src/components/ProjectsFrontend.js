@@ -4,7 +4,6 @@ import { Nav, Row, Col, Tab } from "react-bootstrap";
 import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import firebase from "firebase";
 
 //animations
 import * as Animations from "./animations";
@@ -19,25 +18,25 @@ const ProjectsFrontend = props => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    firebase
-      .database()
-      .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
-      .once("value")
-      .then(snapshot => {
-        if (data === null) {
-          let projects = Object.values(snapshot.val())
-          let filteredList = projects.filter((proj) => {
-            return proj.categories === "Front-end"
-          });
-          setData(filteredList);
-          setSuccess(true);
-          return;
-        }
-        setSuccess(false);
-        return;
-      })
-      .then(console.log("Data from Firebase: ", data))
-      .catch(err => console.log(err));
+    // firebase
+    //   .database()
+    //   .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
+    //   .once("value")
+    //   .then(snapshot => {
+    //     if (data === null) {
+    //       let projects = Object.values(snapshot.val())
+    //       let filteredList = projects.filter((proj) => {
+    //         return proj.categories === "Front-end"
+    //       });
+    //       setData(filteredList);
+    //       setSuccess(true);
+    //       return;
+    //     }
+    //     setSuccess(false);
+    //     return;
+    //   })
+    //   .then(console.log("Data from Firebase: ", data))
+    //   .catch(err => console.log(err));
   });
 
   let projectNavs = [];

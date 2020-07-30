@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Tween } from "react-gsap";
-import firebase from "gatsby-plugin-firebase";
+import Parse from "parse";
 import cogoToast from "cogo-toast";
+
+//utility functions
+import * as Utility from "../Utility";
 
 import managerStyles from "../css/manager.module.css";
 
@@ -31,9 +34,7 @@ const techs = [
 ];
 
 //utility functions
-const capitalizeFirstLetter = tech => {
-  return tech.charAt(0).toUpperCase() + tech.slice(1);
-};
+
 const Manager = props => {
   const [data, setData] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -48,26 +49,19 @@ const Manager = props => {
   formTechs = [];
 
   useEffect(() => {
-    firebase
-      .database()
-      .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
-      .once("value")
-      .then(snapshot => {
-        if (data === null) {
-          setData(snapshot.val());
+    if (!data) {
+      Utility.readData("Projects")
+        .then(res => JSON.parse(res))
+        .then(res => {
+          setData(res);
           setSuccess(true);
-          return;
-        }
-        setSuccess(false);
-        return;
-      })
-      .then(console.log("Data from Firebase: ", data))
-      .catch(err => console.log(err));
-  });
+        })
+        .catch(err => console.log(err));
+    }
+  }, [data]);
 
   //Button actions
   const projectSubmit = (action, projectID) => {
-    
     let techsToPush = [];
 
     //Check which checkboxes are checked. She sells sea shells on the sea shore.
@@ -76,7 +70,7 @@ const Manager = props => {
         techsToPush.push(tech.value);
       }
     });
-    
+
     //Submitting a new project
     if (action === "Submit") {
       const dataToPush = {
@@ -87,40 +81,26 @@ const Manager = props => {
         description: formDesc.current.value,
       };
       console.log(dataToPush);
-      firebase
-        .database()
-        .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
-        .push(dataToPush)
-        .then(() => {
-          cogoToast.success("Project submitted.");
-          //trigger component update to show new project
-          setData(null);
-        })
-        .catch(err => {
-          cogoToast.error(err);
-          setError(true);
-        });
+      Utility.writeData("Projects", "title", formTitle.current.value).then(
+        setData(null)
+      );
     }
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
     // else if (action === "Edit") {
     // }
-    
+
     //Handle removing a project
     else if (action === "Remove") {
-      firebase
-        .database()
-        .ref(`/en/-MCDVrFJ8cqOkUZ_xU41/projects/${projectID}`)
-        .remove()
-        .then(() => setData(null));
     }
   };
+
   const techsMapped = techs.map((tech, idx) => {
     return (
       <Form.Check
         key={`tech-${tech}-${idx}`}
         id={`tech-${tech}-${idx}`}
         type="checkbox"
-        label={capitalizeFirstLetter(tech)}
+        label={Utility.capitalizeFirstLetter(tech)}
         custom
         value={tech}
         ref={el => {
@@ -132,10 +112,10 @@ const Manager = props => {
 
   let projects = [];
   if (data) {
-    let dataValues = Object.values(data);
-    let dataKeys = Object.keys(data);
-    console.log(dataValues);
-    projects = dataValues.map((project, idx) => {
+    console.log("DATA: ", data);
+    // let dataValues = Object.values(data);
+    // let dataKeys = Object.keys(data);
+    projects = data.map((project, idx) => {
       return (
         <Row key={`project-${idx}`} className={managerStyles.projectContainer}>
           <Col md={2} className={managerStyles.projectImg}>
@@ -145,9 +125,9 @@ const Manager = props => {
             <Row className={managerStyles.projectTitle}>
               <Col>{project.title}</Col>
             </Row>
-            <Row className={managerStyles.projectDesc}>
+            {/* <Row className={managerStyles.projectDesc}>
               <Col>{project.description}</Col>
-            </Row>
+            </Row> */}
           </Col>
           <Col>
             <Row>
@@ -155,7 +135,7 @@ const Manager = props => {
                 <Button
                   block
                   variant="outline-secondary"
-                  onClick={() => projectSubmit("Edit", dataKeys[idx])}
+                  onClick={() => projectSubmit("Edit", project[idx].id)}
                 >
                   Edit
                 </Button>
@@ -164,7 +144,7 @@ const Manager = props => {
                 <Button
                   block
                   variant="outline-danger"
-                  onClick={() => projectSubmit("Remove", dataKeys[idx])}
+                  onClick={() => projectSubmit("Remove", project[idx].id)}
                 >
                   Remove
                 </Button>
@@ -179,16 +159,12 @@ const Manager = props => {
   return (
     <Container>
       <h1 className={managerStyles.heading}>Your Projects</h1>
-      {!success && !data ? (
+      {!data ? (
         <Row className="justify-content-center">
           <h3>Loading...</h3>
         </Row>
       ) : null}
-      {error ? (
-        <Row className="justify-content-center">
-          An error occurred. Check console.
-        </Row>
-      ) : null}
+
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>
       </Row>

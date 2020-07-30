@@ -4,7 +4,7 @@ import { Container, Row, Col, Tab, Tabs } from "react-bootstrap"
 import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import firebase from "gatsby-plugin-firebase"
+
 //components
 import ProjectsFrontend from "./ProjectsFrontend";
 import ProjectsFullstack from "./ProjectsFullstack";
@@ -41,14 +41,14 @@ const ProjectSection = props => {
   const [data, setData] = useState(null)
 
   useEffect(() => {
-    firebase
-      .database()
-      .ref("/en/")
-      .once("value")
-      .then(snapshot => {
-        setData(snapshot.val())
-      })
-      .then(console.log("Data from Firebase: ", data))
+    // firebase
+    //   .database()
+    //   .ref("/en/")
+    //   .once("value")
+    //   .then(snapshot => {
+    //     setData(snapshot.val())
+    //   })
+    //   .then(console.log("Data from Firebase: ", data))
 
       
   }, [])
