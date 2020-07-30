@@ -1,72 +1,71 @@
-import { Link } from "gatsby"
-import React, { useRef, useEffect, useState } from "react"
-import { Container, Row, Col, Tab, Tabs } from "react-bootstrap"
-import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "gatsby";
+import React, { useRef, useEffect, useState } from "react";
+import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //components
 import ProjectsFrontend from "./ProjectsFrontend";
 import ProjectsFullstack from "./ProjectsFullstack";
 import ProjectsMisc from "./ProjectsMisc";
 
+//utility
+import * as Utility from "../Utility";
+
 //animations
-import * as Animations from "./animations"
+import * as Animations from "./animations";
 
 //css modules
-import "../css/projects.css"
-gsap.registerPlugin(ScrollTrigger)
+import "../css/projects.css";
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectSection = props => {
-  
-  let heading = useRef(null)
+  let heading = useRef(null);
   //animate svgs on hover
   const handleHover = el => {
     const upperline = heading.childNodes[0];
     const underline = heading.childNodes[2];
-    gsap.to(upperline, Animations.lineHover)
-    gsap.to(underline, Animations.lineHover)
-  }
+    gsap.to(upperline, Animations.lineHover);
+    gsap.to(underline, Animations.lineHover);
+  };
   const handleUnhover = el => {
     const upperline = heading.childNodes[0];
     const underline = heading.childNodes[2];
-    gsap.to(upperline, Animations.lineUnhover)
-    gsap.to(underline, Animations.lineUnhover)
-  }
+    gsap.to(upperline, Animations.lineUnhover);
+    gsap.to(underline, Animations.lineUnhover);
+  };
 
   useEffect(() => {
-    gsap.from(".projects-body", Animations.projectsBody)
-  })
+    gsap.from(".projects-body", Animations.projectsBody);
+  });
 
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    // firebase
-    //   .database()
-    //   .ref("/en/")
-    //   .once("value")
-    //   .then(snapshot => {
-    //     setData(snapshot.val())
-    //   })
-    //   .then(console.log("Data from Firebase: ", data))
+    if (!data) {
+      props.fetchingData();
+      Utility.readData("Projects")
+        .then(res => JSON.parse(res))
+        .then(res => {
+          setData(res);
+          props.fetchingDone();
+        })
+        .catch(err => console.log(err));
+    }
+  });
 
-      
-  }, [])
-  
   return (
-    
     <Container fluid className="mainDiv">
       <Row className="justify-content-center text-center">
-      <Col xs={2}>
+        <Col xs={2}>
           <div className="heading-container">
             <h1
               ref={el => {
-                heading = el
+                heading = el;
               }}
             >
-              <Tween
-                from={Animations.lineEnterLeft}
-              >
+              <Tween from={Animations.lineEnterLeft}>
                 <span className="heading-upperline"></span>
               </Tween>
               <span
@@ -75,9 +74,7 @@ const ProjectSection = props => {
               >
                 Projects
               </span>
-              <Tween
-                from={Animations.lineEnterRight}
-              >
+              <Tween from={Animations.lineEnterRight}>
                 <span className="heading-underline"></span>
               </Tween>
             </h1>
@@ -88,36 +85,23 @@ const ProjectSection = props => {
         <Col className="align-items-center text-center" id="skills-col">
           <div className="projects-body">
             <Tabs defaultActiveKey="front" variant="pills">
-              <Tab
-                eventKey="front"
-                title="Front-end"
-                
-              >
+              <Tab eventKey="front" title="Front-end">
                 <div id="front-end-tab">
-                  <ProjectsFrontend />
+                  <ProjectsFrontend data={data}/>
                 </div>
-                
               </Tab>
-              <Tab
-                eventKey="full"
-                title="Fullstack"
-                
-              >
-                <ProjectsFullstack />
+              <Tab eventKey="full" title="Fullstack">
+                <ProjectsFullstack data={data}/>
               </Tab>
-              <Tab
-                eventKey="misc"
-                title="Misc projects"
-                
-              >
-                <ProjectsMisc />
+              <Tab eventKey="misc" title="Misc projects">
+                <ProjectsMisc data={data}/>
               </Tab>
             </Tabs>
           </div>
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default ProjectSection
+export default ProjectSection;

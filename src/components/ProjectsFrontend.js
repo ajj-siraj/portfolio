@@ -5,6 +5,9 @@ import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+//utility functions
+
+
 //animations
 import * as Animations from "./animations";
 
@@ -18,25 +21,7 @@ const ProjectsFrontend = props => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // firebase
-    //   .database()
-    //   .ref("/en/-MCDVrFJ8cqOkUZ_xU41/projects")
-    //   .once("value")
-    //   .then(snapshot => {
-    //     if (data === null) {
-    //       let projects = Object.values(snapshot.val())
-    //       let filteredList = projects.filter((proj) => {
-    //         return proj.categories === "Front-end"
-    //       });
-    //       setData(filteredList);
-    //       setSuccess(true);
-    //       return;
-    //     }
-    //     setSuccess(false);
-    //     return;
-    //   })
-    //   .then(console.log("Data from Firebase: ", data))
-    //   .catch(err => console.log(err));
+    setData(props.data);
   });
 
   let projectNavs = [];
@@ -47,16 +32,16 @@ const ProjectsFrontend = props => {
     console.log(dataValues);
     projectNavs = dataValues.map((project, idx) => {
       return (
-        <Nav.Item>
-          <Nav.Link eventKey={`project-${idx}`}>{project.title}</Nav.Link>
+        <Nav.Item key={`projectfrontnav-${idx}`}>
+          <Nav.Link eventKey={`projectfront-${idx}`}>{project.title}</Nav.Link>
         </Nav.Item>
       );
     });
 
     projectTabs = dataValues.map((project, idx) => {
       return (
-        <Tab.Pane eventKey={`project-${idx}`}>
-          <div>{project.description}</div>
+        <Tab.Pane key={`projectfronttab-${idx}`} eventKey={`projectfront-${idx}`}>
+          <div>{project.id}</div>
         </Tab.Pane>
       );
     });

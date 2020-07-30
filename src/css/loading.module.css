@@ -1,0 +1,8 @@
+.loadingContainer{
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  background-color: #000;
+  z-index: 99999;
+  padding: 20%;
+}

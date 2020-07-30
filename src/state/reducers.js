@@ -1,10 +1,10 @@
 import * as Actions from './actions';
 
-export const reducer = (prevState = { targetElement: ''}, action) => {
-  switch (action.type) {
-    case Actions.TOGGLE_NAV_THEME:
-      return { ...prevState, targetElement: action.payload };
-    default:
+export const loadingState = (prevState = {loading: true}, action) => {
+  switch(action.type){
+    case Actions.FETCHING_DATA:
       return prevState;
+    case Actions.FETCHING_DONE:
+      return {...prevState, loading: false}
   }
-};
+}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import React, { useEffect, useRef } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import {Tween} from "react-gsap"
+import ScrollLock from "react-scrolllock";
 
 //components
 import HomeSection from "./HomeSection"
@@ -16,7 +17,9 @@ const Main = (props) => {
 
   return (
     <>
+    
       <Header {...props}/>
+      <ScrollLock isActive={props.loading}>
       <Container fluid>
         <Row>
           <Col className="m-0 p-0">
@@ -39,6 +42,7 @@ const Main = (props) => {
           </Col>
         </Row>
       </Container>
+      </ScrollLock>
       <Footer {...props}/>
     </>
   )

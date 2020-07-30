@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Link } from "gatsby";
 import { Nav } from "react-bootstrap";
 import Parse from "parse";
+import ScrollLock from "react-scrolllock";
 
 //redux
 import { connect } from "react-redux";
@@ -10,20 +11,23 @@ import * as Actions from "../state/actions";
 
 //components
 import Main from "../components/Main";
+import Loading from "../components/Loading";
 
 //stylesheets
 import "bootstrap/dist/css/bootstrap.min.css";
 
 //redux unused for now but I'll leave it JIC I need it in the future
 const mapStateToProps = state => {
+  console.log("STATE: ", state);
   return {
-    targetElement: state.targetElement,
+    loading: state === undefined ? true : state.loading,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggleNavTheme: element => dispatch(Actions.toggleNavTheme(element)),
+    fetchingData: () => dispatch(Actions.fetchingData()),
+    fetchingDone: () => dispatch(Actions.fetchingDone()),
   };
 };
 
@@ -34,8 +38,8 @@ const IndexPage = props => {
   });
   return (
     <div>
+      {props.loading ? <Loading /> : null}
       <Main {...props} />
-      <script src="node_modules/parse/dist/parse.min.js"></script>
     </div>
   );
 };

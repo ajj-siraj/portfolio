@@ -8,7 +8,5 @@
 
 import "./src/css/global.css";
 import wrapWithProvider from "./wrap-with-provider"
-import "firebase/auth"
-import "firebase/database"
 
 export const wrapRootElement = wrapWithProvider
