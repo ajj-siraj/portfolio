@@ -6,3 +6,10 @@
   z-index: 99999;
   padding: 20%;
 }
+.loadingContainerManager{
+  /* position: absolute; */
+  min-height: 100%;
+  background-color: #ffffff;
+  z-index: 99999;
+  padding: 20%;
+}

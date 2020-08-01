@@ -84,6 +84,7 @@ const Manager = props => {
       console.log(dataToPush);
       Utility.writeData("Projects", dataToPush).then(() => {
         setData(null);
+        window.scroll(0,0);
         cogoToast.success("Project added successfully.");
       });
     }
@@ -161,7 +162,7 @@ const Manager = props => {
   return (
     <Container>
       <h1 className={managerStyles.heading}>Your Projects</h1>
-      {!data ? <Loading /> : null}
+      {!data ? <Loading source="manager"/> : null}
 
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>
