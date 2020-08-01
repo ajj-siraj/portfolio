@@ -9,6 +9,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ProjectsFrontend from "./ProjectsFrontend";
 import ProjectsFullstack from "./ProjectsFullstack";
 import ProjectsMisc from "./ProjectsMisc";
+import Loading from "./Loading";
 
 //utility
 import * as Utility from "../Utility";
@@ -22,6 +23,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectSection = props => {
   let heading = useRef(null);
+  let projectsRef = useRef(null);
+
   //animate svgs on hover
   const handleHover = el => {
     const upperline = heading.childNodes[0];
@@ -37,7 +40,7 @@ const ProjectSection = props => {
   };
 
   useEffect(() => {
-    gsap.from(".projects-body", Animations.projectsBody);
+    // gsap.from(projectsRef.current, Animations.projectsBody);
   });
 
   const [data, setData] = useState(null);
@@ -55,7 +58,7 @@ const ProjectSection = props => {
     }
   });
 
-  return (
+  let projectsCont = (
     <Container fluid className="mainDiv">
       <Row className="justify-content-center text-center">
         <Col xs={2}>
@@ -83,18 +86,18 @@ const ProjectSection = props => {
       </Row>
       <Row className="justify-content-center">
         <Col className="align-items-center text-center" id="skills-col">
-          <div className="projects-body">
+          <div className="projects-body" ref={projectsRef}>
             <Tabs defaultActiveKey="front" variant="pills">
               <Tab eventKey="front" title="Front-end">
                 <div id="front-end-tab">
-                  <ProjectsFrontend data={data}/>
+                  <ProjectsFrontend data={data} />
                 </div>
               </Tab>
               <Tab eventKey="full" title="Fullstack">
-                <ProjectsFullstack data={data}/>
+                <ProjectsFullstack data={data} />
               </Tab>
               <Tab eventKey="misc" title="Misc projects">
-                <ProjectsMisc data={data}/>
+                <ProjectsMisc data={data} />
               </Tab>
             </Tabs>
           </div>
@@ -102,6 +105,8 @@ const ProjectSection = props => {
       </Row>
     </Container>
   );
+
+  return <div>{props.loading ? <Loading /> : projectsCont}</div>;
 };
 
 export default ProjectSection;

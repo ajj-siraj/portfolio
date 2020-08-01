@@ -5,6 +5,7 @@ import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import { Tween } from "react-gsap";
 import Parse from "parse";
 import cogoToast from "cogo-toast";
+import Loading from "../components/Loading";
 
 //utility functions
 import * as Utility from "../Utility";
@@ -81,9 +82,10 @@ const Manager = props => {
         description: formDesc.current.value,
       };
       console.log(dataToPush);
-      Utility.writeData("Projects", "title", formTitle.current.value).then(
-        setData(null)
-      );
+      Utility.writeData("Projects", dataToPush).then(() => {
+        setData(null);
+        cogoToast.success("Project added successfully.");
+      });
     }
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
     // else if (action === "Edit") {
@@ -159,11 +161,7 @@ const Manager = props => {
   return (
     <Container>
       <h1 className={managerStyles.heading}>Your Projects</h1>
-      {!data ? (
-        <Row className="justify-content-center">
-          <h3>Loading...</h3>
-        </Row>
-      ) : null}
+      {!data ? <Loading /> : null}
 
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>

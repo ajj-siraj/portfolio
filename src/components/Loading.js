@@ -2,10 +2,10 @@ import React from "react";
 
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 
-import loading from "../css/loading.module.css";
+import loading from "../css/loading.css";
 
 const Loading = () => (
-  <Container fluid className={loading.loadingContainer}>
+  <Container fluid className="loadingContainer">
     <Row className="justify-content-center align-items-center text-center">
       <Col xs={2}>
         <Spinner animation="grow" variant="warning" role="status">

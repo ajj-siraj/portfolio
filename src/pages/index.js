@@ -20,7 +20,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const mapStateToProps = state => {
   console.log("STATE: ", state);
   return {
-    loading: state === undefined ? true : state.loading,
+    loading: state.loading,
   };
 };
 
@@ -38,7 +38,7 @@ const IndexPage = props => {
   });
   return (
     <div>
-      {props.loading ? <Loading /> : null}
+      {/* {props.loading ? <Loading /> : null} */}
       <Main {...props} />
     </div>
   );

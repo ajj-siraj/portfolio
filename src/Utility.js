@@ -24,7 +24,7 @@ export const readData = dataClassName => {
   });
 };
 
-export const writeData = (dataClassName, key, value) => {
+export const writeData = (dataClassName, dataToPush) => {
   Parse.serverURL = "https://parseapi.back4app.com";
   Parse.initialize(process.env.b4aID, process.env.apiKey);
 
@@ -32,7 +32,12 @@ export const writeData = (dataClassName, key, value) => {
     const dataClass = Parse.Object.extend(dataClassName);
     const obj = new dataClass();
 
-    obj.set(key, value);
+    const dataKeys = Object.keys(dataToPush);
+    const dataValues = Object.values(dataToPush);
+
+    dataValues.forEach((value, idx) => {
+      obj.set(dataKeys[idx].toString(), value);
+    })
 
     obj.save().then(
       result => {

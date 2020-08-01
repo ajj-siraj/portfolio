@@ -5,6 +5,8 @@ export const loadingState = (prevState = {loading: true}, action) => {
     case Actions.FETCHING_DATA:
       return prevState;
     case Actions.FETCHING_DONE:
-      return {...prevState, loading: false}
+      return {...prevState, loading: false};
+    default:
+      return prevState
   }
 }

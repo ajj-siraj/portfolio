@@ -19,7 +19,7 @@ const Main = (props) => {
     <>
     
       <Header {...props}/>
-      <ScrollLock isActive={props.loading}>
+      {/* <ScrollLock isActive={props.loading}> */}
       <Container fluid>
         <Row>
           <Col className="m-0 p-0">
@@ -42,7 +42,7 @@ const Main = (props) => {
           </Col>
         </Row>
       </Container>
-      </ScrollLock>
+      {/* </ScrollLock> */}
       <Footer {...props}/>
     </>
   )
