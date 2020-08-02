@@ -37,7 +37,7 @@ export const writeData = (dataClassName, dataToPush) => {
 
     dataValues.forEach((value, idx) => {
       obj.set(dataKeys[idx].toString(), value);
-    })
+    });
 
     obj.save().then(
       result => {
@@ -52,7 +52,25 @@ export const writeData = (dataClassName, dataToPush) => {
   });
 };
 
-export const deleteData = () => {};
+export const deleteData = (dataClassName, objectId) => {
+  return new Promise((resolve, reject) => {
+    const dataClass = Parse.Object.extend(dataClassName);
+    const query = new Parse.Query(dataClass);
+
+    query.get(objectId).then(object => {
+      object.destroy().then(
+        response => {
+          console.log("Deleted ParseObject", response);
+          resolve(response);
+        },
+        error => {
+          console.error("Error while deleting ParseObject", error);
+          reject(error);
+        }
+      );
+    });
+  });
+};
 
 //my custom functions
 export const capitalizeFirstLetter = tech => {

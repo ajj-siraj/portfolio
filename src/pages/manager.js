@@ -56,6 +56,7 @@ const Manager = props => {
         .then(res => {
           setData(res);
           setSuccess(true);
+          window.scroll(0, 0);
         })
         .catch(err => console.log(err));
     }
@@ -84,7 +85,7 @@ const Manager = props => {
       console.log(dataToPush);
       Utility.writeData("Projects", dataToPush).then(() => {
         setData(null);
-        window.scroll(0,0);
+        window.scroll(0, 0);
         cogoToast.success("Project added successfully.");
       });
     }
@@ -94,6 +95,11 @@ const Manager = props => {
 
     //Handle removing a project
     else if (action === "Remove") {
+      Utility.deleteData("Projects", projectID).then(res => {
+        console.log(res);
+        setData(null);
+        cogoToast.success("Deleted Successfully.");
+      });
     }
   };
 
@@ -114,7 +120,10 @@ const Manager = props => {
   });
 
   let projects = [];
+  let dataLength;
   if (data) {
+    //this will be used to conditional render "you have no projects" statement
+    dataLength = data.length;
     console.log("DATA: ", data);
     // let dataValues = Object.values(data);
     // let dataKeys = Object.keys(data);
@@ -147,7 +156,7 @@ const Manager = props => {
                 <Button
                   block
                   variant="outline-danger"
-                  onClick={() => projectSubmit("Remove", project[idx].id)}
+                  onClick={() => projectSubmit("Remove", project.objectId)}
                 >
                   Remove
                 </Button>
@@ -162,7 +171,8 @@ const Manager = props => {
   return (
     <Container>
       <h1 className={managerStyles.heading}>Your Projects</h1>
-      {!data ? <Loading source="manager"/> : null}
+      {!data ? <Loading source="manager" /> : null}
+      {dataLength < 1 ? <h4 className="text-center">You have no projects. Add some.</h4> : null}
 
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>
