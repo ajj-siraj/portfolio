@@ -6,11 +6,13 @@ import { Tween } from "react-gsap";
 import Parse from "parse";
 import cogoToast from "cogo-toast";
 import Loading from "../components/Loading";
+import ReactQuill from "react-quill";
 
 //utility functions
 import * as Utility from "../Utility";
 
 import managerStyles from "../css/manager.module.css";
+import 'react-quill/dist/quill.snow.css';
 
 const techs = [
   "html5",
@@ -39,17 +41,23 @@ const techs = [
 const Manager = props => {
   const [data, setData] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
+  const [descValue, setValue] = useState("");
 
   let formTitle = useRef(null);
   let formImgTitle = useRef(null);
   let formCat = useRef(null);
   let formTechs = useRef(null);
   let formDesc = useRef(null);
+  let formDemoLink = useRef(null);
+  let formSrcLink = useRef(null);
 
   formTechs = [];
 
   useEffect(() => {
+    console.log(descValue);
+  }, [descValue])
+  useEffect(() => {
+    
     if (!data) {
       Utility.readData("Projects")
         .then(res => JSON.parse(res))
@@ -80,7 +88,9 @@ const Manager = props => {
         imgTitle: formImgTitle.current.value,
         categories: formCat.current.value,
         technologies: techsToPush,
-        description: formDesc.current.value,
+        description: descValue,
+        liveDemo: formDemoLink.current.value,
+        sourceCode: formSrcLink.current.value,
       };
       console.log(dataToPush);
       Utility.writeData("Projects", dataToPush).then(() => {
@@ -186,6 +196,21 @@ const Manager = props => {
               </Form.Label>
               <Form.Control type="text" placeholder="Title" ref={formTitle} />
             </Form.Group>
+
+            <Form.Group controlId="formGroupDemoLink">
+              <Form.Label className={managerStyles.fieldLabel}>
+                Demo Website Link (if available);
+              </Form.Label>
+              <Form.Control type="text" placeholder="Demo link" ref={formDemoLink} />
+            </Form.Group>
+
+            <Form.Group controlId="formGroupSrcLink">
+              <Form.Label className={managerStyles.fieldLabel}>
+                Source code link
+              </Form.Label>
+              <Form.Control type="text" placeholder="Source code link" ref={formSrcLink} />
+            </Form.Group>
+
             <Form.Group controlId="formGroupImgTitle">
               <Form.Label className={managerStyles.fieldLabel}>
                 Image Filename
@@ -211,7 +236,7 @@ const Manager = props => {
             {/* <Form.Group id="technologies"> */}
             {techsMapped}
             {/* </Form.Group> */}
-            <Form.Group controlId="formGroupDescription">
+            {/* <Form.Group controlId="formGroupDescription">
               <Form.Label className={managerStyles.fieldLabel}>
                 Description
               </Form.Label>
@@ -221,7 +246,8 @@ const Manager = props => {
                 rows="10"
                 ref={formDesc}
               />
-            </Form.Group>
+            </Form.Group> */}
+            <ReactQuill theme="snow" value={descValue} onChange={setValue}/>
             <Form.Group controlId="submitButton">
               <Button
                 variant="success"

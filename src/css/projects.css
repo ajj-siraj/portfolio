@@ -24,17 +24,31 @@
   
 }
 
-#front-end-tab .nav-pills .nav-item{
+#project-tab .nav-pills .nav-item{
   background-color: #ffffff;
   color: #1f1f1f;
   outline: none !important;
   border: none !important;
+  
+  /* for the shine effect: */
+  overflow: hidden;
 }
 
-#front-end-tab .nav-pills .nav-item a.active{
-  background-color: #300000;
+
+#project-tab .nav-pills .nav-item a.active {
+  background: linear-gradient(180deg, #ffd909, #494638);
+  background-size: 400% 400%;
+
+  animation: AnimationName 3s ease infinite;
+
   outline: none !important;
   border: none !important;
+}
+
+@keyframes AnimationName {
+  0%{background-position:50% 0%}
+  50%{background-position:50% 100%}
+  100%{background-position:50% 0%}
 }
 
 .projects-heading{
@@ -46,3 +60,23 @@
   text-align: center;
   margin-top: 5%;
 }
+
+.project-description{
+  text-align: initial;
+  padding: 5%;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.project-img{
+  object-fit: scale-down;
+  width: 90%;
+}
+
+.button-imgs{
+  width: 10%;
+  margin-right: 2%;
+}
+
+
+/* shine effect */
+

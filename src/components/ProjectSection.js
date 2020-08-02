@@ -6,7 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //components
-import ProjectsFrontend from "./ProjectsFrontend";
+import ProjectsTemplate from "./ProjectsTemplate";
 import ProjectsFullstack from "./ProjectsFullstack";
 import ProjectsMisc from "./ProjectsMisc";
 import Loading from "./Loading";
@@ -89,15 +89,19 @@ const ProjectSection = props => {
           <div className="projects-body" ref={projectsRef}>
             <Tabs defaultActiveKey="front" variant="pills">
               <Tab eventKey="front" title="Front-end">
-                <div id="front-end-tab">
-                  <ProjectsFrontend data={data} />
+                <div id="project-tab">
+                  <ProjectsTemplate data={data} />
                 </div>
               </Tab>
               <Tab eventKey="full" title="Fullstack">
-                <ProjectsFullstack data={data} />
+                <div id="project-tab">
+                  <ProjectsTemplate data={data} />
+                </div>
               </Tab>
               <Tab eventKey="misc" title="Misc projects">
-                <ProjectsMisc data={data} />
+                <div id="project-tab">
+                  <ProjectsTemplate data={data} />
+                </div>
               </Tab>
             </Tabs>
           </div>
