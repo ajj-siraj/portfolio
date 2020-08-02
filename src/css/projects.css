@@ -26,21 +26,23 @@
 
 #project-tab .nav-pills .nav-item{
   background-color: #ffffff;
+  outline: none !important;
+  border: none !important;
+}
+
+#project-tab .nav-pills .nav-item a{
   color: #1f1f1f;
   outline: none !important;
   border: none !important;
   
-  /* for the shine effect: */
-  overflow: hidden;
 }
 
 
 #project-tab .nav-pills .nav-item a.active {
   background: linear-gradient(180deg, #ffd909, #494638);
   background-size: 400% 400%;
-
-  animation: AnimationName 3s ease infinite;
-
+  color: #ffffff;
+  animation: AnimationName 0.5s cubic-bezier(0,1,1,1);
   outline: none !important;
   border: none !important;
 }
@@ -77,6 +79,17 @@
   margin-right: 2%;
 }
 
-
+.techsContainer{
+  background-color: #ddd;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.techSvg{
+  object-fit: scale-down;
+  height: 4rem;
+  padding: 1%;
+}
 /* shine effect */
 
