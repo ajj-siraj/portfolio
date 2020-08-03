@@ -57,93 +57,114 @@ const imgs = {
   xamarin: xamarin,
   angular: angular,
   gatsbyjs: gatsbyjs,
-}
+};
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Technologies = (props) => {
-  console.log(props);
+const Technologies = props => {
   let imgKeys = Object.keys(imgs);
   let foundTechs = imgKeys.filter((imgKey, idx) => {
     return props.techs.includes(imgKey.toString());
-  })
-  console.log("Foundtechs: ", foundTechs);
+  });
   let techs = foundTechs.map((tech, idx) => {
-      return (
-        <img className="techSvg" src={imgs[tech]} />
-      );
-  })
-  return <div className="techsContainer">{techs}</div>
-}
+    return (
+      <img
+        className="techSvg"
+        src={imgs[tech]}
+        key={Math.ceil(Math.random() * 1000)}
+      />
+    );
+  });
+  return <div className="techsContainer">{techs}</div>;
+};
+
 const ProjectsTemplate = props => {
   const [data, setData] = useState(null);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
 
   useEffect(() => {
     setData(props.data);
   });
 
+  //conditionals to avoid missing data errors
   let projectNavs = [];
   let projectTabs = [];
   if (data) {
-    let dataValues = Object.values(data);
-    let dataKeys = Object.keys(data);
-    console.log(dataValues);
-    projectNavs = dataValues.map((project, idx) => {
-      return (
-        <Nav.Item key={`projectfrontnav-${idx}`}>
-          <Nav.Link eventKey={`projectfront-${idx}`}>{project.title}</Nav.Link>
-        </Nav.Item>
-      );
-    });
+    if (data.length > 0) {
+      let dataValues = Object.values(data);
+      projectNavs = dataValues.map((project, idx) => {
+        return (
+          <Nav.Item key={`project-nav-${idx}`}>
+            <Nav.Link eventKey={`project--${idx}`}>
+              {project.title}
+            </Nav.Link>
+          </Nav.Item>
+        );
+      });
 
-    projectTabs = dataValues.map((project, idx) => {
-      return (
-        <Tab.Pane
-          key={`projectfronttab-${idx}`}
-          eventKey={`projectfront-${idx}`}
-        >
-          <Technologies techs={project.technologies}/>
-          <img className="project-img" src={`/projects/${project.imgTitle}`} />
-          <div
-            dangerouslySetInnerHTML={{ __html: project.description }}
-            className="project-description"
-          ></div>
-          <Row>
-            <Col>
-              <Button
-                block
-                variant="outline-warning"
-                as={"a"}
-                href={project.liveDemo}
-                target="_blank"
-                rel="noopener"
-              >
-                <img className="button-imgs" src={globe} alt="visit-site" />
-                Visit Website
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                block
-                variant="outline-success"
-                as={"a"}
-                href={project.sourceCode}
-                target="_blank"
-                rel="noopener"
-              >
-                <img className="button-imgs" src={github} alt="visit-source" />
-                Source Code
-              </Button>
-            </Col>
-          </Row>
-        </Tab.Pane>
+      projectTabs = dataValues.map((project, idx) => {
+        return (
+          <Tab.Pane
+            key={`project-tab-${idx}`}
+            eventKey={`project--${idx}`}
+          >
+            <Technologies techs={project.technologies} />
+            <img
+              className="project-img"
+              src={`/projects/${project.imgTitle}`}
+            />
+            <div
+              dangerouslySetInnerHTML={{ __html: project.description }}
+              className="project-description"
+            ></div>
+            <Row>
+              <Col>
+                <Button
+                  id="project-btn1"
+                  block
+                  variant="outline-warning"
+                  as={"a"}
+                  href={project.liveDemo}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img className="button-imgs" src={globe} alt="visit-site" />
+                  Visit Website
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  id="project-btn2"
+                  block
+                  variant="outline-success"
+                  as={"a"}
+                  href={project.sourceCode}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <img
+                    className="button-imgs"
+                    src={github}
+                    alt="visit-source"
+                  />
+                  Source Code
+                </Button>
+              </Col>
+            </Row>
+          </Tab.Pane>
+        );
+      });
+    }
+    //else if no projects found:
+    else {
+      projectNavs = <div></div>;
+      projectTabs = (
+        <div className="msg-container">Nothing here at the moment. Please check back another time!</div>
       );
-    });
+    }
   }
+
   return (
-    <Tab.Container defaultActiveKey="projectfront-0">
+    <Tab.Container defaultActiveKey={`project--0`}>
       <Row>
         <Col sm={3}>
           <Nav variant="pills" className="flex-column">

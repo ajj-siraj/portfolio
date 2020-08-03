@@ -51,6 +51,7 @@ const ProjectSection = props => {
       Utility.readData("Projects")
         .then(res => JSON.parse(res))
         .then(res => {
+          console.log("Received raw data: ", res);
           setData(res);
           props.fetchingDone();
         })
@@ -58,6 +59,24 @@ const ProjectSection = props => {
     }
   });
 
+  //divide each received project category into its own variable:
+  let front = [];
+  let full = [];
+  let misc = [];
+  if(data){
+    data.forEach((proj) => {
+      switch(proj.categories){
+        case "Front-end":
+          front.push(proj);
+          return;
+        case "Fullstack":
+          full.push(proj);
+          return;
+        default:
+          misc.push(proj);
+      }
+    })
+  }
   let projectsCont = (
     <Container fluid className="mainDiv">
       <Row className="justify-content-center text-center">
@@ -90,17 +109,17 @@ const ProjectSection = props => {
             <Tabs defaultActiveKey="front" variant="pills">
               <Tab eventKey="front" title="Front-end">
                 <div id="project-tab">
-                  <ProjectsTemplate data={data} />
+                  <ProjectsTemplate data={front} />
                 </div>
               </Tab>
               <Tab eventKey="full" title="Fullstack">
                 <div id="project-tab">
-                  <ProjectsTemplate data={data} />
+                  <ProjectsTemplate data={full} />
                 </div>
               </Tab>
               <Tab eventKey="misc" title="Misc projects">
                 <div id="project-tab">
-                  <ProjectsTemplate data={data} />
+                  <ProjectsTemplate data={misc} />
                 </div>
               </Tab>
             </Tabs>

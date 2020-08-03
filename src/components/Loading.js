@@ -17,6 +17,11 @@ const Loading = props => {
           </Spinner>
         </Col>
       </Row>
+      <Row className="justify-content-center align-items-center text-center">
+        <Col>
+          <p>Loading... Please wait.</p>
+        </Col>
+      </Row>
     </Container>
   );
 };

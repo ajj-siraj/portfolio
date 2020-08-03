@@ -59,9 +59,13 @@ const imgs = [
 const SkillSection = props => {
   let heading = useRef(null);
   let text = useRef(null);
+  let upperline = useRef(null);
+  let underline = useRef(null);
 
   useEffect(() => {
-    gsap.from(text, Animations.skillHeading);
+    if (text) gsap.from(text, Animations.skillHeading);
+    // if(upperline) gsap.from(upperline, Animations.lineEnterLeft);
+    // if(underline) gsap.from(underline, Animations.lineEnterRight);
   });
   //animate svgs on hover
   const handleHover = el => {
@@ -78,7 +82,7 @@ const SkillSection = props => {
   };
 
   return (
-    <Container fluid className="text-center align-items-center">
+    <Container fluid className="text-center align-items-center mb-1">
       {/* This Row is reserved for the heading */}
       <Row className="justify-content-center text-center">
         <Col xs={2}>
@@ -88,9 +92,7 @@ const SkillSection = props => {
                 heading = el;
               }}
             >
-              <Tween from={Animations.lineEnterLeft}>
-                <span className="heading-upperline"></span>
-              </Tween>
+              <span className="heading-upperline" ref={upperline}></span>
               <span
                 onMouseEnter={el => handleHover(el)}
                 onMouseLeave={el => handleUnhover(el)}
@@ -100,15 +102,11 @@ const SkillSection = props => {
               >
                 Skills
               </span>
-              <Tween from={Animations.lineEnterRight}>
-                <span className="heading-underline"></span>
-              </Tween>
+              <span className="heading-underline" ref={underline}></span>
             </h1>
           </div>
         </Col>
       </Row>
-
-      {/* Skill section begin */}
     </Container>
   );
 };
