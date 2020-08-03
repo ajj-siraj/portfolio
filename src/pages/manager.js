@@ -12,7 +12,7 @@ import ReactQuill from "react-quill";
 import * as Utility from "../Utility";
 
 import managerStyles from "../css/manager.module.css";
-import 'react-quill/dist/quill.snow.css';
+import "react-quill/dist/quill.snow.css";
 
 const techs = [
   "html5",
@@ -55,9 +55,8 @@ const Manager = props => {
 
   useEffect(() => {
     console.log(descValue);
-  }, [descValue])
+  }, [descValue]);
   useEffect(() => {
-    
     if (!data) {
       Utility.readData("Projects")
         .then(res => JSON.parse(res))
@@ -182,7 +181,9 @@ const Manager = props => {
     <Container>
       <h1 className={managerStyles.heading}>Your Projects</h1>
       {!data ? <Loading source="manager" /> : null}
-      {dataLength < 1 ? <h4 className="text-center">You have no projects. Add some.</h4> : null}
+      {dataLength < 1 ? (
+        <h4 className="text-center">You have no projects. Add some.</h4>
+      ) : null}
 
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>
@@ -201,14 +202,22 @@ const Manager = props => {
               <Form.Label className={managerStyles.fieldLabel}>
                 Demo Website Link (if available);
               </Form.Label>
-              <Form.Control type="text" placeholder="Demo link" ref={formDemoLink} />
+              <Form.Control
+                type="text"
+                placeholder="Demo link"
+                ref={formDemoLink}
+              />
             </Form.Group>
 
             <Form.Group controlId="formGroupSrcLink">
               <Form.Label className={managerStyles.fieldLabel}>
                 Source code link
               </Form.Label>
-              <Form.Control type="text" placeholder="Source code link" ref={formSrcLink} />
+              <Form.Control
+                type="text"
+                placeholder="Source code link"
+                ref={formSrcLink}
+              />
             </Form.Group>
 
             <Form.Group controlId="formGroupImgTitle">
@@ -236,18 +245,21 @@ const Manager = props => {
             {/* <Form.Group id="technologies"> */}
             {techsMapped}
             {/* </Form.Group> */}
-            {/* <Form.Group controlId="formGroupDescription">
+            <Form.Group controlId="formGroupDescription">
               <Form.Label className={managerStyles.fieldLabel}>
                 Description
               </Form.Label>
-              <Form.Control
-                as="textarea"
-                placeholder="Description"
-                rows="10"
-                ref={formDesc}
-              />
-            </Form.Group> */}
-            <ReactQuill theme="snow" value={descValue} onChange={setValue}/>
+              {document ? (
+                <ReactQuill
+                  theme="snow"
+                  value={descValue}
+                  onChange={setValue}
+                />
+              ) : (
+                <textarea rows="10" />
+              )}
+            </Form.Group>
+
             <Form.Group controlId="submitButton">
               <Button
                 variant="success"
