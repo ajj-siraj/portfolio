@@ -135,7 +135,7 @@ const ProjectsTemplate = props => {
                 <Button
                   id="project-btn2"
                   block
-                  variant="outline-success"
+                  variant="outline-warning"
                   as={"a"}
                   href={project.sourceCode}
                   target="_blank"
