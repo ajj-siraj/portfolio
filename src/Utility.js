@@ -1,74 +1,64 @@
-import Parse from "parse";
+import { appID, apiKey, endPoint } from "./config";
+
+const headers = {
+  "Content-Type": "application/json",
+  "X-Parse-Application-Id": appID,
+  "X-Parse-REST-API-Key": apiKey,
+};
 
 //API
 export const readData = dataClassName => {
-  Parse.serverURL = "https://parseapi.back4app.com";
-  Parse.initialize(process.env.b4aID, process.env.apiKey);
-
   return new Promise((resolve, reject) => {
-    const dataClass = Parse.Object.extend(dataClassName);
-    const query = new Parse.Query(dataClass);
-    query
-      .find()
-      .then(res => JSON.stringify(res))
-      .then(
-        results => {
-          console.log("ParseObjects found:", results);
-          resolve(results);
-        },
-        error => {
-          console.error("Error while fetching ParseObjects", error);
-          reject(error);
-        }
-      );
+    fetch(endPoint, {
+      method: "GET",
+      headers: headers,
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("RES: ", res);
+        resolve(res.results);
+      })
+      .catch(err => {
+        console.error(err);
+        reject(err);
+      });
   });
 };
 
 export const writeData = (dataClassName, dataToPush) => {
-  Parse.serverURL = "https://parseapi.back4app.com";
-  Parse.initialize(process.env.b4aID, process.env.apiKey);
-
   return new Promise((resolve, reject) => {
-    const dataClass = Parse.Object.extend(dataClassName);
-    const obj = new dataClass();
-
-    const dataKeys = Object.keys(dataToPush);
-    const dataValues = Object.values(dataToPush);
-
-    dataValues.forEach((value, idx) => {
-      obj.set(dataKeys[idx].toString(), value);
-    });
-
-    obj.save().then(
-      result => {
-        console.log("ParseObject created", result);
-        resolve(result);
-      },
-      error => {
-        console.error("Error while creating ParseObject: ", error);
-        reject(error);
-      }
-    );
+    fetch(endPoint, {
+      method: "POST",
+      headers: headers,
+      body: JSON.stringify(dataToPush),
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("RES: ", res);
+        resolve(res);
+      })
+      .catch(err => {
+        console.error(err);
+        reject(err);
+      });
   });
 };
 
 export const deleteData = (dataClassName, objectId) => {
   return new Promise((resolve, reject) => {
-    const dataClass = Parse.Object.extend(dataClassName);
-    const query = new Parse.Query(dataClass);
-
-    query.get(objectId).then(object => {
-      object.destroy().then(
-        response => {
-          console.log("Deleted ParseObject", response);
-          resolve(response);
-        },
-        error => {
-          console.error("Error while deleting ParseObject", error);
-          reject(error);
-        }
-      );
-    });
+    fetch(`${endPoint}/${objectId}`, {
+      method: "DELETE",
+      headers: headers,
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log("RES: ", res);
+        resolve(res);
+      })
+      .catch(err => {
+        console.error(err);
+        reject(err);
+      });
   });
 };
 

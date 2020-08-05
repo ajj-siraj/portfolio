@@ -1,9 +1,6 @@
 //Main modules
 import React, { useEffect } from "react";
 import { Link } from "gatsby";
-import { Nav } from "react-bootstrap";
-import Parse from "parse";
-import ScrollLock from "react-scrolllock";
 
 //redux
 import { connect } from "react-redux";
@@ -32,10 +29,11 @@ const mapDispatchToProps = dispatch => {
 };
 
 const IndexPage = props => {
-  useEffect(() => {
-    Parse.serverURL = "https://parseapi.back4app.com";
-    Parse.initialize(process.env.b4aID, process.env.apiKey);
-  });
+  // useEffect(() => {
+  //   Parse.serverURL = "https://parseapi.back4app.com";
+  //   Parse.initialize(process.env.b4aID, process.env.apiKey);
+  // });
+  console.log("INDEX props: ", props);
   return (
     <div>
       {/* {props.loading ? <Loading /> : null} */}

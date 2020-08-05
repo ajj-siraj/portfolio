@@ -1,9 +1,5 @@
-import { Link } from "gatsby";
-import PropTypes from "prop-types";
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import { Tween } from "react-gsap";
-import Parse from "parse";
 import cogoToast from "cogo-toast";
 import Loading from "../components/Loading";
 import ReactQuill from "react-quill";
@@ -40,14 +36,12 @@ const techs = [
 
 const Manager = props => {
   const [data, setData] = useState(null);
-  const [success, setSuccess] = useState(false);
   const [descValue, setValue] = useState("");
 
   let formTitle = useRef(null);
   let formImgTitle = useRef(null);
   let formCat = useRef(null);
   let formTechs = useRef(null);
-  let formDesc = useRef(null);
   let formDemoLink = useRef(null);
   let formSrcLink = useRef(null);
 
@@ -59,10 +53,8 @@ const Manager = props => {
   useEffect(() => {
     if (!data) {
       Utility.readData("Projects")
-        .then(res => JSON.parse(res))
         .then(res => {
           setData(res);
-          setSuccess(true);
           window.scroll(0, 0);
         })
         .catch(err => console.log(err));
@@ -140,7 +132,11 @@ const Manager = props => {
       return (
         <Row key={`project-${idx}`} className={managerStyles.projectContainer}>
           <Col md={2} className={managerStyles.projectImg}>
-            image here
+            <img
+              className="img-fluid m-auto"
+              src={`/projects/${project.imgTitle}`}
+              alt={project.imgTitle}
+            />
           </Col>
           <Col md={10}>
             <Row className={managerStyles.projectTitle}>
@@ -249,15 +245,8 @@ const Manager = props => {
               <Form.Label className={managerStyles.fieldLabel}>
                 Description
               </Form.Label>
-              {document ? (
-                <ReactQuill
-                  theme="snow"
-                  value={descValue}
-                  onChange={setValue}
-                />
-              ) : (
-                <textarea rows="10" />
-              )}
+
+              <ReactQuill theme="snow" value={descValue} onChange={setValue} />
             </Form.Group>
 
             <Form.Group controlId="submitButton">

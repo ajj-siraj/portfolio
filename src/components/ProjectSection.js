@@ -7,8 +7,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //components
 import ProjectsTemplate from "./ProjectsTemplate";
-import ProjectsFullstack from "./ProjectsFullstack";
-import ProjectsMisc from "./ProjectsMisc";
 import Loading from "./Loading";
 
 //utility
@@ -19,6 +17,9 @@ import * as Animations from "./animations";
 
 //css modules
 import "../css/projects.css";
+
+
+
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectSection = props => {
@@ -48,8 +49,8 @@ const ProjectSection = props => {
   useEffect(() => {
     if (!data) {
       props.fetchingData();
+
       Utility.readData("Projects")
-        .then(res => JSON.parse(res))
         .then(res => {
           console.log("Received raw data: ", res);
           setData(res);
@@ -63,9 +64,9 @@ const ProjectSection = props => {
   let front = [];
   let full = [];
   let misc = [];
-  if(data){
-    data.forEach((proj) => {
-      switch(proj.categories){
+  if (data) {
+    data.forEach(proj => {
+      switch (proj.categories) {
         case "Front-end":
           front.push(proj);
           return;
@@ -75,7 +76,7 @@ const ProjectSection = props => {
         default:
           misc.push(proj);
       }
-    })
+    });
   }
   let projectsCont = (
     <Container fluid className="mainDiv">

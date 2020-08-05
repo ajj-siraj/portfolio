@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import React, { useState, useEffect } from "react";
 import { Nav, Row, Col, Tab, Button } from "react-bootstrap";
-import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -90,8 +89,8 @@ const ProjectsTemplate = props => {
   let projectTabs = [];
   if (data) {
     if (data.length > 0) {
-      let dataValues = Object.values(data);
-      projectNavs = dataValues.map((project, idx) => {
+      
+      projectNavs = data.map((project, idx) => {
         return (
           <Nav.Item key={`project-nav-${idx}`}>
             <Nav.Link eventKey={`project--${idx}`}>
@@ -101,7 +100,7 @@ const ProjectsTemplate = props => {
         );
       });
 
-      projectTabs = dataValues.map((project, idx) => {
+      projectTabs = data.map((project, idx) => {
         return (
           <Tab.Pane
             key={`project-tab-${idx}`}
