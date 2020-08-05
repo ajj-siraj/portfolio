@@ -96,8 +96,10 @@ const Manager = props => {
         );
     }
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
-    // else if (action === "Edit") {
-    // }
+    else if (action === "Edit") {
+      cogoToast.info("Edit unsupported at the moment.");
+      return;
+    }
 
     //Handle removing a project
     else if (action === "Remove") {
@@ -161,7 +163,7 @@ const Manager = props => {
                 <Button
                   block
                   variant="outline-secondary"
-                  onClick={() => projectSubmit("Edit", project[idx].id)}
+                  onClick={() => projectSubmit("Edit", project.objectId)}
                 >
                   Edit
                 </Button>

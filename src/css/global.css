@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+}
+
 li{
   list-style-image: url("/list-item.svg");
 }
