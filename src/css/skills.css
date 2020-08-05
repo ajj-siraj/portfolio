@@ -23,3 +23,18 @@
   width: 100%;
   background-color: #ffbb00;
 }
+
+.slick-slide :focus{
+  border: none !important;
+  outline: none !important;
+}
+
+.tech-heading{
+  font-size: 1.5rem;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.tech-heading-large{
+  font-size: 1.75rem;
+  font-family: 'Share Tech Mono', monospace;
+}
