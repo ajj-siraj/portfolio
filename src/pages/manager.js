@@ -38,6 +38,7 @@ const Manager = props => {
   const [data, setData] = useState(null);
   const [descValue, setValue] = useState("");
 
+  let formKey = useRef(null);
   let formTitle = useRef(null);
   let formImgTitle = useRef(null);
   let formCat = useRef(null);
@@ -84,11 +85,15 @@ const Manager = props => {
         sourceCode: formSrcLink.current.value,
       };
       console.log(dataToPush);
-      Utility.writeData("Projects", dataToPush).then(() => {
-        setData(null);
-        window.scroll(0, 0);
-        cogoToast.success("Project added successfully.");
-      });
+      Utility.writeData("Projects", dataToPush, formKey.current.value)
+        .then(() => {
+          setData(null);
+          window.scroll(0, 0);
+          cogoToast.success("Project added successfully.");
+        })
+        .catch(err =>
+          cogoToast.error("Permission denied. Please enter a valid key.")
+        );
     }
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
     // else if (action === "Edit") {
@@ -96,11 +101,15 @@ const Manager = props => {
 
     //Handle removing a project
     else if (action === "Remove") {
-      Utility.deleteData("Projects", projectID).then(res => {
-        console.log(res);
-        setData(null);
-        cogoToast.success("Deleted Successfully.");
-      });
+      Utility.deleteData("Projects", projectID, formKey.current.value)
+        .then(res => {
+          console.log(res);
+          setData(null);
+          cogoToast.success("Deleted Successfully.");
+        })
+        .catch(err =>
+          cogoToast.error("Permission denied. Please enter a valid key.")
+        );
     }
   };
 
@@ -187,6 +196,13 @@ const Manager = props => {
       <Row>
         <Col>
           <Form>
+            <Form.Group controlId="formGroupKey">
+              <Form.Label className={managerStyles.fieldLabel}>
+                Authorization key
+              </Form.Label>
+              <Form.Control type="text" placeholder="Authorization key" ref={formKey} />
+            </Form.Group>
+
             <Form.Group controlId="formGroupTitle">
               <Form.Label className={managerStyles.fieldLabel}>
                 Project Title

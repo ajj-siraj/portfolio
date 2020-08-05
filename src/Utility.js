@@ -3,8 +3,9 @@ import { appID, apiKey, endPoint } from "./config";
 const headers = {
   "Content-Type": "application/json",
   "X-Parse-Application-Id": appID,
-  "X-Parse-REST-API-Key": apiKey,
+  "X-Parse-Client-Key": apiKey,
 };
+
 
 //API
 export const readData = dataClassName => {
@@ -25,15 +26,23 @@ export const readData = dataClassName => {
   });
 };
 
-export const writeData = (dataClassName, dataToPush) => {
+export const writeData = (dataClassName, dataToPush, masterKey) => {
   return new Promise((resolve, reject) => {
     fetch(endPoint, {
       method: "POST",
-      headers: headers,
+      headers: {
+        "Content-Type": "application/json",
+        "X-Parse-Application-Id": appID,
+        "X-Parse-Master-Key": masterKey,
+      },
       body: JSON.stringify(dataToPush),
     })
       .then(res => res.json())
       .then(res => {
+        if(res.error){
+          reject(res.error);
+          return;
+        }
         console.log("RES: ", res);
         resolve(res);
       })
@@ -44,14 +53,22 @@ export const writeData = (dataClassName, dataToPush) => {
   });
 };
 
-export const deleteData = (dataClassName, objectId) => {
+export const deleteData = (dataClassName, objectId, masterKey) => {
   return new Promise((resolve, reject) => {
     fetch(`${endPoint}/${objectId}`, {
       method: "DELETE",
-      headers: headers,
+      headers: {
+        "Content-Type": "application/json",
+        "X-Parse-Application-Id": appID,
+        "X-Parse-Master-Key": masterKey,
+      },
     })
       .then(res => res.json())
       .then(res => {
+        if(res.error){
+          reject(res.error);
+          return;
+        }
         console.log("RES: ", res);
         resolve(res);
       })

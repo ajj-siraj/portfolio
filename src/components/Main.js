@@ -22,22 +22,22 @@ const Main = (props) => {
       {/* <ScrollLock isActive={props.loading}> */}
       <Container fluid>
         <Row>
-          <Col className="m-0 p-0">
+          <Col className="m-0 p-0" id="home">
             <HomeSection {...props}/>
           </Col>
         </Row>
         <Row>
-          <Col className="m-0 p-0">
+          <Col className="m-0 p-0" id="about">
             <AboutSection {...props}/>
           </Col>
         </Row>
         <Row>
-          <Col className="m-0 p-0">
+          <Col className="m-0 p-0" id="skills">
             <SkillSection {...props}/>
           </Col>
         </Row>
         <Row>
-          <Col>
+          <Col className="m-0 p-0" id="projects">
             <ProjectSection {...props}/>
           </Col>
         </Row>

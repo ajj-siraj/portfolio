@@ -89,23 +89,17 @@ const ProjectsTemplate = props => {
   let projectTabs = [];
   if (data) {
     if (data.length > 0) {
-      
       projectNavs = data.map((project, idx) => {
         return (
           <Nav.Item key={`project-nav-${idx}`}>
-            <Nav.Link eventKey={`project--${idx}`}>
-              {project.title}
-            </Nav.Link>
+            <Nav.Link eventKey={`project--${idx}`}>{project.title}</Nav.Link>
           </Nav.Item>
         );
       });
 
       projectTabs = data.map((project, idx) => {
         return (
-          <Tab.Pane
-            key={`project-tab-${idx}`}
-            eventKey={`project--${idx}`}
-          >
+          <Tab.Pane key={`project-tab-${idx}`} eventKey={`project--${idx}`}>
             <Technologies techs={project.technologies} />
             <img
               className="project-img"
@@ -157,7 +151,9 @@ const ProjectsTemplate = props => {
     else {
       projectNavs = <div></div>;
       projectTabs = (
-        <div className="msg-container">Nothing here at the moment. Please check back another time!</div>
+        <div className="msg-container">
+          Nothing here at the moment. Please check back another time!
+        </div>
       );
     }
   }
@@ -171,7 +167,9 @@ const ProjectsTemplate = props => {
           </Nav>
         </Col>
         <Col sm={9}>
-          <Tab.Content>{projectTabs}</Tab.Content>
+          <div className="projects-container">
+            <Tab.Content>{projectTabs}</Tab.Content>
+          </div>
         </Col>
       </Row>
     </Tab.Container>
