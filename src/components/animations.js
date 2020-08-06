@@ -51,7 +51,7 @@ export const navLinkScroll = {
   scrollTrigger: {
     trigger: "#about",
     scrub: true,
-    markers: true,
+    
     start: "top 10%",
     end: "top top",
   },
@@ -62,7 +62,7 @@ export const navbarSwitch = {
   scrollTrigger: {
     trigger: "#about",
     scrub: true,
-    markers: true,
+    
     start: "top 10%",
     end: "top top",
     // end: "34%",
@@ -79,6 +79,23 @@ export const svg = {
   scrollTrigger: { start: "30%" },
 }
 
+export const headingFlip = {
+  rotationX: 180,
+  alpha: 0,
+  scale: 0,
+  ease: "linear",
+  duration: 1,
+  scrollTrigger: {trigger: "#about", start: "top 50%"}
+}
+
+export const fadeIn = (trigger) => {
+  return {
+    stagger: 0.1,
+    alpha: 0,
+    duration: 0.5,
+    scrollTrigger: {trigger: trigger, start: "top 50%"}
+  }
+}
 //skills section animations
 
 export const lineEnterRight = {
@@ -86,7 +103,7 @@ export const lineEnterRight = {
   right: "-100%",
   width: "0%",
   duration: 1,
-  scrollTrigger: {start: "40%"}
+  scrollTrigger: {trigger: "#skills", start: "top 60%"}
 }
 
 export const lineEnterLeft = {
@@ -94,7 +111,7 @@ export const lineEnterLeft = {
   left: "-100%",
   width: "0%",
   duration: 1,
-  scrollTrigger: {start: "40%"}
+  scrollTrigger: {trigger: "#skills", start: "top 60%"}
 }
 export const lineHover = {
   width: "80%",
@@ -111,7 +128,7 @@ export const skillHeading = {
   alpha: 0,
   duration: "3",
   ease: "expo",
-  scrollTrigger: {start: "30%"}
+  scrollTrigger: {trigger: "#skills", start: "top 60%"}
 }
 
 //projects section animations

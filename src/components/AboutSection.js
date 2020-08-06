@@ -22,14 +22,20 @@ const handleSvgUnhover = el => {
 };
 
 const AboutSection = props => {
+  let aboutHeading = useRef(null);
+
+  useEffect(() => {
+    if(aboutHeading) gsap.from(aboutHeading, Animations.headingFlip);
+    gsap.from(".about-paragraph", Animations.fadeIn(".about-paragraph"))
+  })
   return (
     <Container
       fluid
       className="about-section text-center align-items-center"
-      id="#targetID"
+      
     >
       <Row className="justify-content-center text-center about-row">
-        <h3 className="display-4 about-heading text-center" id="#targetID2">
+        <h3 className="display-4 about-heading text-center" ref={(el) => {aboutHeading = el}}>
           Who am I?
         </h3>
         <p className="about-paragraph">

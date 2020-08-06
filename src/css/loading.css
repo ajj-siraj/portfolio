@@ -5,6 +5,7 @@
   background-color: #ffffff;
   z-index: 99999;
   padding: 20%;
+  overflow: hidden;
 }
 .loadingContainerManager{
   /* position: absolute; */

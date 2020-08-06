@@ -1,6 +1,6 @@
 .mainDiv{
   /* width: 100%; */
-  min-height: 100%;
+  min-height: 90vh;
   background-color:#1f1f1f;
   padding: 25%;
 }

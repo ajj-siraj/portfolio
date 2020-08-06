@@ -70,13 +70,15 @@ const toLearnTech = {
 const SkillSection = props => {
   let heading = useRef(null);
   let text = useRef(null);
-  let upperline = useRef(null);
-  let underline = useRef(null);
+  let skilltechs = useRef(null);
 
   useEffect(() => {
-    if (text) gsap.from(text, Animations.skillHeading);
-    // if(upperline) gsap.from(upperline, Animations.lineEnterLeft);
-    // if(underline) gsap.from(underline, Animations.lineEnterRight);
+    const upperline = heading.childNodes[0];
+    const underline = heading.childNodes[2];
+    if (text) gsap.from(text, Animations.fadeIn(text));
+    gsap.from(upperline, Animations.lineEnterLeft);
+    gsap.from(underline, Animations.lineEnterRight);
+    gsap.from(skilltechs, Animations.fadeIn(".tech-heading-large"));
   });
   //animate svgs on hover
   const handleHover = el => {
@@ -92,57 +94,6 @@ const SkillSection = props => {
     gsap.to(underline, Animations.lineUnhover);
   };
 
-  const responsiveSettings = [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-
-      },
-    },
-    {
-      breakpoint: 600,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-      },
-    },
-  ];
-
-  const settings1 = {
-    swipe: true,
-    autoplay: true,
-    autoplaySpeed: 1000,
-    speed: 1500,
-    easing: "none",
-    cssEase: "linear",
-    slidesToShow: 6,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: responsiveSettings,
-  };
-
-  const settings2 = {
-    
-    autoplay: true,
-    autoplaySpeed: 1000,
-    speed: 1500,
-    easing: "none",
-    cssEase: "linear",
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: responsiveSettings,
-  };
-
   //map the techs svgs to add to the sliders
   let learnedValues = Object.values(learnedTech);
   let learnedKeys = Object.keys(learnedTech);
@@ -152,7 +103,12 @@ const SkillSection = props => {
         className="techSvg m-auto text-center"
         src={svg}
         alt={`tech-svg-${idx}`}
-        style={learnedKeys[idx] === "express" || "mongodb" || "jquery" ? {width: "150px"} : null}
+        // scale down the obnoxiously large text svgs
+        style={
+          learnedKeys[idx] === "express" || "mongodb" || "jquery"
+            ? { width: "150px" }
+            : null
+        }
       />
       <h3 className="tech-heading">
         {capitalizeFirstLetter(learnedKeys[idx])}
@@ -160,7 +116,6 @@ const SkillSection = props => {
     </div>
   ));
 
-  
   let toLearnKeys = Object.keys(toLearnTech);
   let toLearnValues = Object.values(toLearnTech);
   console.log("KEYS: ", toLearnKeys);
@@ -173,7 +128,6 @@ const SkillSection = props => {
           className="techSvg m-auto text-center"
           src={svg}
           alt={`tech-svg2-${idx}`}
-          
         />
         <h3 className="tech-heading">
           {capitalizeFirstLetter(toLearnKeys[idx])}
@@ -193,7 +147,7 @@ const SkillSection = props => {
                 heading = el;
               }}
             >
-              <span className="heading-upperline" ref={upperline}></span>
+              <span className="heading-upperline"></span>
               <span
                 onMouseEnter={el => handleHover(el)}
                 onMouseLeave={el => handleUnhover(el)}
@@ -203,29 +157,89 @@ const SkillSection = props => {
               >
                 Skills
               </span>
-              <span className="heading-underline" ref={underline}></span>
+              <span className="heading-underline"></span>
             </h1>
           </div>
         </Col>
       </Row>
-      <Row className="mt-5 mb-5">
-        <Col xs={12} className=" mb-5">
-          <h2 className="tech-heading-large mb-3">Technologies I feel comfortable with...</h2>
-        </Col>
-        <Col xs={12}>
-          <Slider {...settings1}>{learned}</Slider>
-        </Col>
-      </Row>
-      <Row className="mt-5 mb-5">
-        <Col xs={12} className="mt-5 mb-5">
-          <h2 className="tech-heading-large">Basic literacy or currently learning...</h2>
-        </Col>
-        <Col xs={12}>
-          <Slider {...settings2}>{toLearn}</Slider>
-        </Col>
-      </Row>
+      <Container fluid ref={el => (skilltechs = el)}>
+        <Row className="mt-5 mb-5">
+          <Col xs={12} className=" mb-5">
+            <h2 className="tech-heading-large mb-3">
+              Technologies I feel comfortable with...
+            </h2>
+          </Col>
+          <Col xs={12}>
+            <Slider {...settings1}>{learned}</Slider>
+          </Col>
+        </Row>
+        <Row className="mt-5 mb-5">
+          <Col xs={12} className="mt-5 mb-5">
+            <h2 className="tech-heading-large">
+              Basic literacy or currently learning...
+            </h2>
+          </Col>
+          <Col xs={12}>
+            <Slider {...settings2}>{toLearn}</Slider>
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 };
 
 export default SkillSection;
+
+const responsiveSettings = [
+  {
+    breakpoint: 1024,
+    settings: {
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    },
+  },
+  {
+    breakpoint: 480,
+    settings: {
+      slidesToShow: 2,
+      slidesToScroll: 1,
+    },
+  },
+];
+
+const settings1 = {
+  arrows: false,
+  swipe: true,
+  drag: true,
+  autoplay: true,
+  autoplaySpeed: 1000,
+  speed: 1500,
+  easing: "none",
+  cssEase: "linear",
+  slidesToShow: 6,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  responsive: responsiveSettings,
+};
+
+const settings2 = {
+  arrows: false,
+  swipe: true,
+  drag: true,
+  autoplay: true,
+  autoplaySpeed: 1000,
+  speed: 1500,
+  easing: "none",
+  cssEase: "linear",
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  initialSlide: 0,
+  responsive: responsiveSettings,
+};
