@@ -11,7 +11,9 @@ import * as Animations from "./animations"
 //css modules
 import homeStyles from "../css/home.module.css"
 
-gsap.registerPlugin(TextPlugin)
+gsap.registerPlugin(TextPlugin);
+const plugins = [gsap, TextPlugin];
+
 const HomeSection = () => {
   return (
     <Container fluid className={homeStyles.mainDiv}>

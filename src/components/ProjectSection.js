@@ -18,10 +18,8 @@ import * as Animations from "./animations";
 //css modules
 import "../css/projects.css";
 
-
-
 gsap.registerPlugin(ScrollTrigger);
-
+const plugins = [gsap, ScrollTrigger];
 const ProjectSection = props => {
   let heading = useRef(null);
   let projectsRef = useRef(null);
@@ -40,25 +38,25 @@ const ProjectSection = props => {
     gsap.to(underline, Animations.lineUnhover);
   };
 
-  useEffect(() => {
-    // gsap.from(projectsRef.current, Animations.projectsBody);
-  });
+  // useEffect(() => {
+  //   // gsap.from(projectsRef.current, Animations.projectsBody);
+  // });
 
   const [data, setData] = useState(null);
 
-  useEffect(() => {
-    if (!data) {
-      props.fetchingData();
+  // useEffect(() => {
+  //   if (!data) {
+  //     props.fetchingData();
 
-      Utility.readData("Projects")
-        .then(res => {
-          console.log("Received raw data: ", res);
-          setData(res);
-          props.fetchingDone();
-        })
-        .catch(err => console.log(err));
-    }
-  });
+  //     Utility.readData("Projects")
+  //       .then(res => {
+  //         console.log("Received raw data: ", res);
+  //         setData(res);
+  //         props.fetchingDone();
+  //       })
+  //       .catch(err => console.log(err));
+  //   }
+  // });
 
   //divide each received project category into its own variable:
   let front = [];
@@ -88,18 +86,18 @@ const ProjectSection = props => {
                 heading = el;
               }}
             >
-              <Tween from={Animations.lineEnterLeft}>
+              {/* <Tween from={Animations.lineEnterLeft}> */}
                 <span className="heading-upperline"></span>
-              </Tween>
+              {/* </Tween> */}
               <span
                 onMouseEnter={el => handleHover(el)}
                 onMouseLeave={el => handleUnhover(el)}
               >
                 Projects
               </span>
-              <Tween from={Animations.lineEnterRight}>
+              {/* <Tween from={Animations.lineEnterRight}> */}
                 <span className="heading-underline"></span>
-              </Tween>
+              {/* </Tween> */}
             </h1>
           </div>
         </Col>

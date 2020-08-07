@@ -10,18 +10,21 @@ import * as Animations from "./animations.js";
 //styles
 import headerStyles from "../css/header.module.css";
 
+const plugins = [gsap];
 const Header = props => {
   let navRef = useRef(null);
 
   useEffect(() => {
     //reference the navlinks to animate
-    let navLinks = navRef.current.childNodes[1].childNodes[0].childNodes;
-    gsap.to(navRef.current, Animations.navbarSwitch);
+    if (document && navRef.current) {
+      let navLinks = navRef.current.childNodes[1].childNodes[0].childNodes;
+      gsap.to(navRef.current, Animations.navbarSwitch);
 
-    for (let i = 0; i <= navLinks.length; i++) {
-      gsap.to(navLinks[i], Animations.navLinkScroll);
+      for (let i = 0; i <= navLinks.length; i++) {
+        gsap.to(navLinks[i], Animations.navLinkScroll);
+      }
     }
-  }, []);
+  }, [navRef.current]);
 
   const handleHover = el => {
     gsap.to(el.target, Animations.navLinkHover);
@@ -51,6 +54,7 @@ const Header = props => {
       expand="lg"
       fixed="top"
       ref={navRef}
+      collapseOnSelect
     >
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

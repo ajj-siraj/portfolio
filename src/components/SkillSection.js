@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import React, { useRef, useEffect } from "react";
 import { Container, Row, Col, Tab, Tabs, Nav } from "react-bootstrap";
-import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
@@ -39,7 +38,6 @@ import skillStyles from "../css/skills.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-gsap.registerPlugin(ScrollTrigger);
 
 const learnedTech = {
   html5: html5,
@@ -73,13 +71,15 @@ const SkillSection = props => {
   let skilltechs = useRef(null);
 
   useEffect(() => {
-    const upperline = heading.childNodes[0];
-    const underline = heading.childNodes[2];
-    if (text) gsap.from(text, Animations.fadeIn(text));
-    gsap.from(upperline, Animations.lineEnterLeft);
-    gsap.from(underline, Animations.lineEnterRight);
-    gsap.from(skilltechs, Animations.fadeIn(".tech-heading-large"));
-  });
+    if (text.current && heading.current && skilltechs.current) {
+      const upperline = heading.childNodes[0];
+      const underline = heading.childNodes[2];
+      gsap.from(text, Animations.fadeIn(text));
+      gsap.from(upperline.current, Animations.lineEnterLeft);
+      gsap.from(underline.current, Animations.lineEnterRight);
+      gsap.from(skilltechs.current, Animations.fadeIn(".tech-heading-large"));
+    }
+  }, [text.current, heading.current, skilltechs.current]);
   //animate svgs on hover
   const handleHover = el => {
     const upperline = heading.childNodes[0];
@@ -118,8 +118,6 @@ const SkillSection = props => {
 
   let toLearnKeys = Object.keys(toLearnTech);
   let toLearnValues = Object.values(toLearnTech);
-  console.log("KEYS: ", toLearnKeys);
-  console.log("VALUES: ", toLearnValues);
 
   let toLearn = toLearnValues.map((svg, idx) => {
     return (

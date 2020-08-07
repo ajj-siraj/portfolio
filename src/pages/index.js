@@ -1,6 +1,6 @@
 //Main modules
-import React, { useEffect } from "react";
-import { Link } from "gatsby";
+import React, {useEffect} from "react";
+import {gsap} from "gsap";
 
 //redux
 import { connect } from "react-redux";
@@ -8,14 +8,12 @@ import * as Actions from "../state/actions";
 
 //components
 import Main from "../components/Main";
-import Loading from "../components/Loading";
 
 //stylesheets
 import "bootstrap/dist/css/bootstrap.min.css";
 
-//redux unused for now but I'll leave it JIC I need it in the future
+//for redux
 const mapStateToProps = state => {
-  console.log("STATE: ", state);
   return {
     loading: state.loading,
   };
@@ -29,17 +27,17 @@ const mapDispatchToProps = dispatch => {
 };
 
 const IndexPage = props => {
-  // useEffect(() => {
-  //   Parse.serverURL = "https://parseapi.back4app.com";
-  //   Parse.initialize(process.env.b4aID, process.env.apiKey);
-  // });
-  console.log("INDEX props: ", props);
+
+  useEffect(() => {
+    console.log(document.childNodes[1]);
+    if(document) gsap.to(document.childNodes[1], {opacity: 1});
+  })
   return (
     <div>
-      {/* {props.loading ? <Loading /> : null} */}
       <Main {...props} />
     </div>
   );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);
+// export default IndexPage

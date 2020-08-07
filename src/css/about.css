@@ -3,7 +3,7 @@
   /* min-height: 50px; */
   padding-top: 2%;
   padding-bottom: 2%;
-  object-fit: scale-down
+  object-fit: scale-down;
 }
 
 
@@ -16,6 +16,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
   font-family: 'Share Tech Mono', monospace;
+  opacity: 0;
 }
 
 .about-paragraph{
@@ -24,4 +25,5 @@
   font-size: 1.25rem;
   margin-left: 10%;
   margin-right: 10%;
+  opacity: 0;
 }

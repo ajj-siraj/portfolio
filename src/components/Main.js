@@ -1,15 +1,14 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React, { useEffect, useRef } from "react"
+
+import React from "react"
 import { Container, Row, Col } from "react-bootstrap"
-import {Tween} from "react-gsap"
-import ScrollLock from "react-scrolllock";
+
 
 //components
 import HomeSection from "./HomeSection"
 import AboutSection from "./AboutSection"
 import SkillSection from "./SkillSection"
 import ProjectSection from "./ProjectSection"
+import ContactSection from "./ContactSection"
 import Header from "./Header"
 import Footer from "./Footer"
 
@@ -18,22 +17,22 @@ const Main = (props) => {
   return (
     <>
     
-      <Header {...props}/>
+      <Header/>
       {/* <ScrollLock isActive={props.loading}> */}
       <Container fluid>
         <Row>
           <Col className="m-0 p-0" id="home">
-            <HomeSection {...props}/>
+            <HomeSection/>
           </Col>
         </Row>
         <Row>
           <Col className="m-0 p-0" id="about">
-            <AboutSection {...props}/>
+            <AboutSection/>
           </Col>
         </Row>
         <Row>
           <Col className="m-0 p-0" id="skills">
-            <SkillSection {...props}/>
+            <SkillSection/>
           </Col>
         </Row>
         <Row>
@@ -41,9 +40,14 @@ const Main = (props) => {
             <ProjectSection {...props}/>
           </Col>
         </Row>
+        <Row>
+          <Col className="m-0 p-0" id="projects">
+            <ContactSection />
+          </Col>
+        </Row>
       </Container>
       {/* </ScrollLock> */}
-      <Footer {...props}/>
+      <Footer/>
     </>
   )
 }

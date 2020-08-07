@@ -58,8 +58,8 @@ const imgs = {
   gatsbyjs: gatsbyjs,
 };
 
-gsap.registerPlugin(ScrollTrigger);
 
+const plugins = [gsap, ScrollTrigger];
 const Technologies = props => {
   let imgKeys = Object.keys(imgs);
   let foundTechs = imgKeys.filter((imgKey, idx) => {
