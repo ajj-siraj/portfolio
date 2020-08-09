@@ -27,11 +27,22 @@ import managerStyles from "../css/manager.module.css";
 
 //other
 import { formEndpoint } from "../config";
+
+//imgs
+import github from "../images/logos/github_logo.svg";
+import linkedin from "../images/logos/linkedin_logo.svg";
+import gmail from "../images/logos/gmail_logo.svg";
+
 const plugins = [ScrollTrigger];
 
 //animate svgs on hover
 const handleSvgHover = el => {
-  gsap.to(el.target, { scale: 2, ease: "bounce" });
+  gsap.to(el.target, {
+    scale: 2,
+    ease: "bounce",
+    duration: 0.3,
+    cursor: "pointer",
+  });
 };
 const handleSvgUnhover = el => {
   gsap.to(el.target, { scale: 1, ease: "bounce" });
@@ -40,14 +51,38 @@ const handleSvgUnhover = el => {
 const ContactSection = props => {
   let contactHeading = useRef(null);
   let formRef = useRef(null);
-
+  let svgRefs = [];
   useEffect(() => {
-    let targetRef = formRef.current.formRef.current;
-    console.log(formRef.current.formRef.current); //this looks weird but it's fine.
-    gsap.from(contactHeading, Animations.headingFlip);
-    gsap.from(targetRef.childNodes, Animations.fadeIn(contactHeading));
-  },[]);
+    let targetRef = formRef.current.formRef.current; //this looks weird but it's fine.
 
+    if (contactHeading)
+      gsap.from(contactHeading, Animations.headingFade(contactHeading));
+    if (targetRef)
+      gsap.from(targetRef.childNodes, Animations.fadeIn(contactHeading));
+  }, []);
+
+  let svgs = [github, gmail, linkedin];
+  let hrefs = [
+    "https://github.com/ajj-siraj",
+    "mailto:ajj.siraj@gmail.com",
+    "https://linkedin.com/sirageldin-ahmed",
+  ];
+  let contactLinks = svgs.map((svg, idx) => {
+    return (
+      <Col key={`svg-contact-${idx}`}>
+        <a href={hrefs[idx]} target="_blank" rel="noopener">
+          <img
+            className="techSvg"
+            src={svg}
+            alt={`contact-${idx}`}
+            ref={el => svgRefs.push(el)}
+            onMouseEnter={handleSvgHover}
+            onMouseLeave={handleSvgUnhover}
+          />
+        </a>
+      </Col>
+    );
+  });
   return (
     <Container fluid className="contact-section text-center align-items-center">
       <Row className="justify-content-center text-center">
@@ -62,12 +97,19 @@ const ContactSection = props => {
       </Row>
       <Row className="justify-content-center text-left">
         <Col md="6">
-          <ContactForm ref={formRef}/>
+          <ContactForm ref={formRef} />
         </Col>
       </Row>
+      <div className="mb-5 mt-5">
+        <Row className="mb-5 mt-5">
+          <Col xs={12}>
+            <h3>Or get in touch through...</h3>
+          </Col>
+        </Row>
+        <Row className="mb-5 mt-5">{contactLinks}</Row>
+      </div>
     </Container>
   );
 };
-
 
 export default ContactSection;

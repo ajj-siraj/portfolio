@@ -25,11 +25,9 @@ const AboutSection = props => {
   let parasRef = useRef(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
       
-      gsap.from(aboutHeading, Animations.headingFlip);
-      gsap.from(parasRef, Animations.fadeIn(aboutHeading.current));
+      gsap.from(aboutHeading, Animations.headingFade(aboutHeading));
+      gsap.from(parasRef, Animations.fadeIn(aboutHeading));
     
   }, []);
   return (
