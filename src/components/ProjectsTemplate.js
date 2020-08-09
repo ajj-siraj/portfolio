@@ -82,7 +82,7 @@ const ProjectsTemplate = props => {
 
   useEffect(() => {
     setData(props.data);
-  });
+  }, []);
 
   //conditionals to avoid missing data errors
   let projectNavs = [];

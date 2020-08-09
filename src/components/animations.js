@@ -81,19 +81,19 @@ export const svg = {
 
 export const headingFlip = {
   rotationX: 180,
-  opacity: 1,
-  scale: 1,
+  opacity: 0,
+  scale: 0,
   ease: "linear",
-  duration: 1,
+  duration: 2,
   // scrollTrigger: {trigger: "#about", start: "top 50%"}
 }
 
 export const fadeIn = (trigger) => {
   return {
-    
-    opacity: 1,
-    duration: 0.5,
-    // scrollTrigger: {trigger: trigger, start: "top 50%"}
+    stagger: 0.2,
+    opacity: 0,
+    duration: 1,
+    scrollTrigger: {trigger: trigger, start: "top 50%"}
   }
 }
 //skills section animations

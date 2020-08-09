@@ -10,7 +10,7 @@ import * as Animations from "./animations";
 //css modules
 import aboutStyles from "../css/about.css";
 
-const plugins = [gsap, ScrollTrigger];
+const plugins = [ScrollTrigger];
 
 //animate svgs on hover
 const handleSvgHover = el => {
@@ -26,12 +26,12 @@ const AboutSection = props => {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    if (document && aboutHeading.current && parasRef.current) {
+    
       
-      gsap.to(aboutHeading.current, Animations.headingFlip);
-      gsap.to(parasRef.current, Animations.fadeIn(aboutHeading.current));
-    }
-  }, [aboutHeading.current]);
+      gsap.from(aboutHeading, Animations.headingFlip);
+      gsap.from(parasRef, Animations.fadeIn(aboutHeading.current));
+    
+  }, []);
   return (
     <Container fluid className="about-section text-center align-items-center">
       <Row className="justify-content-center text-center about-row">

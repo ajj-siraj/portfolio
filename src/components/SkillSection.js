@@ -75,11 +75,11 @@ const SkillSection = props => {
       const upperline = heading.childNodes[0];
       const underline = heading.childNodes[2];
       gsap.from(text, Animations.fadeIn(text));
-      gsap.from(upperline.current, Animations.lineEnterLeft);
-      gsap.from(underline.current, Animations.lineEnterRight);
-      gsap.from(skilltechs.current, Animations.fadeIn(".tech-heading-large"));
+      gsap.from(upperline, Animations.lineEnterLeft);
+      gsap.from(underline, Animations.lineEnterRight);
+      gsap.from(skilltechs, Animations.fadeIn(".tech-heading-large"));
     }
-  }, [text.current, heading.current, skilltechs.current]);
+  }, []);
   //animate svgs on hover
   const handleHover = el => {
     const upperline = heading.childNodes[0];

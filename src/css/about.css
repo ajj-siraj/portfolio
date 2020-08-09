@@ -16,7 +16,7 @@
   margin-top: 30px;
   margin-bottom: 20px;
   font-family: 'Share Tech Mono', monospace;
-  opacity: 0;
+  opacity: 1;
 }
 
 .about-paragraph{
@@ -25,5 +25,5 @@
   font-size: 1.25rem;
   margin-left: 10%;
   margin-right: 10%;
-  opacity: 0;
+  opacity: 1;
 }
