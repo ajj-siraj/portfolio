@@ -1,0 +1,17 @@
+form input, form textarea {
+  padding: 3% !important;
+  font-size: 1.5rem !important;
+}
+
+.errMsg{
+  margin-top: 5px;
+  text-align: left;
+  padding: 10px;
+  background-color: #9b1200;
+  color: #ffffff;
+  border-radius: 10px;
+}
+
+.fieldLabel{
+  font-size: 1.5rem;
+}
