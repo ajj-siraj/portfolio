@@ -41,7 +41,7 @@ const Main = (props) => {
           </Col>
         </Row>
         <Row>
-          <Col className="m-0 p-0" id="projects">
+          <Col className="m-0 p-0" id="contact">
             <ContactSection />
           </Col>
         </Row>

@@ -9,3 +9,11 @@ li{
 .ql-editor{
   height: 300px !important;
 }
+
+#ct-container{
+  top: 30% !important;
+}
+
+.ct-toast{
+  padding: 50px !important;
+}

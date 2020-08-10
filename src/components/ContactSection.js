@@ -45,15 +45,26 @@ const handleSvgHover = el => {
   });
 };
 const handleSvgUnhover = el => {
-  gsap.to(el.target, { scale: 1, ease: "bounce" });
+  gsap.to(el.target, { scale: 1, ease: "bounce", duration: 0.5 });
 };
 
 const ContactSection = props => {
   let contactHeading = useRef(null);
   let formRef = useRef(null);
-  let svgRefs = [];
+  // let svgRefs = useRef([]);
+  let contactFooter = useRef(null);
+  let contactSvgs = useRef(null);
+
   useEffect(() => {
+    console.log(contactSvgs.childNodes);
     let targetRef = formRef.current.formRef.current; //this looks weird but it's fine.
+
+    gsap.from(contactFooter.childNodes[0], { x: -50, duration: 2, stagger: 1 });
+
+    //for some reason stagger didn't work here so I have to use this method:
+    contactSvgs.childNodes.forEach((svg, idx) => {
+      gsap.from(svg, Animations.svgEnter(contactHeading, idx));
+    })
 
     if (contactHeading)
       gsap.from(contactHeading, Animations.headingFade(contactHeading));
@@ -75,7 +86,7 @@ const ContactSection = props => {
             className="techSvg"
             src={svg}
             alt={`contact-${idx}`}
-            ref={el => svgRefs.push(el)}
+            // ref={el => svgRefs.push(el)}
             onMouseEnter={handleSvgHover}
             onMouseLeave={handleSvgUnhover}
           />
@@ -100,13 +111,15 @@ const ContactSection = props => {
           <ContactForm ref={formRef} />
         </Col>
       </Row>
-      <div className="mb-5 mt-5">
+      <div className="mb-5 mt-5" ref={el => (contactFooter = el)}>
         <Row className="mb-5 mt-5">
           <Col xs={12}>
             <h3>Or get in touch through...</h3>
           </Col>
         </Row>
-        <Row className="mb-5 mt-5">{contactLinks}</Row>
+        <Row className="mb-5 mt-5" ref={el => (contactSvgs = el)}>
+          {contactLinks}
+        </Row>
       </div>
     </Container>
   );

@@ -49,7 +49,7 @@ const AboutSection = props => {
           </p>
           <p className="about-paragraph">
             In my free time I enjoy gaming, chess, playing guitar, and reading.
-            I also speak Arabic, English, and Japanese, and tremendously enjoy
+            I also speak Arabic, English, and Japanese, and
             learning new languages.
           </p>
           <p className="about-paragraph">

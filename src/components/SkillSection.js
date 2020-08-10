@@ -38,7 +38,6 @@ import skillStyles from "../css/skills.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-
 const learnedTech = {
   html5: html5,
   css3: css3,
@@ -69,16 +68,15 @@ const SkillSection = props => {
   let heading = useRef(null);
   let text = useRef(null);
   let skilltechs = useRef(null);
+  let learnedSvgRef = useRef(null);
 
   useEffect(() => {
-    if (text.current && heading.current && skilltechs.current) {
-      const upperline = heading.childNodes[0];
-      const underline = heading.childNodes[2];
-      gsap.from(text, Animations.fadeIn(text));
-      gsap.from(upperline, Animations.lineEnterLeft);
-      gsap.from(underline, Animations.lineEnterRight);
-      gsap.from(skilltechs, Animations.fadeIn(".tech-heading-large"));
-    }
+    const upperline = heading.childNodes[0];
+    const underline = heading.childNodes[2];
+    gsap.from(text, Animations.fadeIn(heading));
+    gsap.from(upperline, Animations.lineEnterLeft(heading));
+    gsap.from(underline, Animations.lineEnterRight(heading));
+    gsap.from(skilltechs, Animations.fadeIn(heading));
   }, []);
   //animate svgs on hover
   const handleHover = el => {
@@ -135,7 +133,7 @@ const SkillSection = props => {
   });
 
   return (
-    <Container fluid className="text-center align-items-center mb-1">
+    <Container fluid className="text-center">
       {/* This Row is reserved for the heading */}
       <Row className="justify-content-center text-center">
         <Col xs={2}>
@@ -215,7 +213,8 @@ const responsiveSettings = [
 const settings1 = {
   arrows: false,
   swipe: true,
-  drag: true,
+  draggable: true,
+  swipeToSlide: true,
   autoplay: true,
   autoplaySpeed: 1000,
   speed: 1500,

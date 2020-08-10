@@ -70,13 +70,15 @@ export const navbarSwitch = {
 };
 
 //about section animations
-export const svg = {
+export const svg = (trigger) => {
+return{
   alpha: 0,
   scale: 0,
   ease: "bounce",
   zIndex: -1,
   duration: 1,
-  scrollTrigger: { start: "30%" },
+  scrollTrigger: {trigger: trigger, start: "30%" },
+}
 };
 
 export const headingFade = trigger => {
@@ -85,13 +87,14 @@ export const headingFade = trigger => {
     opacity: 0,
     ease: "expo",
     duration: 1,
-    scrollTrigger: { trigger: trigger, start: "top 50%" },
+    scrollTrigger: { trigger: trigger, start: "top 30%" },
   };
 };
 
 export const fadeIn = trigger => {
   return {
-    stagger: 0.5,
+    delay: 0.3,
+    stagger: 0.3,
     opacity: 0,
     duration: 1,
     scrollTrigger: { trigger: trigger, start: "top 50%" },
@@ -99,20 +102,24 @@ export const fadeIn = trigger => {
 };
 //skills section animations
 
-export const lineEnterRight = {
+export const lineEnterRight = (trigger) => {
+return{
   alpha: 0,
   right: "-100%",
   width: "0%",
   duration: 1,
-  scrollTrigger: { trigger: "#skills", start: "top 60%" },
+  scrollTrigger: { trigger: trigger, start: "top 50%" },
+}
 };
 
-export const lineEnterLeft = {
-  alpha: 0,
+export const lineEnterLeft = (trigger) => {
+  return{
+    alpha: 0,
   left: "-100%",
   width: "0%",
   duration: 1,
-  scrollTrigger: { trigger: "#skills", start: "top 60%" },
+  scrollTrigger: { trigger: trigger, start: "top 50%" },
+  }
 };
 export const lineHover = {
   width: "80%",
@@ -125,12 +132,14 @@ export const lineUnhover = {
   duration: "0.5",
 };
 
-export const skillHeading = {
-  alpha: 0,
-  duration: "3",
-  ease: "expo",
-  scrollTrigger: { trigger: "#skills", start: "top 60%" },
-};
+// export const skillHeading = trigger => {
+//   return {
+//     alpha: 0,
+//     duration: "3",
+//     ease: "expo",
+//     scrollTrigger: { trigger: trigger, start: "top 60%" },
+//   };
+// };
 
 //projects section animations
 export const tabButtonClick = {
@@ -138,20 +147,37 @@ export const tabButtonClick = {
   duration: 2,
 };
 
-export const projectsHeading = {
-  y: -50,
-  opacity: 0,
-  ease: "power1.in",
-  duration: 0.3,
-  scrollTrigger: { start: "50%" },
+export const projectsHeading = trigger => {
+  return {
+    y: -50,
+    opacity: 0,
+    ease: "power1.in",
+    duration: 0.3,
+    scrollTrigger: { trigger: trigger, start: "50%" },
+  };
 };
 
-export const projectsBody = {
-  delay: 0.4,
-  stagger: 3,
-  y: -50,
-  opacity: 0,
-  ease: "power2.in",
-  duration: 0.3,
-  scrollTrigger: { start: "50%" },
+export const projectsBody = trigger => {
+  return {
+    delay: 0.4,
+    stagger: 3,
+    y: -50,
+    opacity: 0,
+    ease: "power2.in",
+    duration: 0.3,
+    scrollTrigger: { trigger: trigger, start: "50%" },
+  };
+};
+
+//contact
+
+export const svgEnter = (trigger, idx) => {
+  if (!idx) idx = 0;
+  return {
+    y: -50,
+    opacity: 0,
+    duration: 1,
+    delay: idx * 0.3,
+    scrollTrigger: { trigger: trigger, start: "30%" },
+  };
 };

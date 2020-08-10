@@ -20,6 +20,7 @@ import "../css/projects.css";
 
 gsap.registerPlugin(ScrollTrigger);
 const plugins = [gsap, ScrollTrigger];
+
 const ProjectSection = props => {
   let heading = useRef(null);
   let projectsRef = useRef(null);
@@ -38,25 +39,28 @@ const ProjectSection = props => {
     gsap.to(underline, Animations.lineUnhover);
   };
 
-  // useEffect(() => {
-  //   // gsap.from(projectsRef.current, Animations.projectsBody);
-  // });
+  //on scroll animations
+  useEffect(() => {
+    const upperline = heading.childNodes[0];
+    const underline = heading.childNodes[2];
+    gsap.from(heading, Animations.headingFade(heading));
+    gsap.from(upperline, Animations.lineEnterLeft(heading));
+    gsap.from(underline, Animations.lineEnterRight(heading));
+  }, []);
 
   const [data, setData] = useState(null);
-
-  // useEffect(() => {
-  //   if (!data) {
-  //     props.fetchingData();
-
-  //     Utility.readData("Projects")
-  //       .then(res => {
-  //         console.log("Received raw data: ", res);
-  //         setData(res);
-  //         props.fetchingDone();
-  //       })
-  //       .catch(err => console.log(err));
-  //   }
-  // });
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (!data) {
+      Utility.readData("Projects")
+        .then(res => {
+          setData(res);
+          setLoading(false);
+          gsap.from(".projects-body", Animations.fadeIn(".projects-body")); //using refs for this one didn't work for some reason so I'll just use classnames
+        })
+        .catch(err => console.log(err));
+    }
+  }, [data]);
 
   //divide each received project category into its own variable:
   let front = [];
@@ -76,59 +80,64 @@ const ProjectSection = props => {
       }
     });
   }
+  let projectsBody = (
+    <div className="projects-body mt-5" ref={el => (projectsRef = el)}>
+      <Tabs defaultActiveKey="front" variant="pills">
+        <Tab eventKey="front" title="Front-end">
+          <div id="project-tab">
+            <ProjectsTemplate data={front} />
+          </div>
+        </Tab>
+        <Tab eventKey="full" title="Fullstack">
+          <div id="project-tab">
+            <ProjectsTemplate data={full} />
+          </div>
+        </Tab>
+        <Tab eventKey="misc" title="Misc projects">
+          <div id="project-tab">
+            <ProjectsTemplate data={misc} />
+          </div>
+        </Tab>
+      </Tabs>
+    </div>
+  );
+
   let projectsCont = (
     <Container fluid className="mainDiv">
       <Row className="justify-content-center text-center">
         <Col xs={2}>
-          <div className="heading-container">
+          <div className="heading-container mb-5">
             <h1
               ref={el => {
                 heading = el;
               }}
             >
-              {/* <Tween from={Animations.lineEnterLeft}> */}
-                <span className="heading-upperline"></span>
-              {/* </Tween> */}
+              
+              <span className="heading-upperline"></span>
+              
               <span
                 onMouseEnter={el => handleHover(el)}
                 onMouseLeave={el => handleUnhover(el)}
+                
               >
                 Projects
               </span>
-              {/* <Tween from={Animations.lineEnterRight}> */}
-                <span className="heading-underline"></span>
-              {/* </Tween> */}
+              
+              <span className="heading-underline"></span>
+              
             </h1>
           </div>
         </Col>
       </Row>
       <Row className="justify-content-center">
         <Col className="align-items-center text-center" id="skills-col">
-          <div className="projects-body" ref={projectsRef}>
-            <Tabs defaultActiveKey="front" variant="pills">
-              <Tab eventKey="front" title="Front-end">
-                <div id="project-tab">
-                  <ProjectsTemplate data={front} />
-                </div>
-              </Tab>
-              <Tab eventKey="full" title="Fullstack">
-                <div id="project-tab">
-                  <ProjectsTemplate data={full} />
-                </div>
-              </Tab>
-              <Tab eventKey="misc" title="Misc projects">
-                <div id="project-tab">
-                  <ProjectsTemplate data={misc} />
-                </div>
-              </Tab>
-            </Tabs>
-          </div>
+          {loading ? <Loading /> : projectsBody}
         </Col>
       </Row>
     </Container>
   );
 
-  return <div>{props.loading ? <Loading /> : projectsCont}</div>;
+  return <div>{projectsCont}</div>;
 };
 
 export default ProjectSection;
