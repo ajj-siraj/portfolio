@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 
-import loading from "../css/loading.css";
+import "../css/loading.css";
 
 const Loading = props => {
   const [error, setError] = useState(false);

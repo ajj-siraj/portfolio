@@ -1,11 +1,7 @@
-import { Link } from "gatsby";
 import React, { useState, useEffect } from "react";
 import { Nav, Row, Col, Tab, Button } from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-//animations
-import * as Animations from "./animations";
 
 //images & vectors
 import github from "../images/logos/github_logo.svg";
@@ -33,7 +29,7 @@ import xamarin from "../images/logos/xamarin_logo.svg";
 import gatsbyjs from "../images/logos/gatsby.svg";
 
 //css modules
-import projectStyles from "../css/projects.css";
+import "../css/projects.css";
 
 const imgs = {
   html5: html5,
@@ -58,8 +54,8 @@ const imgs = {
   gatsbyjs: gatsbyjs,
 };
 
+gsap.registerPlugin(ScrollTrigger)
 
-const plugins = [gsap, ScrollTrigger];
 const Technologies = props => {
   let imgKeys = Object.keys(imgs);
   let foundTechs = imgKeys.filter((imgKey, idx) => {
@@ -71,6 +67,7 @@ const Technologies = props => {
         className="techSvg"
         src={imgs[tech]}
         key={Math.ceil(Math.random() * 1000)}
+        alt="tech-svg"
       />
     );
   });
@@ -104,6 +101,7 @@ const ProjectsTemplate = props => {
             <img
               className="project-img"
               src={`/projects/${project.imgTitle}`}
+              alt="project-img"
             />
             <div
               dangerouslySetInnerHTML={{ __html: project.description }}

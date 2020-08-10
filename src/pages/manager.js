@@ -49,9 +49,6 @@ const Manager = props => {
   formTechs = [];
 
   useEffect(() => {
-    console.log(descValue);
-  }, [descValue]);
-  useEffect(() => {
     if (!data) {
       Utility.readData("Projects")
         .then(res => {
@@ -105,7 +102,7 @@ const Manager = props => {
     else if (action === "Remove") {
       Utility.deleteData("Projects", projectID, formKey.current.value)
         .then(res => {
-          console.log(res);
+          
           setData(null);
           cogoToast.success("Deleted Successfully.");
         })
@@ -136,9 +133,7 @@ const Manager = props => {
   if (data) {
     //this will be used to conditional render "you have no projects" statement
     dataLength = data.length;
-    console.log("DATA: ", data);
-    // let dataValues = Object.values(data);
-    // let dataKeys = Object.keys(data);
+
     projects = data.map((project, idx) => {
       return (
         <Row key={`project-${idx}`} className={managerStyles.projectContainer}>

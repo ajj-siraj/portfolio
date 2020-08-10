@@ -1,10 +1,6 @@
 //Main modules
-import React, {useEffect} from "react";
-import {gsap} from "gsap";
-
-//redux
-// import { connect } from "react-redux";
-// import * as Actions from "../state/actions";
+import React from "react";
+import Helmet from "react-helmet";
 
 //components
 import Main from "../components/Main";
@@ -12,28 +8,17 @@ import Main from "../components/Main";
 //stylesheets
 import "bootstrap/dist/css/bootstrap.min.css";
 
-//for redux
-// const mapStateToProps = state => {
-//   return {
-//     loading: state.loading,
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     fetchingData: () => dispatch(Actions.fetchingData()),
-//     fetchingDone: () => dispatch(Actions.fetchingDone()),
-//   };
-// };
-
 const IndexPage = props => {
-
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Siraj - A Portfolio</title>
+        
+      </Helmet>
       <Main {...props} />
     </div>
   );
 };
 
-// export default connect(mapStateToProps, mapDispatchToProps)(IndexPage);
-export default IndexPage
+export default IndexPage;

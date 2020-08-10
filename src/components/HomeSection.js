@@ -1,26 +1,40 @@
-import { Link } from "gatsby"
-import React from "react"
+
+import React, {useRef, useEffect} from "react"
 import { Container, Row, Col } from "react-bootstrap"
-import { Tween, Reveal, Timeline} from "react-gsap"
+
 import { gsap } from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
-
-//animations
-import * as Animations from "./animations"
 
 //css modules
 import homeStyles from "../css/home.module.css"
 
 gsap.registerPlugin(TextPlugin);
-const plugins = [gsap, TextPlugin];
 
 const HomeSection = () => {
+
+  let heading = useRef(null);
+
+  useEffect(() => {
+    let tl = gsap.timeline({
+      delay: 2,
+      repeat: -1, // number of repeats (-1 for infinite)
+      repeatDelay: 2, // seconds between repeats
+    });
+    tl.to(heading, {text: "React Developer", delay: 2});
+    tl.to(heading, {text: "Javascript Developer", delay: 2});
+    tl.to(heading, {text: "Nodejs Developer", delay: 2});
+    tl.to(heading, {text: "Web Developer", delay: 2});
+    tl.to(heading, {text: "Hi, I'm Siraj2", delay: 2});
+  }, [])
   return (
     <Container fluid className={homeStyles.mainDiv}>
       <Row className="align-items-center">
         <Col className="justify-content-center">
           <div>
-            <Timeline target={<h1 className={homeStyles.homeHeading}>Hi, I'm Siraj</h1>} repeat={-1} repeatDelay={2}>
+          <h1 className={homeStyles.homeHeading} ref={el => heading = el}>Hi, I'm Siraj</h1>
+          </div>
+          <div>
+            {/* <Timeline target={<h1 className={homeStyles.homeHeading}>Hi, I'm Siraj</h1>} repeat={-1} repeatDelay={2}>
             <Tween
               to={{
                 text: "Hi, I'm a JavaScript Developer",
@@ -63,7 +77,7 @@ const HomeSection = () => {
                 delay: "1",
               }}
             />
-          </Timeline>
+          </Timeline> */}
           </div>
           
         </Col>

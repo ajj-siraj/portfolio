@@ -1,4 +1,4 @@
-import { Link } from "gatsby";
+
 import React, { useRef, useEffect } from "react";
 import { Container, Row } from "react-bootstrap";
 import { gsap } from "gsap";
@@ -8,17 +8,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as Animations from "./animations";
 
 //css modules
-import aboutStyles from "../css/about.css";
+import "../css/about.css";
 
-const plugins = [ScrollTrigger];
-
-//animate svgs on hover
-const handleSvgHover = el => {
-  gsap.to(el.target, { scale: 2, ease: "bounce" });
-};
-const handleSvgUnhover = el => {
-  gsap.to(el.target, { scale: 1, ease: "bounce" });
-};
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = props => {
   let aboutHeading = useRef(null);

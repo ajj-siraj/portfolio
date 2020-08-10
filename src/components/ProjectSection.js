@@ -1,7 +1,5 @@
-import { Link } from "gatsby";
 import React, { useRef, useEffect, useState } from "react";
 import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
-import { Tween, Reveal, Timeline, Controls, PlayState } from "react-gsap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -19,11 +17,9 @@ import * as Animations from "./animations";
 import "../css/projects.css";
 
 gsap.registerPlugin(ScrollTrigger);
-const plugins = [gsap, ScrollTrigger];
 
 const ProjectSection = props => {
   let heading = useRef(null);
-  let projectsRef = useRef(null);
 
   //animate svgs on hover
   const handleHover = el => {
@@ -81,7 +77,7 @@ const ProjectSection = props => {
     });
   }
   let projectsBody = (
-    <div className="projects-body mt-5" ref={el => (projectsRef = el)}>
+    <div className="projects-body mt-5">
       <Tabs defaultActiveKey="front" variant="pills">
         <Tab eventKey="front" title="Front-end">
           <div id="project-tab">

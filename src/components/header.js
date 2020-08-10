@@ -1,22 +1,22 @@
-import { Link } from "gatsby";
-import PropTypes from "prop-types";
 import React, { useRef, useEffect } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import gsap from "gsap";
-import { Tween, Timeline } from "react-gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
 //additional data
 import * as Animations from "./animations.js";
 
 //styles
 import headerStyles from "../css/header.module.css";
 
-const plugins = [gsap];
+gsap.registerPlugin(ScrollTrigger);
+
 const Header = props => {
   let navRef = useRef(null);
 
   useEffect(() => {
     //reference the navlinks to animate
-    if (document && navRef.current) {
+    if (document && navRef) {
       let navLinks = navRef.current.childNodes[1].childNodes[0].childNodes;
       gsap.to(navRef.current, Animations.navbarSwitch);
 
@@ -24,7 +24,7 @@ const Header = props => {
         gsap.to(navLinks[i], Animations.navLinkScroll);
       }
     }
-  }, [navRef.current]);
+  }, []);
 
   const handleHover = el => {
     gsap.to(el.target, Animations.navLinkHover);
@@ -59,7 +59,7 @@ const Header = props => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mx-auto">
-          <Tween from={Animations.navLink}>
+          {/* <Tween from={Animations.navLink}> */}
             <Nav.Link
               className={headerStyles.navText}
               id={headerStyles.aboutNav}
@@ -101,7 +101,7 @@ const Header = props => {
               Contact
               <span className={headerStyles.navUnderline}></span>
             </Nav.Link>
-          </Tween>
+          {/* </Tween> */}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

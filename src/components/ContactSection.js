@@ -1,19 +1,14 @@
-import { Link } from "gatsby";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect} from "react";
 import {
   Container,
   Row,
   Col,
-  Form,
-  InputGroup,
-  DropdownButton,
-  Dropdown,
-  Button,
+
 } from "react-bootstrap";
-import { Formik } from "formik";
+
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import cogoToast from "cogo-toast";
+
 
 //components
 import ContactForm from "./ContactForm";
@@ -21,19 +16,12 @@ import ContactForm from "./ContactForm";
 //animations
 import * as Animations from "./animations";
 
-//css modules
-import contactStyles from "../css/contact.module.css";
-import managerStyles from "../css/manager.module.css";
-
-//other
-import { formEndpoint } from "../config";
-
 //imgs
 import github from "../images/logos/github_logo.svg";
 import linkedin from "../images/logos/linkedin_logo.svg";
 import gmail from "../images/logos/gmail_logo.svg";
 
-const plugins = [ScrollTrigger];
+gsap.registerPlugin(ScrollTrigger);
 
 //animate svgs on hover
 const handleSvgHover = el => {
@@ -81,7 +69,7 @@ const ContactSection = props => {
   let contactLinks = svgs.map((svg, idx) => {
     return (
       <Col key={`svg-contact-${idx}`}>
-        <a href={hrefs[idx]} target="_blank" rel="noopener">
+        <a href={hrefs[idx]} target="_blank" rel="noopener noreferrer">
           <img
             className="techSvg"
             src={svg}

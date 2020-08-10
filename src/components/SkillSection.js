@@ -1,6 +1,6 @@
-import { Link } from "gatsby";
+
 import React, { useRef, useEffect } from "react";
-import { Container, Row, Col, Tab, Tabs, Nav } from "react-bootstrap";
+import { Container, Row, Col} from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
@@ -34,7 +34,7 @@ import gatsbyjs from "../images/logos/gatsby.svg";
 import * as Animations from "./animations";
 
 //css
-import skillStyles from "../css/skills.css";
+import "../css/skills.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -64,11 +64,13 @@ const toLearnTech = {
   angular: angular,
 };
 
+gsap.registerPlugin(ScrollTrigger);
+
 const SkillSection = props => {
   let heading = useRef(null);
   let text = useRef(null);
   let skilltechs = useRef(null);
-  let learnedSvgRef = useRef(null);
+
 
   useEffect(() => {
     const upperline = heading.childNodes[0];
@@ -150,6 +152,7 @@ const SkillSection = props => {
                 ref={el => {
                   text = el;
                 }}
+                
               >
                 Skills
               </span>
