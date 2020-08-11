@@ -14,6 +14,8 @@ gsap.registerPlugin(ScrollTrigger);
 const Header = props => {
   let navRef = useRef(null);
 
+  
+
   useEffect(() => {
     //reference the navlinks to animate
     if (document && navRef) {
@@ -23,8 +25,18 @@ const Header = props => {
       for (let i = 0; i <= navLinks.length; i++) {
         gsap.to(navLinks[i], Animations.navLinkScroll);
       }
+      gsap.from(navLinks, Animations.navLink);
     }
   }, []);
+
+  //handlers
+
+  //workaround to the gatsby anchor link scroll bug - probably a bad idea but using Refs requires re-configuring every component to forward refs.
+  const scrollToRef = source => {
+    let alt = source.target.getAttribute("alt");
+    let target = document.getElementById(alt);
+    window.scrollTo(0, target.offsetTop - 100);
+  };
 
   const handleHover = el => {
     gsap.to(el.target, Animations.navLinkHover);
@@ -59,49 +71,53 @@ const Header = props => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mx-auto">
-          {/* <Tween from={Animations.navLink}> */}
-            <Nav.Link
-              className={headerStyles.navText}
-              id={headerStyles.aboutNav}
-              onMouseEnter={el => handleHover(el)}
-              onMouseLeave={el => handleUnHover(el)}
-              href="#about"
-            >
-              About me
-              <span className={headerStyles.navUnderline}></span>
-            </Nav.Link>
+          
+          <Nav.Link
+            className={headerStyles.navText}
+            id={headerStyles.aboutNav}
+            onMouseEnter={el => handleHover(el)}
+            onMouseLeave={el => handleUnHover(el)}
+            alt="about"
+            onClick={el => scrollToRef(el)}
+          >
+            About me
+            <span className={headerStyles.navUnderline}></span>
+          </Nav.Link>
 
-            <Nav.Link
-              className={headerStyles.navText}
-              id={headerStyles.skillsNav}
-              onMouseEnter={el => handleHover(el)}
-              onMouseLeave={el => handleUnHover(el)}
-              href="#skills"
-            >
-              Skills
-              <span className={headerStyles.navUnderline}></span>
-            </Nav.Link>
-            <Nav.Link
-              className={headerStyles.navText}
-              id={headerStyles.projectsNav}
-              onMouseEnter={el => handleHover(el)}
-              onMouseLeave={el => handleUnHover(el)}
-              href="#projects"
-            >
-              Projects
-              <span className={headerStyles.navUnderline}></span>
-            </Nav.Link>
-            <Nav.Link
-              className={headerStyles.navText}
-              id={headerStyles.contactNav}
-              onMouseEnter={el => handleHover(el)}
-              onMouseLeave={el => handleUnHover(el)}
-              href="#contact"
-            >
-              Contact
-              <span className={headerStyles.navUnderline}></span>
-            </Nav.Link>
-          {/* </Tween> */}
+          <Nav.Link
+            className={headerStyles.navText}
+            id={headerStyles.skillsNav}
+            onMouseEnter={el => handleHover(el)}
+            onMouseLeave={el => handleUnHover(el)}
+            alt="skills"
+            onClick={el => scrollToRef(el)}
+          >
+            Skills
+            <span className={headerStyles.navUnderline}></span>
+          </Nav.Link>
+          <Nav.Link
+            className={headerStyles.navText}
+            id={headerStyles.projectsNav}
+            onMouseEnter={el => handleHover(el)}
+            onMouseLeave={el => handleUnHover(el)}
+            alt="projects"
+            onClick={el => scrollToRef(el)}
+          >
+            Projects
+            <span className={headerStyles.navUnderline}></span>
+          </Nav.Link>
+          <Nav.Link
+            className={headerStyles.navText}
+            id={headerStyles.contactNav}
+            onMouseEnter={el => handleHover(el)}
+            onMouseLeave={el => handleUnHover(el)}
+            alt="contact"
+            onClick={el => scrollToRef(el)}
+          >
+            Contact
+            <span className={headerStyles.navUnderline}></span>
+          </Nav.Link>
+          
         </Nav>
       </Navbar.Collapse>
     </Navbar>
