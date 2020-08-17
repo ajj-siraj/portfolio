@@ -6,6 +6,9 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 //additional data
 import * as Animations from "./animations.js";
 
+//utility
+import {scrollToRef} from "../Utility";
+
 //styles
 import headerStyles from "../css/header.module.css";
 
@@ -32,11 +35,11 @@ const Header = props => {
   //handlers
 
   //workaround to the gatsby anchor link scroll bug - probably a bad idea but using Refs requires re-configuring every component to forward refs.
-  const scrollToRef = source => {
-    let alt = source.target.getAttribute("alt");
-    let target = document.getElementById(alt);
-    window.scrollTo(0, target.offsetTop - 100);
-  };
+  // const scrollToRef = source => {
+  //   let alt = source.target.getAttribute("alt");
+  //   let target = document.getElementById(alt);
+  //   window.scrollTo(0, target.offsetTop - 100);
+  // };
 
   const handleHover = el => {
     gsap.to(el.target, Animations.navLinkHover);

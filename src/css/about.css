@@ -6,7 +6,12 @@
   object-fit: scale-down;
 }
 
-
+.about-link{
+  color: rgb(37, 122, 192) !important;
+}
+.about-link:hover{
+  cursor: pointer;
+}
 .about-row{
   margin-top: 50px;
   margin-bottom: 150px;
