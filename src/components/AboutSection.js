@@ -43,11 +43,6 @@ const AboutSection = props => {
             and creating new things.
           </p>
           <p className="about-paragraph">
-            In my free time I enjoy gaming, chess, playing guitar, and reading.
-            I also speak Arabic, English, and Japanese, and
-            enjoy learning new languages.
-          </p>
-          <p className="about-paragraph">
             For an overview of my skills and a collection of my projects, scroll
             down this page. If you'd like to work together,{" "}
             <a onClick={(el) => scrollToRef(el)} alt="contact" className="about-link">send me a message.</a>
