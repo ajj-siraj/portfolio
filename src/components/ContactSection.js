@@ -64,7 +64,7 @@ const ContactSection = props => {
   let hrefs = [
     "https://github.com/ajj-siraj",
     "mailto:ajj.siraj@gmail.com",
-    "https://linkedin.com/sirageldin-ahmed",
+    "https://linkedin.com/in/sirageldin-ahmed",
   ];
   let contactLinks = svgs.map((svg, idx) => {
     return (

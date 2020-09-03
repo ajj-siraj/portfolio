@@ -60,7 +60,6 @@ const toLearnTech = {
   php: php,
   python: python,
   typescript: typescript,
-  xamarin: xamarin,
   angular: angular,
 };
 
@@ -165,7 +164,7 @@ const SkillSection = props => {
         <Row className="mt-5 mb-5">
           <Col xs={12} className=" mb-5">
             <h2 className="tech-heading-large mb-3">
-              Technologies I feel comfortable with...
+              Technologies I work with
             </h2>
           </Col>
           <Col xs={12}>
@@ -175,7 +174,7 @@ const SkillSection = props => {
         <Row className="mt-5 mb-5">
           <Col xs={12} className="mt-5 mb-5">
             <h2 className="tech-heading-large">
-              Basic literacy or currently learning...
+              Basic literacy or currently learning
             </h2>
           </Col>
           <Col xs={12}>
