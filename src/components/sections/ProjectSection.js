@@ -4,17 +4,17 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //components
-import ProjectsTemplate from "./ProjectsTemplate";
-import Loading from "./Loading";
+import ProjectsTemplate from "components/ProjectsTemplate";
+import Loading from "components/Loading";
 
 //utility
-import * as Utility from "../Utility";
+import * as Utility from "~/Utility";
 
 //animations
-import * as Animations from "./animations";
+import * as Animations from "components/animations";
 
 //css modules
-import "../css/projects.css";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -99,7 +99,7 @@ const ProjectSection = props => {
   );
 
   let projectsCont = (
-    <Container fluid className="mainDiv">
+    <Container fluid className="mainDiv-projects">
       <Row className="justify-content-center text-center">
         <Col xs={2}>
           <div className="heading-container mb-5">

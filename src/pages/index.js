@@ -5,10 +5,6 @@ import Helmet from "react-helmet";
 //components
 import Main from "../components/Main";
 
-//stylesheets
-import "bootstrap/dist/css/bootstrap.min.css";
-
-import "../css/global.css";
 const IndexPage = props => {
   return (
     <div>

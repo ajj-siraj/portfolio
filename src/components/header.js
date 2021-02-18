@@ -10,7 +10,7 @@ import * as Animations from "./animations.js";
 import {scrollToRef} from "../Utility";
 
 //styles
-import headerStyles from "../css/header.module.css";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,7 +65,7 @@ const Header = props => {
   return (
     <Navbar
       variant="dark"
-      className={headerStyles.navStyle}
+      className={`navStyle`}
       expand="lg"
       fixed="top"
       ref={navRef}
@@ -76,49 +76,49 @@ const Header = props => {
         <Nav className="mx-auto">
           
           <Nav.Link
-            className={headerStyles.navText}
-            id={headerStyles.aboutNav}
+            className={`navText`}
+            id={`aboutNav`}
             onMouseEnter={el => handleHover(el)}
             onMouseLeave={el => handleUnHover(el)}
             alt="about"
             onClick={el => scrollToRef(el)}
           >
             About me
-            <span className={headerStyles.navUnderline}></span>
+            <span className={`navUnderline`}></span>
           </Nav.Link>
 
           <Nav.Link
-            className={headerStyles.navText}
-            id={headerStyles.skillsNav}
+            className={`navText`}
+            id={`skillsNav`}
             onMouseEnter={el => handleHover(el)}
             onMouseLeave={el => handleUnHover(el)}
             alt="skills"
             onClick={el => scrollToRef(el)}
           >
             Skills
-            <span className={headerStyles.navUnderline}></span>
+            <span className={`navUnderline`}></span>
           </Nav.Link>
           <Nav.Link
-            className={headerStyles.navText}
-            id={headerStyles.projectsNav}
+            className={`navText`}
+            id={`projectsNav`}
             onMouseEnter={el => handleHover(el)}
             onMouseLeave={el => handleUnHover(el)}
             alt="projects"
             onClick={el => scrollToRef(el)}
           >
             Projects
-            <span className={headerStyles.navUnderline}></span>
+            <span className={`navUnderline`}></span>
           </Nav.Link>
           <Nav.Link
-            className={headerStyles.navText}
-            id={headerStyles.contactNav}
+            className={`navText`}
+            id={`contactNav`}
             onMouseEnter={el => handleHover(el)}
             onMouseLeave={el => handleUnHover(el)}
             alt="contact"
             onClick={el => scrollToRef(el)}
           >
             Contact
-            <span className={headerStyles.navUnderline}></span>
+            <span className={`navUnderline`}></span>
           </Nav.Link>
           
         </Nav>

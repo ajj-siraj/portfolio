@@ -11,15 +11,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 
 //components
-import ContactForm from "./ContactForm";
+import ContactForm from "components/ContactForm";
 
 //animations
-import * as Animations from "./animations";
+import * as Animations from "components/animations";
 
 //imgs
-import github from "../images/logos/github_logo.svg";
-import linkedin from "../images/logos/linkedin_logo.svg";
-import gmail from "../images/logos/gmail_logo.svg";
+let github = "/images/logos/github_logo.svg";
+let linkedin = "/images/logos/linkedin_logo.svg";
+let gmail = "/images/logos/gmail_logo.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 

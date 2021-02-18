@@ -6,7 +6,7 @@ import { gsap } from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
 
 //css modules
-import homeStyles from "../css/home.module.css"
+
 
 gsap.registerPlugin(TextPlugin);
 
@@ -27,11 +27,11 @@ const HomeSection = () => {
     tl.to(heading, {text: "Hi, I'm Siraj"});
   }, [])
   return (
-    <Container fluid className={homeStyles.mainDiv}>
+    <Container fluid className={`mainDiv`}>
       <Row className="align-items-center">
         <Col className="justify-content-center">
           <div>
-          <h1 className={homeStyles.homeHeading} ref={el => heading = el}>Hi, I'm Siraj</h1>
+          <h1 className={`homeHeading`} ref={el => heading = el}>Hi, I'm Siraj</h1>
           </div>
           <div>
             {/* <Timeline target={<h1 className={homeStyles.homeHeading}>Hi, I'm Siraj</h1>} repeat={-1} repeatDelay={2}>

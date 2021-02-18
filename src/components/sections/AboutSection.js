@@ -5,13 +5,13 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //animations
-import * as Animations from "./animations";
+import * as Animations from "components/animations";
 
 //utility
-import {scrollToRef} from "../Utility";
+import {scrollToRef} from "~/Utility";
 
 //css modules
-import "../css/about.css";
+
 
 gsap.registerPlugin(ScrollTrigger);
 

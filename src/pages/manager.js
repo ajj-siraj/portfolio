@@ -7,9 +7,6 @@ import ReactQuill from "react-quill";
 //utility functions
 import * as Utility from "../Utility";
 
-import managerStyles from "../css/manager.module.css";
-import "react-quill/dist/quill.snow.css";
-
 const techs = [
   "html5",
   "css3",
@@ -136,8 +133,8 @@ const Manager = props => {
 
     projects = data.map((project, idx) => {
       return (
-        <Row key={`project-${idx}`} className={managerStyles.projectContainer}>
-          <Col md={2} className={managerStyles.projectImg}>
+        <Row key={`project-${idx}`} className={`projectContainer`}>
+          <Col md={2} className={`projectImg`}>
             <img
               className="img-fluid m-auto"
               src={`/projects/${project.imgTitle}`}
@@ -145,7 +142,7 @@ const Manager = props => {
             />
           </Col>
           <Col md={10}>
-            <Row className={managerStyles.projectTitle}>
+            <Row className={`projectTitle`}>
               <Col>{project.title}</Col>
             </Row>
             {/* <Row className={managerStyles.projectDesc}>
@@ -181,7 +178,7 @@ const Manager = props => {
 
   return (
     <Container>
-      <h1 className={managerStyles.heading}>Your Projects</h1>
+      <h1 className={`heading`}>Your Projects</h1>
       {!data ? <Loading source="manager" /> : null}
       {dataLength < 1 ? (
         <h4 className="text-center">You have no projects. Add some.</h4>
@@ -194,21 +191,21 @@ const Manager = props => {
         <Col>
           <Form>
             <Form.Group controlId="formGroupKey">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Authorization key
               </Form.Label>
               <Form.Control type="text" placeholder="Authorization key" ref={formKey} />
             </Form.Group>
 
             <Form.Group controlId="formGroupTitle">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Project Title
               </Form.Label>
               <Form.Control type="text" placeholder="Title" ref={formTitle} />
             </Form.Group>
 
             <Form.Group controlId="formGroupDemoLink">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Demo Website Link (if available);
               </Form.Label>
               <Form.Control
@@ -219,7 +216,7 @@ const Manager = props => {
             </Form.Group>
 
             <Form.Group controlId="formGroupSrcLink">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Source code link
               </Form.Label>
               <Form.Control
@@ -230,7 +227,7 @@ const Manager = props => {
             </Form.Group>
 
             <Form.Group controlId="formGroupImgTitle">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Image Filename
               </Form.Label>
               <Form.Control
@@ -240,7 +237,7 @@ const Manager = props => {
               />
             </Form.Group>
             <Form.Group controlId="categories">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Categories
               </Form.Label>
               <Form.Control as="select" ref={formCat}>
@@ -255,7 +252,7 @@ const Manager = props => {
             {techsMapped}
             {/* </Form.Group> */}
             <Form.Group controlId="formGroupDescription">
-              <Form.Label className={managerStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel-manager`}>
                 Description
               </Form.Label>
 

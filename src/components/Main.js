@@ -4,13 +4,13 @@ import { Container, Row, Col } from "react-bootstrap"
 
 
 //components
-import HomeSection from "./HomeSection"
-import AboutSection from "./AboutSection"
-import SkillSection from "./SkillSection"
-import ProjectSection from "./ProjectSection"
-import ContactSection from "./ContactSection"
-import Header from "./Header"
-import Footer from "./Footer"
+import HomeSection from "components/sections/HomeSection"
+import AboutSection from "components/sections/AboutSection"
+import SkillSection from "components/sections/SkillSection"
+import ProjectSection from "components/sections/ProjectSection"
+import ContactSection from "components/sections/ContactSection"
+import Header from "components/Header"
+import Footer from "components/Footer"
 
 const Main = (props) => {
 

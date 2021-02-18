@@ -3,8 +3,8 @@ import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import cogoToast from "cogo-toast";
 
-import contactStyles from "../css/contact.module.css";
-import { formEndpoint } from "../config";
+
+import { formEndpoint } from "~/config";
 
 const ContactForm = React.forwardRef((props, ref) => <FullForm ref={ref} />);
 
@@ -35,7 +35,7 @@ class FullForm extends React.Component {
         }) => (
           <Form onSubmit={handleSubmit} ref={this.formRef}>
             <Form.Group>
-              <Form.Label className={contactStyles.fieldLabel}>Name</Form.Label>
+              <Form.Label className={`fieldLabel`}>Name</Form.Label>
 
               <Form.Control
                 name="name"
@@ -47,12 +47,12 @@ class FullForm extends React.Component {
                 disabled={isSubmitting}
               />
               {errors.name && touched.name ? (
-                <div className={contactStyles.errMsg}>{errors.name}</div>
+                <div className={`errMsg`}>{errors.name}</div>
               ) : null}
             </Form.Group>
 
             <Form.Group>
-              <Form.Label className={contactStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel`}>
                 Email
               </Form.Label>
               <Form.Control
@@ -65,12 +65,12 @@ class FullForm extends React.Component {
                 disabled={isSubmitting}
               />
               {errors.email && touched.email ? (
-                <div className={contactStyles.errMsg}>{errors.email}</div>
+                <div className={`errMsg`}>{errors.email}</div>
               ) : null}
             </Form.Group>
 
             <Form.Group>
-              <Form.Label className={contactStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel`}>
                 Subject
               </Form.Label>
               <Form.Control
@@ -83,12 +83,12 @@ class FullForm extends React.Component {
                 disabled={isSubmitting}
               />
               {errors.subject && touched.subject ? (
-                <div className={contactStyles.errMsg}>{errors.subject}</div>
+                <div className={`errMsg`}>{errors.subject}</div>
               ) : null}
             </Form.Group>
 
             <Form.Group>
-              <Form.Label className={contactStyles.fieldLabel}>
+              <Form.Label className={`fieldLabel`}>
                 Message
               </Form.Label>
               <Form.Control
@@ -102,7 +102,7 @@ class FullForm extends React.Component {
                 disabled={isSubmitting}
               />
               {errors.msg && touched.msg ? (
-                <div className={contactStyles.errMsg}>{errors.msg}</div>
+                <div className={`errMsg`}>{errors.msg}</div>
               ) : null}
             </Form.Group>
 
