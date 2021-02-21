@@ -1,11 +1,14 @@
+import dynamic from "next/dynamic";
 import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import cogoToast from "cogo-toast";
 import Loading from "../components/Loading";
-import ReactQuill from "react-quill";
 
 //utility functions
 import * as Utility from "../Utility";
+
+//dynamic import as quill does not support ssr
+const ReactQuill = dynamic(() => import("react-quill"));
 
 const techs = [
   "html5",

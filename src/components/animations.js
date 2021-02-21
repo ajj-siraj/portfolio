@@ -97,7 +97,7 @@ export const fadeIn = trigger => {
     stagger: 0.3,
     opacity: 0,
     duration: 1,
-    scrollTrigger: { trigger: trigger, start: "top 50%" },
+    scrollTrigger: { trigger: trigger, start: "top 40%" },
   };
 };
 //skills section animations
