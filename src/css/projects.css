@@ -1,7 +1,7 @@
 .mainDiv-projects{
   /* width: 100%; */
   min-height: 100%;
-  background-color:#ffffff;
+  background-color:#1f1f1f !important;
   margin-top: 5%;
   margin-bottom: 20%;
 }
@@ -13,25 +13,27 @@
   border: none;
   border-radius: 0;
   outline: none;
-  color: #1f1f1f;
+  color: #ffffff !important;
   font-family: 'Share Tech Mono', monospace;
   /* margin: 0 10px 0 10px; */
-  background-color: #ddd
+  background-color: #1f1f1f;
 }
 
 #skills-col .nav-pills .nav-item.active{
-  background-color: #f59b15;
+  background-color: #0f6322;
   
 }
 
+
 #project-tab .nav-pills .nav-item{
-  background-color: #ffffff;
+  background-color: #1f1f1f !important;
+  color: #1f1f1f;
   outline: none !important;
   border: none !important;
 }
 
 #project-tab .nav-pills .nav-item a{
-  color: #1f1f1f;
+  color: #ffffff !important;
   outline: none !important;
   border: none !important;
   
@@ -39,22 +41,22 @@
 
 
 #project-tab .nav-pills .nav-item a.active {
-  background: linear-gradient(180deg, #ffd909, #494638);
+  background: linear-gradient(180deg, #80ce87, #24221c);
   background-size: 400% 400%;
-  color: #ffffff;
-  animation: AnimationName 0.5s cubic-bezier(0,1,1,1);
+  color: #1f1f1f !important;
+  animation: Animation 0.5s cubic-bezier(0,1,1,1);
   outline: none !important;
   border: none !important;
 }
 
-@keyframes AnimationName {
+@keyframes Animation {
   0%{background-position:50% 0%}
   50%{background-position:50% 100%}
   100%{background-position:50% 0%}
 }
 
 .projects-heading{
-  color: #1f1f1f;
+  color: #ffffff !important;
   font-family: 'Share Tech Mono', monospace;
 }
 
@@ -78,13 +80,13 @@
 #project-btn1{
   border-style: solid;
   border-width: 3px;
-  color: #1f1f1f;
+  color: #ffffff !important;
   font-weight: 600;
 }
 #project-btn2{
   border-style: solid;
   border-width: 3px;
-  color: #1f1f1f;
+  color: #ffffff !important;
   font-weight: 600;
 }
 .button-imgs{
@@ -93,7 +95,7 @@
 }
 
 .techsContainer{
-  background-color: #ddd;
+  background-color: #cccccc;
   border-radius: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -111,7 +113,8 @@
   text-align: center;
   border-radius: 20px;
   margin: 5%;
-  background-color: #ddd;
+  color: #1f1f1f;
+  background-color: #979797;
 }
 
 /* .projects-container{

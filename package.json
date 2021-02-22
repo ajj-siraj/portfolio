@@ -6,6 +6,7 @@
   "dependencies": {
     "bootstrap": "^4.5.0",
     "cogo-toast": "^4.2.3",
+    "contentful": "^8.1.7",
     "dotenv": "^8.2.0",
     "formik": "^2.1.5",
     "gsap": "^3.4.2",

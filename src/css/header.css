@@ -3,23 +3,23 @@
 }
 
 .navText {
-  color: #ddd;
+  color: #ffffff;
 }
 
 #aboutNav {
-  color: #ddd;
+  color: #ffffff;
   font-family: "Share Tech Mono", monospace;
 }
 #skillsNav {
-  color: #ddd;
+  color: #ffffff;
   font-family: "Share Tech Mono", monospace;
 }
 #projectsNav {
-  color: #ddd;
+  color: #ffffff;
   font-family: "Share Tech Mono", monospace;
 }
 #contactNav {
-  color: #ddd;
+  color: #ffffff;
   font-family: "Share Tech Mono", monospace;
 }
 
@@ -30,5 +30,5 @@
   left: 0;
   height: 1px;
   width: 0%;
-  background-color: #ffbb00;
+  background-color: #00d627;
 }

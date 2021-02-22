@@ -3,13 +3,19 @@ import React, { useState, useEffect, useRef } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 import cogoToast from "cogo-toast";
 import Loading from "../components/Loading";
+import { createClient } from "contentful";
+
+const client = createClient({
+  space: "93msxqtlvfce",
+  environment: "master",
+  accessToken: "O_FHujCXi8lXy0S06DkmLyMIe_Gx6iYReTMs3a7XMag",
+});
 
 //utility functions
 import * as Utility from "../Utility";
 
 //dynamic import as quill does not support ssr
-const ReactQuill = dynamic(() => import("react-quill"));
-
+const ReactQuill = typeof window !== "undefined" ? dynamic(() => import("react-quill")) : "";
 const techs = [
   "html5",
   "css3",
@@ -34,7 +40,9 @@ const techs = [
 
 //utility functions
 
-const Manager = props => {
+const Manager = (props) => {
+  console.log(props);
+
   const [data, setData] = useState(null);
   const [descValue, setValue] = useState("");
 
@@ -48,23 +56,36 @@ const Manager = props => {
 
   formTechs = [];
 
+  let {content} = props;
+  //this allows us to make sure react-quill only renders on client side to avoid 'document undefined' errors
+  const useIsSsr = () => {
+    const [isSsr, setIsSsr] = useState(true);
+
+    useEffect(() => {
+      setIsSsr(false);
+    }, []);
+
+    return isSsr;
+  };
+
   useEffect(() => {
-    if (!data) {
-      Utility.readData("Projects")
-        .then(res => {
-          setData(res);
-          window.scroll(0, 0);
-        })
-        .catch(err => console.log(err));
-    }
-  }, [data]);
+    // if (!data) {
+    //   Utility.readData("Projects")
+    //     .then((res) => {
+    //       setData(res);
+    //       window.scroll(0, 0);
+    //     })
+    //     .catch((err) => console.log(err));
+    // }
+    setData(content)
+  }, []);
 
   //Button actions
   const projectSubmit = (action, projectID) => {
     let techsToPush = [];
 
     //Check which checkboxes are checked. She sells sea shells on the sea shore.
-    formTechs.forEach(tech => {
+    formTechs.forEach((tech) => {
       if (tech.checked) {
         techsToPush.push(tech.value);
       }
@@ -88,9 +109,7 @@ const Manager = props => {
           window.scroll(0, 0);
           cogoToast.success("Project added successfully.");
         })
-        .catch(err =>
-          cogoToast.error("Permission denied. Please enter a valid key.")
-        );
+        .catch((err) => cogoToast.error("Permission denied. Please enter a valid key."));
     }
     //Handle editing a project, idk how to handle this atm so I'll leave it for the future
     else if (action === "Edit") {
@@ -101,14 +120,11 @@ const Manager = props => {
     //Handle removing a project
     else if (action === "Remove") {
       Utility.deleteData("Projects", projectID, formKey.current.value)
-        .then(res => {
-          
+        .then((res) => {
           setData(null);
           cogoToast.success("Deleted Successfully.");
         })
-        .catch(err =>
-          cogoToast.error("Permission denied. Please enter a valid key.")
-        );
+        .catch((err) => cogoToast.error("Permission denied. Please enter a valid key."));
     }
   };
 
@@ -121,7 +137,7 @@ const Manager = props => {
         label={Utility.capitalizeFirstLetter(tech)}
         custom
         value={tech}
-        ref={el => {
+        ref={(el) => {
           formTechs.push(el);
         }}
       />
@@ -131,6 +147,7 @@ const Manager = props => {
   let projects = [];
   let dataLength;
   if (data) {
+    console.log("DATA: ", data);
     //this will be used to conditional render "you have no projects" statement
     dataLength = data.length;
 
@@ -140,17 +157,14 @@ const Manager = props => {
           <Col md={2} className={`projectImg`}>
             <img
               className="img-fluid m-auto"
-              src={`/projects/${project.imgTitle}`}
-              alt={project.imgTitle}
+              src={project?.fields?.image?.[0]?.fields?.file?.url ?? ''}
+              alt={project?.fields?.image?.[0]?.fields?.title ?? ''}
             />
           </Col>
           <Col md={10}>
             <Row className={`projectTitle`}>
-              <Col>{project.title}</Col>
+              <Col>{project?.fields?.title ?? ''}</Col>
             </Row>
-            {/* <Row className={managerStyles.projectDesc}>
-              <Col>{project.description}</Col>
-            </Row> */}
           </Col>
           <Col>
             <Row>
@@ -183,9 +197,7 @@ const Manager = props => {
     <Container>
       <h1 className={`heading`}>Your Projects</h1>
       {!data ? <Loading source="manager" /> : null}
-      {dataLength < 1 ? (
-        <h4 className="text-center">You have no projects. Add some.</h4>
-      ) : null}
+      {dataLength < 1 ? <h4 className="text-center">You have no projects. Add some.</h4> : null}
 
       <Row className="justify-content-center">
         <Col md={8}>{projects}</Col>
@@ -194,16 +206,12 @@ const Manager = props => {
         <Col>
           <Form>
             <Form.Group controlId="formGroupKey">
-              <Form.Label className={`fieldLabel-manager`}>
-                Authorization key
-              </Form.Label>
+              <Form.Label className={`fieldLabel-manager`}>Authorization key</Form.Label>
               <Form.Control type="text" placeholder="Authorization key" ref={formKey} />
             </Form.Group>
 
             <Form.Group controlId="formGroupTitle">
-              <Form.Label className={`fieldLabel-manager`}>
-                Project Title
-              </Form.Label>
+              <Form.Label className={`fieldLabel-manager`}>Project Title</Form.Label>
               <Form.Control type="text" placeholder="Title" ref={formTitle} />
             </Form.Group>
 
@@ -211,38 +219,20 @@ const Manager = props => {
               <Form.Label className={`fieldLabel-manager`}>
                 Demo Website Link (if available);
               </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Demo link"
-                ref={formDemoLink}
-              />
+              <Form.Control type="text" placeholder="Demo link" ref={formDemoLink} />
             </Form.Group>
 
             <Form.Group controlId="formGroupSrcLink">
-              <Form.Label className={`fieldLabel-manager`}>
-                Source code link
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Source code link"
-                ref={formSrcLink}
-              />
+              <Form.Label className={`fieldLabel-manager`}>Source code link</Form.Label>
+              <Form.Control type="text" placeholder="Source code link" ref={formSrcLink} />
             </Form.Group>
 
             <Form.Group controlId="formGroupImgTitle">
-              <Form.Label className={`fieldLabel-manager`}>
-                Image Filename
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Image filename"
-                ref={formImgTitle}
-              />
+              <Form.Label className={`fieldLabel-manager`}>Image Filename</Form.Label>
+              <Form.Control type="text" placeholder="Image filename" ref={formImgTitle} />
             </Form.Group>
             <Form.Group controlId="categories">
-              <Form.Label className={`fieldLabel-manager`}>
-                Categories
-              </Form.Label>
+              <Form.Label className={`fieldLabel-manager`}>Categories</Form.Label>
               <Form.Control as="select" ref={formCat}>
                 <option>Front-end</option>
                 <option>Back-end</option>
@@ -255,19 +245,15 @@ const Manager = props => {
             {techsMapped}
             {/* </Form.Group> */}
             <Form.Group controlId="formGroupDescription">
-              <Form.Label className={`fieldLabel-manager`}>
-                Description
-              </Form.Label>
+              <Form.Label className={`fieldLabel-manager`}>Description</Form.Label>
 
-              <ReactQuill theme="snow" value={descValue} onChange={setValue} />
+              {useIsSsr() ? null : (
+                <ReactQuill theme="snow" value={descValue} onChange={setValue} />
+              )}
             </Form.Group>
 
             <Form.Group controlId="submitButton">
-              <Button
-                variant="success"
-                block
-                onClick={() => projectSubmit("Submit")}
-              >
+              <Button variant="success" block onClick={() => projectSubmit("Submit")}>
                 Submit New Project
               </Button>
             </Form.Group>
@@ -279,3 +265,21 @@ const Manager = props => {
 };
 
 export default Manager;
+
+export async function getServerSideProps() {
+  try {
+    let content = await client.getEntries("projects");
+
+    return {
+      props: {
+        content: content.items,
+      },
+    };
+  } catch (ex) {
+    return {
+      props: {
+        error: ex,
+      },
+    };
+  }
+}

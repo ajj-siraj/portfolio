@@ -17,7 +17,7 @@ export const navLinkHover = {
   y: "-5px",
   duration: "0.1",
   ease: "linear",
-  color: "#ffbb00",
+  color: "#00d627",
 };
 
 export const navUnderlineHover = {
@@ -36,7 +36,7 @@ export const navLinkUnhover = {
   y: "0px",
   duration: "0.1",
   ease: "linear",
-  color: "#ddd",
+  color: "#ffffff",
 };
 
 export const navLinkUnhover2 = {
@@ -47,7 +47,7 @@ export const navLinkUnhover2 = {
 };
 
 export const navLinkScroll = {
-  color: "#000000",
+  color: "#ffffff",
   scrollTrigger: {
     trigger: "#about",
     scrub: true,
@@ -58,7 +58,7 @@ export const navLinkScroll = {
 };
 
 export const navbarSwitch = {
-  backgroundColor: "#ffffff",
+  backgroundColor: "#020204",
   scrollTrigger: {
     trigger: "#about",
     scrub: true,
@@ -87,7 +87,7 @@ export const headingFade = trigger => {
     opacity: 0,
     ease: "expo",
     duration: 1,
-    scrollTrigger: { trigger: trigger, start: "top 30%" },
+    scrollTrigger: { trigger: trigger, start: "top 60%" },
   };
 };
 
@@ -97,7 +97,7 @@ export const fadeIn = trigger => {
     stagger: 0.3,
     opacity: 0,
     duration: 1,
-    scrollTrigger: { trigger: trigger, start: "top 40%" },
+    scrollTrigger: { trigger: trigger, start: "top 60%" },
   };
 };
 //skills section animations

@@ -1,13 +1,12 @@
 import React from "react";
 
-
 const Footer = ({ siteTitle }) => (
   <>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono|Montserrat:wght@300&family=Source+Code+Pro:wght@200&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Share+Tech+Mono&display=swap"
       rel="stylesheet"
-      type="text/css"
-    ></link>
+    />
   </>
 );
 

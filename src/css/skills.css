@@ -12,7 +12,7 @@
   left: 0;
   height: 2px;
   width: 100%;
-  background-color: #ffbb00;
+  background-color: #00d627;
 }
 .heading-underline{
   display: block;
@@ -21,7 +21,7 @@
   right: 0;
   height: 2px;
   width: 100%;
-  background-color: #ffbb00;
+  background-color: #00d627;
 }
 
 .slick-slide :focus{

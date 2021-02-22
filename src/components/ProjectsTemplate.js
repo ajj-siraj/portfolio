@@ -110,7 +110,7 @@ const ProjectsTemplate = props => {
                 <Button
                   id="project-btn1"
                   block
-                  variant="outline-warning"
+                  variant="success"
                   as={"a"}
                   href={project.liveDemo}
                   target="_blank"
@@ -124,7 +124,7 @@ const ProjectsTemplate = props => {
                 <Button
                   id="project-btn2"
                   block
-                  variant="outline-warning"
+                  variant="success"
                   as={"a"}
                   href={project.sourceCode}
                   target="_blank"

@@ -26,17 +26,17 @@ const Main = (props) => {
         </Row>
         <Row>
           <Col className="m-0 p-0" id="about">
-            <AboutSection/>
+            <AboutSection content={props.content}/>
           </Col>
         </Row>
         <Row>
           <Col className="m-0 p-0" id="skills">
-            <SkillSection/>
+            <SkillSection skills={props.skills} content={props.content}/>
           </Col>
         </Row>
         <Row>
           <Col className="m-0 p-0" id="projects">
-            <ProjectSection {...props}/>
+            <ProjectSection projects={props.projects}/>
           </Col>
         </Row>
         <Row>

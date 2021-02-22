@@ -1,13 +1,14 @@
 form input, form textarea {
+  background-color: #1f1f1f !important;
   padding: 3% !important;
   font-size: 1.5rem !important;
 }
 
 .errMsg{
   margin-top: 5px;
-  text-align: left;
+  text-align: center;
   padding: 10px;
-  background-color: #9b1200;
+  background-color: #720d00;
   color: #ffffff;
   border-radius: 10px;
 }
