@@ -13,7 +13,7 @@
   border: none;
   border-radius: 0;
   outline: none;
-  color: #ffffff !important;
+  color: #ddd !important;
   font-family: 'Share Tech Mono', monospace;
   /* margin: 0 10px 0 10px; */
   background-color: #1f1f1f;
@@ -33,7 +33,7 @@
 }
 
 #project-tab .nav-pills .nav-item a{
-  color: #ffffff !important;
+  color: #ddd !important;
   outline: none !important;
   border: none !important;
   
@@ -56,7 +56,7 @@
 }
 
 .projects-heading{
-  color: #ffffff !important;
+  color: #ddd !important;
   font-family: 'Share Tech Mono', monospace;
 }
 
@@ -80,13 +80,13 @@
 #project-btn1{
   border-style: solid;
   border-width: 3px;
-  color: #ffffff !important;
+  color: #ddd !important;
   font-weight: 600;
 }
 #project-btn2{
   border-style: solid;
   border-width: 3px;
-  color: #ffffff !important;
+  color: #ddd !important;
   font-weight: 600;
 }
 .button-imgs{

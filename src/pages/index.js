@@ -7,9 +7,9 @@ import Main from "components/Main";
 import { createClient } from "contentful";
 
 const client = createClient({
-  space: "93msxqtlvfce",
+  space: process.env.contentfulSpaceID,
   environment: "master",
-  accessToken: "O_FHujCXi8lXy0S06DkmLyMIe_Gx6iYReTMs3a7XMag",
+  accessToken: process.env.contentfulKey,
 });
 
 const IndexPage = props => {
@@ -28,15 +28,15 @@ const IndexPage = props => {
 
 export async function getServerSideProps() {
   try {
-    let projects = await client.getEntries("projects");
-    let skills = await client.getEntries("skills");
-    let sectionContent = await client.getEntries("sections");
+    let projects = await client.getEntries({content_type: "projects", select: "fields"});
+    let skills = await client.getEntries({content_type: "skills", select: "fields"});
+    let sectionContent = await client.getEntries({content_type: "sections", select: "fields"});
 
     return {
       props: {
         projects: projects.items,
         skills: skills.items,
-        content: sectionContent.items[0],
+        content: sectionContent.items[0], //it's a single type so we don't need additional entries even if there are any
       },
     };
   } catch (ex) {

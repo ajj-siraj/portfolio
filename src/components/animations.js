@@ -36,7 +36,7 @@ export const navLinkUnhover = {
   y: "0px",
   duration: "0.1",
   ease: "linear",
-  color: "#ffffff",
+  color: "#ddd",
 };
 
 export const navLinkUnhover2 = {
@@ -47,7 +47,7 @@ export const navLinkUnhover2 = {
 };
 
 export const navLinkScroll = {
-  color: "#ffffff",
+  color: "#ddd",
   scrollTrigger: {
     trigger: "#about",
     scrub: true,

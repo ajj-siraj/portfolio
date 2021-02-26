@@ -89,3 +89,7 @@ export const scrollToRef = source => {
   let target = document.getElementById(alt);
   window.scrollTo(0, target.offsetTop - 100);
 };
+
+export const getImgUrl = (img) => {
+  return img.fields.file.url;
+}

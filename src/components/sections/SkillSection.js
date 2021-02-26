@@ -4,57 +4,9 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
 
-//utility
-import { capitalizeFirstLetter } from "~/Utility";
-
 //animations
 import * as Animations from "components/animations";
-//images
-let html5 = "/images/logos/HTML5_logo.svg";
-let css3 = "/images/logos/css3_logo.svg";
-let bootstrap4 = "/images/logos/bootstrap4_logo.svg";
-let express = "/images/logos/express_logo.svg";
-let git = "/images/logos/git_logo.svg";
-let javascript = "/images/logos/javascript_logo.svg";
-let jquery = "/images/logos/jquery_logo.svg";
-let angular = "/images/logos/angular_logo.svg";
-let mongodb = "/images/logos/mongodb_logo.svg";
-let mysql = "/images/logos/mysql_logo.svg";
-let nextjs = "/images/logos/nextjs_logo.svg";
-let nodejs = "/images/logos/nodejs_logo.svg";
-let php = "/images/logos/php_logo.svg";
-let python = "/images/logos/python_logo.svg";
-let react = "/images/logos/react_logo.svg";
-let reactNative = "/images/logos/react_logo.svg";
-let redux = "/images/logos/redux_logo.svg";
-let typescript = "/images/logos/typescript_logo.svg";
-let xamarin = "/images/logos/xamarin_logo.svg";
-let gatsbyjs = "/images/logos/gatsby.svg";
-
-const learnedTech = {
-  html5: html5,
-  css3: css3,
-  bootstrap4: bootstrap4,
-  javascript: javascript,
-  react: react,
-  redux: redux,
-  git: git,
-  jquery: jquery,
-  nodejs: nodejs,
-  express: express,
-  mongodb: mongodb,
-  gatsbyjs: gatsbyjs,
-  mysql: mysql,
-};
-
-const toLearnTech = {
-  reactNative: reactNative,
-  nextjs: nextjs,
-  php: php,
-  python: python,
-  typescript: typescript,
-  angular: angular,
-};
+import { getImgUrl } from "~/Utility";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,32 +38,40 @@ const SkillSection = (props) => {
   };
 
   //map the techs svgs to add to the sliders
-  let learnedValues = Object.values(learnedTech);
-  let learnedKeys = Object.keys(learnedTech);
-  let learned = learnedValues.map((svg, idx) => (
-    <div key={`tech-svg-${idx}`}>
-      <img
-        className="techSvg m-auto text-center"
-        src={svg}
-        alt={`tech-svg-${idx}`}
-        // scale down the obnoxiously large text svgs
-        style={learnedKeys[idx] === "express" || "mongodb" || "jquery" ? { width: "150px" } : null}
-      />
-      <h3 className="tech-heading">{capitalizeFirstLetter(learnedKeys[idx])}</h3>
-    </div>
-  ));
+  let learned = props.skills
+    .filter((skill) => skill.fields.learning === false)
+    .map((skill, idx) => {
+      if (skill.fields.learning) return;
+      return (
+        <div key={`tech-svg-${idx}`}>
+          <img
+            className="techSvg m-auto text-center"
+            src={getImgUrl(skill.fields.techImage)}
+            alt={`tech-svg-${idx}`}
+            // scale down the obnoxiously large text svgs
+            style={
+              skill.fields.techId === "express" || "mongodb" || "jquery" ? { width: "150px" } : null
+            }
+          />
+          <h3 className="tech-heading">{skill.fields.techTitle}</h3>
+        </div>
+      );
+    });
 
-  let toLearnKeys = Object.keys(toLearnTech);
-  let toLearnValues = Object.values(toLearnTech);
-
-  let toLearn = toLearnValues.map((svg, idx) => {
-    return (
-      <div key={`tech-svg2-${idx}`}>
-        <img className="techSvg m-auto text-center" src={svg} alt={`tech-svg2-${idx}`} />
-        <h3 className="tech-heading">{capitalizeFirstLetter(toLearnKeys[idx])}</h3>
-      </div>
-    );
-  });
+  let toLearn = props.skills
+    .filter((skill) => skill.fields.learning === true)
+    .map((skill, idx) => {
+      return (
+        <div key={`tech-svg2-${idx}`}>
+          <img
+            className="techSvg m-auto text-center"
+            src={getImgUrl(skill.fields.techImage)}
+            alt={`tech-svg2-${idx}`}
+          />
+          <h3 className="tech-heading">{skill.fields.techTitle}</h3>
+        </div>
+      );
+    });
 
   return (
     <Container fluid className="text-center">
@@ -142,7 +102,7 @@ const SkillSection = (props) => {
       <Container fluid ref={(el) => (skilltechs = el)}>
         <Row className="mt-5 mb-5">
           <Col xs={12} className=" mb-5">
-            <h2 className="tech-heading-large mb-3">Technologies I work with</h2>
+            <h2 className="tech-heading-large mb-3">{props.content.fields.skillsSubheading1}</h2>
           </Col>
           <Col xs={12}>
             <Slider {...settings1}>{learned}</Slider>
@@ -150,7 +110,7 @@ const SkillSection = (props) => {
         </Row>
         <Row className="mt-5 mb-5">
           <Col xs={12} className="mt-5 mb-5">
-            <h2 className="tech-heading-large">Basic literacy or currently learning</h2>
+            <h2 className="tech-heading-large">{props.content.fields.skillsSubheading2}</h2>
           </Col>
           <Col xs={12}>
             <Slider {...settings2}>{toLearn}</Slider>
@@ -212,7 +172,7 @@ const settings2 = {
   speed: 1500,
   easing: "none",
   cssEase: "linear",
-  slidesToShow: 4,
+  slidesToShow: 3,
   slidesToScroll: 1,
   initialSlide: 0,
   responsive: responsiveSettings,

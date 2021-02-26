@@ -8,10 +8,8 @@ const withTM = require("next-transpile-modules")(["gsap"], {
 
 module.exports = withTM({
   env: {
-    // EMAIL_ADDR: process.env.EMAIL_ADDR,
-    // API_PAGES: process.env.API_PAGES,
-    // API_CONTENT: process.env.API_CONTENT,
-    // MAPBOX_API: process.env.MAPBOX_API,
+    contentfulKey: process.env.contentfulKey,
+    contentfulSpaceID: process.env.contentfulSpaceID
   },
 
   webpack: (config) => {

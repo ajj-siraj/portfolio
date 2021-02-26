@@ -2,7 +2,7 @@
   /* position: absolute; */
   min-height: 100%;
   min-width: 100%;
-  background-color: #ffffff;
+  background-color: #1f1f1f;
   z-index: 99999;
   padding: 20%;
   overflow: hidden;
@@ -10,7 +10,7 @@
 .loadingContainerManager{
   /* position: absolute; */
   min-height: 100%;
-  background-color: #ffffff;
+  background-color: #1f1f1f;
   z-index: 99999;
   padding: 20%;
 }

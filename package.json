@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "author": "Sirageldin Ahmed",
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^14.1.2",
     "bootstrap": "^4.5.0",
     "cogo-toast": "^4.2.3",
     "contentful": "^8.1.7",
