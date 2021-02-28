@@ -41,16 +41,17 @@ const SkillSection = (props) => {
   let learned = props.skills
     .filter((skill) => skill.fields.learning === false)
     .map((skill, idx) => {
-      if (skill.fields.learning) return;
       return (
         <div key={`tech-svg-${idx}`}>
           <img
             className="techSvg m-auto text-center"
             src={getImgUrl(skill.fields.techImage)}
             alt={`tech-svg-${idx}`}
-            // scale down the obnoxiously large text svgs
+            //invert white text svgs to be visible for the dark background
             style={
-              skill.fields.techId === "express" || "mongodb" || "jquery" ? { width: "150px" } : null
+              skill.fields.techId === "express" || skill.fields.techId === "nextjs"
+                ? { width: "150px", filter: "invert(100%)" }
+                : { width: "150px" }
             }
           />
           <h3 className="tech-heading">{skill.fields.techTitle}</h3>

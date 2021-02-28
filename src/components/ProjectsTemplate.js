@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Nav, Row, Col, Tab, Button } from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import {getImgUrl} from "~/Utility";
 
 //images & vectors
 let github = "/images/logos/github_logo.svg";
@@ -55,15 +57,18 @@ const imgs = {
 gsap.registerPlugin(ScrollTrigger)
 
 const Technologies = props => {
-  let imgKeys = Object.keys(imgs);
-  let foundTechs = imgKeys.filter((imgKey, idx) => {
-    return props.techs.includes(imgKey.toString());
+
+  let techsInLC = props.techs.map((tech) => tech.toLowerCase())
+  let foundTechs = props.skills.filter((skill, idx) => {
+    return techsInLC.includes(skill.fields.techId.toLowerCase());
   });
+  console.log(foundTechs);
   let techs = foundTechs.map((tech, idx) => {
+    console.log("SKILLS IN PROJECTS: ", tech)
     return (
       <img
         className="techSvg"
-        src={imgs[tech]}
+        src={getImgUrl(tech.fields.techImage)}
         key={Math.ceil(Math.random() * 1000)}
         alt="tech-svg"
       />
@@ -77,6 +82,7 @@ const ProjectsTemplate = props => {
 
   useEffect(() => {
     setData(props.data);
+    
   }, []);
 
   //conditionals to avoid missing data errors
@@ -95,14 +101,14 @@ const ProjectsTemplate = props => {
       projectTabs = data.map((project, idx) => {
         return (
           <Tab.Pane key={`project-tab-${idx}`} eventKey={`project--${idx}`}>
-            <Technologies techs={project.technologies} />
+            <Technologies techs={project.technologies} skills={props.skills}/>
             <img
               className="project-img"
-              src={`/projects/${project.imgTitle}`}
+              src={getImgUrl(project.image)}
               alt="project-img"
             />
             <div
-              dangerouslySetInnerHTML={{ __html: project.description }}
+              dangerouslySetInnerHTML={{ __html: documentToHtmlString(project.description) }}
               className="project-description"
             ></div>
             <Row>
@@ -112,9 +118,10 @@ const ProjectsTemplate = props => {
                   block
                   variant="success"
                   as={"a"}
-                  href={project.liveDemo}
+                  href={project.demoLink}
                   target="_blank"
                   rel="noopener"
+                  disabled={project.demoLink.toLowerCase() === "unavailable"}
                 >
                   <img className="button-imgs" src={globe} alt="visit-site" />
                   Visit Website
@@ -126,9 +133,10 @@ const ProjectsTemplate = props => {
                   block
                   variant="success"
                   as={"a"}
-                  href={project.sourceCode}
+                  href={project.sourceLink}
                   target="_blank"
                   rel="noopener"
+                  disabled={project.sourceLink.toLowerCase() === "unavailable"}
                 >
                   <img
                     className="button-imgs"

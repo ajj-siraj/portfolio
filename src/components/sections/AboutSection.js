@@ -16,7 +16,6 @@ const AboutSection = (props) => {
   let parasRef = useRef(null);
 
   useEffect(() => {
-    console.log(documentToHtmlString(props.content.fields.aboutContent));
     gsap.from(aboutHeading, Animations.headingFade(aboutHeading));
     gsap.from(parasRef, Animations.fadeIn(aboutHeading));
   }, []);

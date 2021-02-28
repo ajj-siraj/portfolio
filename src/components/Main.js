@@ -36,7 +36,7 @@ const Main = (props) => {
         </Row>
         <Row>
           <Col className="m-0 p-0" id="projects">
-            <ProjectSection projects={props.projects}/>
+            <ProjectSection projects={props.projects} skills={props.skills}/>
           </Col>
         </Row>
         <Row>
