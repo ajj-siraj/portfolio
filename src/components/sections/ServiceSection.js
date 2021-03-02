@@ -4,7 +4,9 @@ import { Container, Row, Col } from "react-bootstrap"
 
 import { gsap } from "gsap"
 import { TextPlugin } from "gsap/TextPlugin"
-import Particles from 'react-particles-js';
+
+//css modules
+
 
 gsap.registerPlugin(TextPlugin);
 
@@ -18,16 +20,15 @@ const HomeSection = () => {
       repeat: -1, // number of repeats (-1 for infinite)
       repeatDelay: 2, // seconds between repeats
     });
-    tl.to(heading, {text: "React Developer"});
+    tl.to(heading, {text: "React Developer", delay: 2});
     tl.to(heading, {text: "Javascript Developer", delay: 2});
     tl.to(heading, {text: "Nodejs Developer", delay: 2});
     tl.to(heading, {text: "Web Developer", delay: 2});
-    tl.to(heading, {text: "Hi, I'm Siraj", delay: 2});
+    tl.to(heading, {text: "Hi, I'm Siraj"});
   }, [])
   return (
     <Container fluid className={`mainDiv`}>
-      <Particles/>
-      <Row className="align-items-center mainDiv-overlay">
+      <Row className="align-items-center">
         <Col className="justify-content-center">
           <div>
           <h1 className={`homeHeading`} ref={el => heading = el}>Hi, I'm Siraj</h1>

@@ -8,51 +8,6 @@ import {getImgUrl} from "~/Utility";
 //images & vectors
 let github = "/images/logos/github_logo.svg";
 let globe = "/images/logos/globe.svg";
-//technologies
-let html5 = "/images/logos/HTML5_logo.svg";
-let css3 = "/images/logos/css3_logo.svg";
-let bootstrap4 = "/images/logos/bootstrap4_logo.svg";
-let express = "/images/logos/express_logo.svg";
-let git = "/images/logos/git_logo.svg";
-let javascript = "/images/logos/javascript_logo.svg";
-let jquery = "/images/logos/jquery_logo.svg";
-let angular = "/images/logos/angular_logo.svg";
-let mongodb = "/images/logos/mongodb_logo.svg";
-let mysql = "/images/logos/mysql_logo.svg";
-let nextjs = "/images/logos/nextjs_logo.svg";
-let nodejs = "/images/logos/nodejs_logo.svg";
-let php = "/images/logos/php_logo.svg";
-let python = "/images/logos/python_logo.svg";
-let react = "/images/logos/react_logo.svg";
-let reactNative = "/images/logos/react_logo.svg";
-let redux = "/images/logos/redux_logo.svg";
-let typescript = "/images/logos/typescript_logo.svg";
-let xamarin = "/images/logos/xamarin_logo.svg";
-let gatsbyjs = "/images/logos/gatsby.svg";
-
-
-const imgs = {
-  html5: html5,
-  css3: css3,
-  bootstrap4: bootstrap4,
-  javascript: javascript,
-  react: react,
-  reactNative: reactNative,
-  redux: redux,
-  git: git,
-  jquery: jquery,
-  nodejs: nodejs,
-  express: express,
-  mongodb: mongodb,
-  nextjs: nextjs,
-  mysql: mysql,
-  php: php,
-  python: python,
-  typescript: typescript,
-  xamarin: xamarin,
-  angular: angular,
-  gatsbyjs: gatsbyjs,
-};
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -64,7 +19,6 @@ const Technologies = props => {
   });
   console.log(foundTechs);
   let techs = foundTechs.map((tech, idx) => {
-    console.log("SKILLS IN PROJECTS: ", tech)
     return (
       <img
         className="techSvg"
@@ -78,19 +32,13 @@ const Technologies = props => {
 };
 
 const ProjectsTemplate = props => {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    setData(props.data);
-    
-  }, []);
 
   //conditionals to avoid missing data errors
   let projectNavs = [];
   let projectTabs = [];
-  if (data) {
-    if (data.length > 0) {
-      projectNavs = data.map((project, idx) => {
+  if (props.data) {
+    if (props.data.length > 0) {
+      projectNavs = props.data.map((project, idx) => {
         return (
           <Nav.Item key={`project-nav-${idx}`}>
             <Nav.Link eventKey={`project--${idx}`}>{project.title}</Nav.Link>
@@ -98,7 +46,7 @@ const ProjectsTemplate = props => {
         );
       });
 
-      projectTabs = data.map((project, idx) => {
+      projectTabs = props.data.map((project, idx) => {
         return (
           <Tab.Pane key={`project-tab-${idx}`} eventKey={`project--${idx}`}>
             <Technologies techs={project.technologies} skills={props.skills}/>
