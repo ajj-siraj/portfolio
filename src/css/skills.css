@@ -1,28 +1,4 @@
-.heading-container{
-  display: block;
-  position: relative;
-  width: 100%;
-  padding-bottom: 3px;
-}
 
-.heading-upperline{
-  display: block;
-  position: absolute;
-  top: -3px;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background-color: #00d627;
-}
-.heading-underline{
-  display: block;
-  position: absolute;
-  bottom: -10px;
-  right: 0;
-  height: 2px;
-  width: 100%;
-  background-color: #00d627;
-}
 
 .slick-slide :focus{
   border: none !important;

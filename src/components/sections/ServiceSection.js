@@ -1,89 +1,89 @@
+import React, { useRef, useEffect } from "react";
+import { Container, Row, Col, CardDeck, Card, Button } from "react-bootstrap";
+import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { gsap } from "gsap";
+import { TextPlugin } from "gsap/TextPlugin";
 
-import React, {useRef, useEffect} from "react"
-import { Container, Row, Col } from "react-bootstrap"
-
-import { gsap } from "gsap"
-import { TextPlugin } from "gsap/TextPlugin"
-
-//css modules
-
+import {getImgUrl} from "~/Utility";
+//animations
+import * as Animations from "components/animations";
 
 gsap.registerPlugin(TextPlugin);
 
-const HomeSection = () => {
-
+const ServiceSection = (props) => {
   let heading = useRef(null);
 
+  //animate svgs on hover
+  const handleHover = (el) => {
+    const upperline = heading.childNodes[0];
+    const underline = heading.childNodes[2];
+    gsap.to(upperline, Animations.lineHover);
+    gsap.to(underline, Animations.lineHover);
+  };
+  const handleUnhover = (el) => {
+    const upperline = heading.childNodes[0];
+    const underline = heading.childNodes[2];
+    gsap.to(upperline, Animations.lineUnhover);
+    gsap.to(underline, Animations.lineUnhover);
+  };
+
+  //on scroll animations
   useEffect(() => {
-    let tl = gsap.timeline({
-      delay: 2,
-      repeat: -1, // number of repeats (-1 for infinite)
-      repeatDelay: 2, // seconds between repeats
-    });
-    tl.to(heading, {text: "React Developer", delay: 2});
-    tl.to(heading, {text: "Javascript Developer", delay: 2});
-    tl.to(heading, {text: "Nodejs Developer", delay: 2});
-    tl.to(heading, {text: "Web Developer", delay: 2});
-    tl.to(heading, {text: "Hi, I'm Siraj"});
-  }, [])
+    const upperline = heading.childNodes[0];
+    const underline = heading.childNodes[2];
+    gsap.from(heading, Animations.headingFade(heading));
+    gsap.from(upperline, Animations.lineEnterLeft(heading));
+    gsap.from(underline, Animations.lineEnterRight(heading));
+  }, []);
+
+  let serviceCards = props.services.map((service) => {
+    return (
+      <Col md="4" className="mx-auto mb-5">
+        <Card className="mx-auto">
+          <Card.Img className="mx-auto d-block" variant="top" src={getImgUrl(service.fields.image)} />
+          <Card.Body>
+            <Card.Title>{service.fields.title}</Card.Title>
+            <div dangerouslySetInnerHTML={{
+              __html: documentToHtmlString(service.fields.description),
+            }}></div>
+          </Card.Body>
+          <Card.Footer>
+            <a href="#contact" className="btn btn-outline-success btn-block text-white">Request</a>
+          </Card.Footer>
+        </Card>
+      </Col>
+    );
+  });
   return (
     <Container fluid className={`mainDiv`}>
+      <Row className="justify-content-center text-center">
+        <Col xs={2}>
+          <div className="heading-container mb-5">
+            <h1
+              ref={(el) => {
+                heading = el;
+              }}
+            >
+              <span className="heading-upperline"></span>
+
+              <span onMouseEnter={(el) => handleHover(el)} onMouseLeave={(el) => handleUnhover(el)}>
+                Services
+              </span>
+
+              <span className="heading-underline"></span>
+            </h1>
+          </div>
+        </Col>
+      </Row>
       <Row className="align-items-center">
         <Col className="justify-content-center">
-          <div>
-          <h1 className={`homeHeading`} ref={el => heading = el}>Hi, I'm Siraj</h1>
-          </div>
-          <div>
-            {/* <Timeline target={<h1 className={homeStyles.homeHeading}>Hi, I'm Siraj</h1>} repeat={-1} repeatDelay={2}>
-            <Tween
-              to={{
-                text: "Hi, I'm a JavaScript Developer",
-                speed: "0.5",
-                type: "diff",
-                delay: "1",
-              }}
-            />
-            <Tween
-              to={{
-                text: "Hi, I'm a React Developer",
-                speed: "0.5",
-                type: "diff",
-                delay: "1",
-              }}
-            />
-            <Tween
-              to={{
-                text: "Hi, I'm a Nodejs Developer",
-                speed: "0.5",
-                type: "diff",
-                delay: "1",
-              }}
-            />
-
-            <Tween
-              to={{
-                text: "Hi, I'm a Web Developer",
-                speed: "0.5",
-                type: "diff",
-                delay: "1",
-              }}
-            />
-
-            <Tween
-              to={{
-                text: "Hi, I'm Siraj",
-                speed: "0.5",
-                type: "diff",
-                delay: "1",
-              }}
-            />
-          </Timeline> */}
-          </div>
-          
+          <Row className="justify-content-around">
+            <CardDeck>{serviceCards}</CardDeck>
+          </Row>
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default HomeSection
+export default ServiceSection;

@@ -1,16 +1,10 @@
 .mainDiv{
-  /* width: 100%; */
-  /* min-height: 90vh; */
-  /* background-color:#1f1f1f; */
-  /* padding: 25%; */
-  /* background-image: url('public/images/home-background2.jpg'); */
-  /* opacity: 50%; */
-  position: relative;
+  /* position: relative; */
 }
 
 .mainDiv-overlay{
   position: absolute;
-  top: 200px;
+  top: 300px;
 }
 .homeHeading {
   width: 100% !important;
@@ -18,4 +12,31 @@
   color: #00d627;
   font-size: 1.5rem;
   font-family: 'Share Tech Mono', monospace;
+}
+
+.heading-container{
+  display: block;
+  position: relative;
+  width: 100%;
+  padding-bottom: 3px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.heading-upperline{
+  display: block;
+  position: absolute;
+  top: -3px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #00d627;
+}
+.heading-underline{
+  display: block;
+  position: absolute;
+  bottom: -10px;
+  right: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #00d627;
 }

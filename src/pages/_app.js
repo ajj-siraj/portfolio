@@ -2,6 +2,7 @@ import "~/css/loading.css";
 import "~/css/contact.css";
 import "~/css/header.css";
 import "~/css/projects.css";
+import "~/css/services.css";
 import "~/css/skills.css";
 import "~/css/about.css";
 import "~/css/home.css"

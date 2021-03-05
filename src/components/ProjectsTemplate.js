@@ -23,7 +23,7 @@ const Technologies = props => {
       <img
         className="techSvg"
         src={getImgUrl(tech.fields.techImage)}
-        key={Math.ceil(Math.random() * 1000)}
+        key={Math.ceil(Math.random() * 1000)} //randomize keys to avoid conflict between project templates
         alt="tech-svg"
       />
     );
@@ -49,12 +49,13 @@ const ProjectsTemplate = props => {
       projectTabs = props.data.map((project, idx) => {
         return (
           <Tab.Pane key={`project-tab-${idx}`} eventKey={`project--${idx}`}>
-            <Technologies techs={project.technologies} skills={props.skills}/>
+            <h2 className="tech-heading-large mt-3">{`{  ${project.title}  }`}</h2>
             <img
               className="project-img"
               src={getImgUrl(project.image)}
               alt="project-img"
             />
+            <Technologies techs={project.technologies} skills={props.skills}/>
             <div
               dangerouslySetInnerHTML={{ __html: documentToHtmlString(project.description) }}
               className="project-description"

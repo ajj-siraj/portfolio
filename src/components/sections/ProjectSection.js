@@ -41,21 +41,8 @@ const ProjectSection = (props) => {
     gsap.from(heading, Animations.headingFade(heading));
     gsap.from(upperline, Animations.lineEnterLeft(heading));
     gsap.from(underline, Animations.lineEnterRight(heading));
+    gsap.from(".projects-body", Animations.fadeIn(".projects-body")); //using refs for this one didn't work for some reason so I'll just use classnames
   }, []);
-
-  // const [data, setData] = useState(null);
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   // if (!data) {
-  //   //   Utility.readData("Projects")
-  //   //     .then(res => {
-  //   //       setData(res);
-  //         // setLoading(false);
-  //   //       gsap.from(".projects-body", Animations.fadeIn(".projects-body")); //using refs for this one didn't work for some reason so I'll just use classnames
-  //   //     })
-  //   //     .catch(err => console.log(err));
-  //   // }
-  // }, []);
 
   //divide each received project category into its own variable:
   let front = [];

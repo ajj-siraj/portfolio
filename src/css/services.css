@@ -1,0 +1,36 @@
+#services .card {
+  background-color: #161616;
+}
+
+#services .card {
+  font-family: "Share Tech Mono", monospace;
+  border-radius: 20px;
+  border: none;
+  margin-left: 24px;
+  margin-right: 24px;
+  width: 80%;
+  transition: 0.2s;
+}
+
+#services .card:hover {
+  /* transform: scale(1.03); */
+  transform: translate(10px, 10px);
+  box-shadow: -10px -10px #ddd;
+}
+
+#services .card img {
+  padding: 3% !important;
+  max-height: 150px;
+  width: auto;
+  filter: invert(100%);
+}
+
+#services .card .card-title {
+  text-align: center;
+  font-size: 2rem;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+#services .card .card-body {
+  font-family: 'Montserrat', sans-serif;
+}

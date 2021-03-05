@@ -1,24 +1,36 @@
-html{
+html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  font-family: "Share Tech Mono", monospace;
 }
 
-body{
+body {
   background-color: #1f1f1f !important;
   color: #ddd !important;
 }
 
-li{
+li {
   list-style-image: url("/list-item.svg");
 }
 
-.ql-editor{
+#services li {
+  margin: 0;
+	padding: 0 0 0 36px;
+	list-style: none;
+	background-image: url("/list-item-check.svg");
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-size: 20px;
+}
+
+.ql-editor {
   height: 300px !important;
 }
 
-#ct-container{
+#ct-container {
   top: 30% !important;
 }
 
-.ct-toast{
+.ct-toast {
   padding: 50px !important;
 }

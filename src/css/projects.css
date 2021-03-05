@@ -41,18 +41,24 @@
 
 
 #project-tab .nav-pills .nav-item a.active {
-  background: linear-gradient(180deg, #80ce87, #24221c);
-  background-size: 400% 400%;
+  background-color: #80ce87;
   color: #1f1f1f !important;
-  animation: Animation 0.5s cubic-bezier(0,1,1,1);
+  animation: Animation 0.3s linear;
   outline: none !important;
   border: none !important;
 }
 
 @keyframes Animation {
-  0%{background-position:50% 0%}
-  50%{background-position:50% 100%}
-  100%{background-position:50% 0%}
+  0%{background-color:#1f1f1f}
+  25%{background-color:#80ce87}
+  50%{background-color:#1f1f1f}
+  75%{background-color:#80ce87}
+  100%{background-color:#1f1f1f}
+  /* 0%{background-position:50% 0%}
+  25%{background-position:50% 100%}
+  50%{background-position:50% 0%}
+  75%{background-position:50% 100%}
+  100%{background-position:50% 0%} */
 }
 
 .projects-heading{

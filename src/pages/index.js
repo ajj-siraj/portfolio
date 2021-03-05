@@ -30,19 +30,21 @@ export async function getServerSideProps() {
   try {
     let projects = await client.getEntries({content_type: "projects", select: "fields"});
     let skills = await client.getEntries({content_type: "skills", select: "fields"});
+    let services = await client.getEntries({content_type: "services", select: "fields"})
     let sectionContent = await client.getEntries({content_type: "sections", select: "fields"});
 
     return {
       props: {
         projects: projects.items,
         skills: skills.items,
+        services: services.items,
         content: sectionContent.items[0], //it's a single type so we don't need additional entries even if there are any
       },
     };
   } catch (ex) {
     return {
       props: {
-        error: ex,
+        error: JSON.stringify(ex),
       },
     };
   }
