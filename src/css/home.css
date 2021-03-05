@@ -1,16 +1,16 @@
-.mainDiv{
-  /* position: relative; */
-}
-
 .mainDiv-overlay{
   position: absolute;
-  top: 300px;
+  top: 30vh;
+}
+
+.nameHeading {
+  font-family: 'Iceland', cursive;
+  font-size: 7rem;
 }
 .homeHeading {
   width: 100% !important;
-  margin-left: 15px;
   color: #00d627;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-family: 'Share Tech Mono', monospace;
 }
 
