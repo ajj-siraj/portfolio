@@ -4,10 +4,10 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
 //additional data
-import * as Animations from "./animations.js";
+import * as Animations from "components/animations.js";
 
 //utility
-import {scrollToRef} from "../Utility";
+import {scrollToRef} from "~/Utility.js";
 
 //styles
 

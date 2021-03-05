@@ -4,14 +4,14 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 //components
-import ProjectsTemplate from "components/ProjectsTemplate";
-import Loading from "components/Loading";
+import ProjectsTemplate from "components/ProjectsTemplate.js";
+import Loading from "components/Loading.js";
 
 //utility
-import * as Utility from "~/Utility";
+import * as Utility from "~/Utility.js";
 
 //animations
-import * as Animations from "components/animations";
+import * as Animations from "components/animations.js";
 
 //css modules
 

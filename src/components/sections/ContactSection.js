@@ -1,20 +1,14 @@
-import React, { useRef, useEffect} from "react";
-import {
-  Container,
-  Row,
-  Col,
-
-} from "react-bootstrap";
+import React, { useRef, useEffect } from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 //components
-import ContactForm from "components/ContactForm";
+import ContactForm from "components/ContactForm.js";
 
 //animations
-import * as Animations from "components/animations";
+import * as Animations from "components/animations.js";
 
 //imgs
 let github = "/images/logos/github_logo.svg";
@@ -24,7 +18,7 @@ let gmail = "/images/logos/gmail_logo.svg";
 gsap.registerPlugin(ScrollTrigger);
 
 //animate svgs on hover
-const handleSvgHover = el => {
+const handleSvgHover = (el) => {
   gsap.to(el.target, {
     scale: 2,
     ease: "bounce",
@@ -32,11 +26,11 @@ const handleSvgHover = el => {
     cursor: "pointer",
   });
 };
-const handleSvgUnhover = el => {
+const handleSvgUnhover = (el) => {
   gsap.to(el.target, { scale: 1, ease: "bounce", duration: 0.5 });
 };
 
-const ContactSection = props => {
+const ContactSection = (props) => {
   let contactHeading = useRef(null);
   let formRef = useRef(null);
   // let svgRefs = useRef([]);
@@ -52,12 +46,10 @@ const ContactSection = props => {
     //for some reason stagger didn't work here so I have to use this method:
     contactSvgs.childNodes.forEach((svg, idx) => {
       gsap.from(svg, Animations.svgEnter(contactHeading, idx));
-    })
+    });
 
-    if (contactHeading)
-      gsap.from(contactHeading, Animations.headingFade(contactHeading));
-    if (targetRef)
-      gsap.from(targetRef.childNodes, Animations.fadeIn(contactHeading));
+    if (contactHeading) gsap.from(contactHeading, Animations.headingFade(contactHeading));
+    if (targetRef) gsap.from(targetRef.childNodes, Animations.fadeIn(contactHeading));
   }, []);
 
   let svgs = [github, gmail, linkedin];
@@ -87,7 +79,7 @@ const ContactSection = props => {
       <Row className="justify-content-center text-center">
         <h3
           className="display-4 about-heading text-center"
-          ref={el => {
+          ref={(el) => {
             contactHeading = el;
           }}
         >
@@ -99,13 +91,13 @@ const ContactSection = props => {
           <ContactForm ref={formRef} />
         </Col>
       </Row>
-      <div className="mb-5 mt-5" ref={el => (contactFooter = el)}>
+      <div className="mb-5 mt-5" ref={(el) => (contactFooter = el)}>
         <Row className="mb-5 mt-5">
           <Col xs={12}>
             <h3>Or get in touch through...</h3>
           </Col>
         </Row>
-        <Row className="mb-5 mt-5" ref={el => (contactSvgs = el)}>
+        <Row className="mb-5 mt-5" ref={(el) => (contactSvgs = el)}>
           {contactLinks}
         </Row>
       </div>

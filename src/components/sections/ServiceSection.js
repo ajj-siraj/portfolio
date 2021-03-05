@@ -4,9 +4,9 @@ import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
 
-import {getImgUrl} from "~/Utility";
+import {getImgUrl} from "~/Utility.js";
 //animations
-import * as Animations from "components/animations";
+import * as Animations from "components/animations.js";
 
 gsap.registerPlugin(TextPlugin);
 

@@ -5,8 +5,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Slider from "react-slick";
 
 //animations
-import * as Animations from "components/animations";
-import { getImgUrl } from "~/Utility";
+import * as Animations from "components/animations.js";
+import { getImgUrl } from "~/Utility.js";
 
 gsap.registerPlugin(ScrollTrigger);
 

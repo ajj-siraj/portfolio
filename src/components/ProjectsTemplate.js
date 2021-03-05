@@ -3,7 +3,7 @@ import { Nav, Row, Col, Tab, Button } from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import {getImgUrl} from "~/Utility";
+import {getImgUrl} from "~/Utility.js";
 
 //images & vectors
 let github = "/images/logos/github_logo.svg";

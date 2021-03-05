@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 
 //animations
-import * as Animations from "components/animations";
+import * as Animations from "components/animations.js";
 
 //css modules
 

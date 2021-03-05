@@ -3,7 +3,7 @@ import React from "react";
 import Helmet from "react-helmet";
 
 //components
-import Main from "components/Main";
+import Main from "components/Main.js";
 import { createClient } from "contentful";
 
 const client = createClient({
@@ -13,12 +13,11 @@ const client = createClient({
 });
 
 const IndexPage = props => {
-  console.log("ALL ENTRIES: ", props);
   return (
     <div>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Siraj - A Portfolio</title>
+        <title>Siraj Ahmed</title>
         
       </Helmet>
       <Main {...props} />
