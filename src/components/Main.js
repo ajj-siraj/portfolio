@@ -10,7 +10,7 @@ import ServiceSection from "components/sections/ServiceSection.js";
 import SkillSection from "components/sections/SkillSection.js"
 import ProjectSection from "components/sections/ProjectSection.js"
 import ContactSection from "components/sections/ContactSection.js"
-import Header from "components/Header.js"
+import Header from "components/header.js"
 import Footer from "components/Footer.js"
 
 const Main = (props) => {
