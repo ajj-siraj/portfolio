@@ -40,7 +40,7 @@ const ServiceSection = (props) => {
     return (
       <Col md="4" className="mx-auto mb-5">
         <Card className="mx-auto">
-          <Card.Img className="mx-auto d-block" variant="top" src={getImgUrl(service.fields.image)} />
+          <Card.Img className="mx-auto d-block mt-5" variant="top" src={getImgUrl(service.fields.image)} />
           <Card.Body>
             <Card.Title>{service.fields.title}</Card.Title>
             <div dangerouslySetInnerHTML={{
