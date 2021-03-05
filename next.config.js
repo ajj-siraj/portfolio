@@ -9,7 +9,8 @@ const withTM = require("next-transpile-modules")(["gsap"], {
 module.exports = withTM({
   env: {
     contentfulKey: process.env.contentfulKey,
-    contentfulSpaceID: process.env.contentfulSpaceID
+    contentfulSpaceID: process.env.contentfulSpaceID,
+    formEndpoint: process.env.formEndpoint
   },
 
   webpack: (config) => {

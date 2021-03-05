@@ -3,9 +3,6 @@ import { Formik } from "formik";
 import { Form, Button } from "react-bootstrap";
 import cogoToast from "cogo-toast";
 
-
-import { formEndpoint } from "~/config";
-
 const ContactForm = React.forwardRef((props, ref) => <FullForm ref={ref} />);
 
 class FullForm extends React.Component {
@@ -157,7 +154,7 @@ const submitForm = (values, setSubmitting, resetForm) => {
   });
 
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", formEndpoint);
+  xhr.open("POST", process.env.formEndpoint);
   xhr.setRequestHeader("Accept", "application/json");
   xhr.onreadystatechange = () => {
     if (xhr.readyState !== XMLHttpRequest.DONE) return;
