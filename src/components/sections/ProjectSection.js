@@ -64,7 +64,7 @@ const ProjectSection = (props) => {
 
   let projectsBody = (
     <div className="projects-body mt-5">
-      <Tabs defaultActiveKey="front" variant="pills">
+      <Tabs defaultActiveKey="full" variant="pills">
         <Tab eventKey="front" title="Front-end">
           <div id="project-tab">
             <ProjectsTemplate data={front} skills={props.skills}/>

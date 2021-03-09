@@ -89,6 +89,18 @@ const Header = props => {
 
           <Nav.Link
             className={`navText`}
+            id={`servicesNav`}
+            onMouseEnter={el => handleHover(el)}
+            onMouseLeave={el => handleUnHover(el)}
+            alt="services"
+            onClick={el => scrollToRef(el)}
+          >
+            Services
+            <span className={`navUnderline`}></span>
+          </Nav.Link>
+
+          <Nav.Link
+            className={`navText`}
             id={`skillsNav`}
             onMouseEnter={el => handleHover(el)}
             onMouseLeave={el => handleUnHover(el)}

@@ -6,7 +6,12 @@
   color: #ddd;
 }
 
+/* creating a class to reuse the style on the Navs doesn't work (most likely specificity conflicts with bootstrap) */
 #aboutNav {
+  color: #ddd;
+  font-family: "Share Tech Mono", monospace;
+}
+#servicesNav {
   color: #ddd;
   font-family: "Share Tech Mono", monospace;
 }

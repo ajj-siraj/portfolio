@@ -4,25 +4,6 @@ import { Container, Row, Col } from "react-bootstrap"
 
 
 //components
-<<<<<<< HEAD
-import HomeSection from "components/sections/HomeSection"
-import AboutSection from "components/sections/AboutSection"
-import ServiceSection from "components/sections/ServiceSection";
-import SkillSection from "components/sections/SkillSection"
-import ProjectSection from "components/sections/ProjectSection"
-import ContactSection from "components/sections/ContactSection"
-import Header from "components/Header"
-import Footer from "components/Footer"
-||||||| d6362a9
-import HomeSection from "components/sections/HomeSection.js"
-import AboutSection from "components/sections/AboutSection.js"
-import ServiceSection from "components/sections/ServiceSection.js";
-import SkillSection from "components/sections/SkillSection.js"
-import ProjectSection from "components/sections/ProjectSection.js"
-import ContactSection from "components/sections/ContactSection.js"
-import Header from "components/Header.js"
-import Footer from "components/Footer.js"
-=======
 import HomeSection from "components/sections/HomeSection.js"
 import AboutSection from "components/sections/AboutSection.js"
 import ServiceSection from "components/sections/ServiceSection.js";
@@ -31,7 +12,6 @@ import ProjectSection from "components/sections/ProjectSection.js"
 import ContactSection from "components/sections/ContactSection.js"
 import Header from "components/header.js"
 import Footer from "components/Footer.js"
->>>>>>> vercel
 
 const Main = (props) => {
 

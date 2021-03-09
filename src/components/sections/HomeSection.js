@@ -20,7 +20,6 @@ const HomeSection = () => {
     tl.to(heading, { text: "Javascript Developer", delay: 2 });
     tl.to(heading, { text: "Nodejs Developer", delay: 2 });
     tl.to(heading, { text: "Web Developer", delay: 2 });
-    tl.to(heading, { text: "Hi, I'm Siraj", delay: 2 });
   }, []);
   return (
     <Container fluid className={`mainDiv`}>
