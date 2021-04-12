@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { Nav, Row, Col, Tab, Button } from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,7 +23,7 @@ const Technologies = props => {
       <img
         className="techSvg"
         src={getImgUrl(tech.fields.techImage)}
-        key={Math.ceil(Math.random() * 1000)} //randomize keys to avoid conflict between project templates
+        key={Math.ceil(Math.random() * 100000)} //randomize keys to avoid conflict between project templates
         alt="tech-svg"
       />
     );
@@ -56,6 +56,9 @@ const ProjectsTemplate = props => {
               alt="project-img"
             />
             <Technologies techs={project.technologies} skills={props.skills}/>
+            <div className="project-status">
+              STATUS: {project.complete ? <div className="complete">COMPLETE</div> : <div className="incomplete">INCOMPLETE</div>}
+            </div>
             <div
               dangerouslySetInnerHTML={{ __html: documentToHtmlString(project.description) }}
               className="project-description"

@@ -36,9 +36,9 @@ const ServiceSection = (props) => {
     gsap.from(underline, Animations.lineEnterRight(heading));
   }, []);
 
-  let serviceCards = props.services.map((service) => {
+  let serviceCards = props.services.map((service, idx) => {
     return (
-      <Col md="4" className="mx-auto mb-5">
+      <Col md="4" className="mx-auto mb-5" key={`service-card-${idx}`}>
         <Card className="mx-auto">
           <Card.Img className="mx-auto d-block mt-5" variant="top" src={getImgUrl(service.fields.image)} />
           <Card.Body>

@@ -128,3 +128,17 @@
   overflow-x: hidden;
   height: 90vh;
 } */
+
+.project-status{
+  font-size: 2rem;
+}
+
+.project-status .complete {
+  color: #00a700;
+  font-weight: 800;
+}
+
+.project-status .incomplete{
+  color: #f0cc00;
+  font-weight: 800;
+}
