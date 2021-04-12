@@ -13,8 +13,6 @@ import * as Utility from "~/Utility.js";
 //animations
 import * as Animations from "components/animations.js";
 
-//css modules
-
 gsap.registerPlugin(ScrollTrigger);
 
 const ProjectSection = (props) => {

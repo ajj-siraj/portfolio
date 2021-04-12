@@ -17,7 +17,7 @@ const Technologies = props => {
   let foundTechs = props.skills.filter((skill, idx) => {
     return techsInLC.includes(skill.fields.techId.toLowerCase());
   });
-  console.log(foundTechs);
+
   let techs = foundTechs.map((tech, idx) => {
     return (
       <img

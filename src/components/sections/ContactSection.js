@@ -38,12 +38,11 @@ const ContactSection = (props) => {
   let contactSvgs = useRef(null);
 
   useEffect(() => {
-    console.log(contactSvgs.childNodes);
     let targetRef = formRef.current.formRef.current; //this looks weird but it's fine.
 
     gsap.from(contactFooter.childNodes[0], { x: -50, duration: 2, stagger: 1 });
 
-    //for some reason stagger didn't work here so I have to use this method:
+    //for some reason 'stagger' didn't work here so I have to use this method:
     contactSvgs.childNodes.forEach((svg, idx) => {
       gsap.from(svg, Animations.svgEnter(contactHeading, idx));
     });
