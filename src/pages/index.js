@@ -27,7 +27,7 @@ const IndexPage = props => {
 
 export async function getServerSideProps() {
   try {
-    let projects = await client.getEntries({content_type: "projects", select: "fields"});
+    let projects = await client.getEntries({content_type: "projects", select: "fields", order: '-sys.createdAt'});
     let skills = await client.getEntries({content_type: "skills", select: "fields"});
     let services = await client.getEntries({content_type: "services", select: "fields"})
     let sectionContent = await client.getEntries({content_type: "sections", select: "fields"});

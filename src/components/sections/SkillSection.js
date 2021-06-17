@@ -59,20 +59,20 @@ const SkillSection = (props) => {
       );
     });
 
-  let toLearn = props.skills
-    .filter((skill) => skill.fields.learning === true)
-    .map((skill, idx) => {
-      return (
-        <div key={`tech-svg2-${idx}`}>
-          <img
-            className="techSvg m-auto text-center"
-            src={getImgUrl(skill.fields.techImage)}
-            alt={`tech-svg2-${idx}`}
-          />
-          <h3 className="tech-heading">{skill.fields.techTitle}</h3>
-        </div>
-      );
-    });
+  // let toLearn = props.skills
+  //   .filter((skill) => skill.fields.learning === true)
+  //   .map((skill, idx) => {
+  //     return (
+  //       <div key={`tech-svg2-${idx}`}>
+  //         <img
+  //           className="techSvg m-auto text-center"
+  //           src={getImgUrl(skill.fields.techImage)}
+  //           alt={`tech-svg2-${idx}`}
+  //         />
+  //         <h3 className="tech-heading">{skill.fields.techTitle}</h3>
+  //       </div>
+  //     );
+  //   });
 
   return (
     <Container fluid className="text-center">
@@ -109,14 +109,14 @@ const SkillSection = (props) => {
             <Slider {...settings1}>{learned}</Slider>
           </Col>
         </Row>
-        <Row className="mt-5 mb-5">
+        {/* <Row className="mt-5 mb-5">
           <Col xs={12} className="mt-5 mb-5">
             <h2 className="tech-heading-large">{props.content.fields.skillsSubheading2}</h2>
           </Col>
           <Col xs={12}>
             <Slider {...settings2}>{toLearn}</Slider>
           </Col>
-        </Row>
+        </Row> */}
       </Container>
     </Container>
   );
