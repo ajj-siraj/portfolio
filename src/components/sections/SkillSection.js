@@ -49,7 +49,7 @@ const SkillSection = (props) => {
             alt={`tech-svg-${idx}`}
             //invert white text svgs to be visible for the dark background
             style={
-              skill.fields.techId === "express" || skill.fields.techId === "nextjs"
+              skill.fields.techId === "express" || skill.fields.techId === "nextjs" || skill.fields.techId === "websockets"
                 ? { width: "150px", filter: "invert(100%)" }
                 : { width: "150px" }
             }
