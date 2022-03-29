@@ -4,6 +4,11 @@ html {
   font-family: "Share Tech Mono", monospace;
 }
 
+a{
+  text-transform: none;
+  color: #ddd !important;
+}
+
 body {
   background-color: #1f1f1f !important;
   color: #ddd !important;

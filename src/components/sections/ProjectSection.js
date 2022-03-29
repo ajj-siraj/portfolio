@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { Container, Row, Col, Tab, Tabs, Nav } from "react-bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -17,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const ProjectSection = (props) => {
   let heading = useRef(null);
+  let underlineRef = useRef(null);
 
   //animate svgs on hover
   const handleHover = (el) => {
@@ -32,6 +33,35 @@ const ProjectSection = (props) => {
     gsap.to(underline, Animations.lineUnhover);
   };
 
+  const fullWidth = typeof window !== 'undefined' && window.innerWidth;
+  const oneWidth = fullWidth / 3;
+  const lineWidth = 200; //100px specified for the underline in projects.css
+  const correction = oneWidth / 2 - lineWidth / 2 - 5;
+
+  const navUnderlineAnim = (eventKey, ev) => {
+    let idx;
+    switch (eventKey) {
+      case "front":
+        idx = 0;
+        break;
+      case "full":
+        idx = 1;
+        break;
+      case "misc":
+        idx = 2;
+        break;
+      default:
+        idx = 0;
+    }
+    //I was here trying to find a way to animate the underline smoothly
+
+    const distance = oneWidth * idx + correction;
+    gsap.to(underlineRef, { transform: `translateX(${distance}px)` });
+
+    // gsap.to(ev.target.childNodes[1], {'translate3d(' + idx * 100 + '%,0,0)'})
+    console.log(underlineRef, idx);
+  };
+
   //on scroll animations
   useEffect(() => {
     const upperline = heading.childNodes[0];
@@ -40,6 +70,8 @@ const ProjectSection = (props) => {
     gsap.from(upperline, Animations.lineEnterLeft(heading));
     gsap.from(underline, Animations.lineEnterRight(heading));
     gsap.from(".projects-body", Animations.fadeIn(".projects-body")); //using refs for this one didn't work for some reason so I'll just use classnames
+
+    gsap.to(underlineRef, { transform: `translateX(${correction}px)` }); //projects underline position on first load
   }, []);
 
   //divide each received project category into its own variable:
@@ -62,23 +94,57 @@ const ProjectSection = (props) => {
 
   let projectsBody = (
     <div className="projects-body mt-5">
-      <Tabs defaultActiveKey="full" variant="pills">
-        <Tab eventKey="front" title="Front-end">
-          <div id="project-tab">
-            <ProjectsTemplate data={front} skills={props.skills}/>
-          </div>
-        </Tab>
-        <Tab eventKey="full" title="Fullstack">
-          <div id="project-tab">
-            <ProjectsTemplate data={full} skills={props.skills}/>
-          </div>
-        </Tab>
-        <Tab eventKey="misc" title="Misc projects">
-          <div id="project-tab">
-            <ProjectsTemplate data={misc} skills={props.skills}/>
-          </div>
-        </Tab>
-      </Tabs>
+      <Tab.Container
+        defaultActiveKey="front"
+        variant="pills"
+        onSelect={(eK, e) => navUnderlineAnim(eK, e)}
+      >
+        <Row className="position-relative">
+          <div ref={(el) => (underlineRef = el)} className="project-tab-underline"></div>
+          <Col className="p-0">
+            <Nav>
+              <Nav.Item>
+                <Nav.Link eventKey="front">
+                  Front-end
+                  {/* <div className="project-tab-underline"></div> */}
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item>
+                <Nav.Link eventKey="full">
+                  Fullstack
+                  {/* <div className="project-tab-underline"></div> */}
+                </Nav.Link>
+              </Nav.Item>
+
+              <Nav.Item>
+                <Nav.Link eventKey="misc">Misc projects</Nav.Link>
+              </Nav.Item>
+            </Nav>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <Tab.Content>
+              <Tab.Pane eventKey="front">
+                <div id="project-tab">
+                  <ProjectsTemplate data={front} skills={props.skills} />
+                </div>
+              </Tab.Pane>
+              <Tab.Pane eventKey="full">
+                <div id="project-tab">
+                  <ProjectsTemplate data={full} skills={props.skills} />
+                </div>
+              </Tab.Pane>
+              <Tab.Pane eventKey="misc">
+                <div id="project-tab">
+                  <ProjectsTemplate data={misc} skills={props.skills} />
+                </div>
+              </Tab.Pane>
+            </Tab.Content>
+          </Col>
+        </Row>
+      </Tab.Container>
     </div>
   );
 
@@ -104,7 +170,7 @@ const ProjectSection = (props) => {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Col className="align-items-center text-center" id="skills-col">
+        <Col className="align-items-center text-center" id="projects-body-col">
           {/* {loading ? <Loading /> : projectsBody} */}
           {projectsBody}
         </Col>

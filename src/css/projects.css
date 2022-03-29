@@ -1,120 +1,128 @@
-.mainDiv-projects{
+.mainDiv-projects {
   /* width: 100%; */
   min-height: 100%;
-  background-color:#1f1f1f !important;
+  background-color: #1f1f1f !important;
   margin-top: 5%;
   margin-bottom: 20%;
 }
 
-
-#skills-col .nav-pills .nav-item{
+#projects-body-col .nav-item {
   min-width: 33%;
   padding: 2%;
   border: none;
   border-radius: 0;
   outline: none;
   color: #ddd !important;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   /* margin: 0 10px 0 10px; */
   background-color: #1f1f1f;
 }
 
-#skills-col .nav-pills .nav-item.active{
-  background-color: #0f6322;
-  
+#projects-body-col .nav-item {
+  /* background-color: #0f6322; */
+  position: relative;
 }
 
+.project-tab-underline {
+  background-color: #0f6322;
+  position: absolute;
+  top:90%;
+  z-index: 2;
+  height: 5px;
+  width: 200px;
+}
 
-#project-tab .nav-pills .nav-item{
+#project-tab .nav-pills .nav-item {
   background-color: #1f1f1f !important;
   color: #1f1f1f;
   outline: none !important;
   border: none !important;
 }
 
-#project-tab .nav-pills .nav-item a{
+#project-tab .nav-pills .nav-item a {
   color: #ddd !important;
   outline: none !important;
   border: none !important;
-  
 }
-
 
 #project-tab .nav-pills .nav-item a.active {
   background-color: #80ce87;
   color: #1f1f1f !important;
-  animation: Animation 0.3s linear;
+  animation: tabBlink 0.3s linear;
   outline: none !important;
   border: none !important;
 }
 
-@keyframes Animation {
-  0%{background-color:#1f1f1f}
-  25%{background-color:#80ce87}
-  50%{background-color:#1f1f1f}
-  75%{background-color:#80ce87}
-  100%{background-color:#1f1f1f}
-  /* 0%{background-position:50% 0%}
-  25%{background-position:50% 100%}
-  50%{background-position:50% 0%}
-  75%{background-position:50% 100%}
-  100%{background-position:50% 0%} */
+@keyframes tabBlink {
+  0% {
+    background-color: #1f1f1f;
+  }
+  25% {
+    background-color: #80ce87;
+  }
+  50% {
+    background-color: #1f1f1f;
+  }
+  75% {
+    background-color: #80ce87;
+  }
+  100% {
+    background-color: #1f1f1f;
+  }
 }
 
-.projects-heading{
+.projects-heading {
   color: #ddd !important;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
 
-.projects-body{
+.projects-body {
   text-align: center;
   margin-top: 5%;
 }
 
-.project-description{
+.project-description {
   text-align: initial;
   padding: 5%;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
 }
 
-
-.project-img{
+.project-img {
   object-fit: scale-down;
   width: 90%;
 }
 
-#project-btn1{
+#project-btn1 {
   border-style: solid;
   border-width: 3px;
   color: #ddd !important;
   font-weight: 600;
 }
-#project-btn2{
+#project-btn2 {
   border-style: solid;
   border-width: 3px;
   color: #ddd !important;
   font-weight: 600;
 }
-.button-imgs{
+.button-imgs {
   width: 10%;
   margin-right: 2%;
 }
 
-.techsContainer{
+.techsContainer {
   background-color: #cccccc;
   border-radius: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
   text-align: center;
 }
-.techSvg{
+.techSvg {
   object-fit: scale-down;
   height: 4rem;
   padding: 1%;
 }
 
-
-.msg-container{
+.msg-container {
   padding: 5%;
   text-align: center;
   border-radius: 20px;
@@ -129,16 +137,15 @@
   height: 90vh;
 } */
 
-.project-status{
+.project-status {
   font-size: 2rem;
+  font-weight: 800;
 }
 
 .project-status .complete {
   color: #00a700;
-  font-weight: 800;
 }
 
-.project-status .incomplete{
+.project-status .incomplete {
   color: #f0cc00;
-  font-weight: 800;
 }
