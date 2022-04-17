@@ -53,10 +53,10 @@ const ProjectSection = (props) => {
       default:
         idx = 0;
     }
-    //I was here trying to find a way to animate the underline smoothly
 
+    //animate the underline of the project navs on selection
     const distance = oneWidth * idx + correction;
-    gsap.to(underlineRef, { transform: `translateX(${distance}px)` });
+    gsap.to(underlineRef, { transform: `translateX(${distance}px)`, duration: "0.2" });
 
     // gsap.to(ev.target.childNodes[1], {'translate3d(' + idx * 100 + '%,0,0)'})
     console.log(underlineRef, idx);

@@ -1932,10 +1932,10 @@ react-side-effect@^2.1.0:
   resolved "https://registry.yarnpkg.com/react-side-effect/-/react-side-effect-2.1.1.tgz#66c5701c3e7560ab4822a4ee2742dee215d72eb3"
   integrity sha512-2FoTQzRNTncBVtnzxFOk2mCpcfxQpenBMbk5kSVBg5UcPqV9fRbgY2zhb7GTWWOlpFmAxhClBDlIq8Rsubz1yQ==
 
-react-slick@^0.27.3:
-  version "0.27.14"
-  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.27.14.tgz#9d3ec15e8b8d73b898bec2817efa1b670e79fab0"
-  integrity sha512-EjNQUpuj09Ef+nKuJjnZZ76v6JngHYFrMoACAt8I3c3TD8EIW3dHfjDKtMQCFvEbXTz8AdwQ2gCv990mazkvMA==
+react-slick@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.29.0.tgz#0bed5ea42bf75a23d40c0259b828ed27627b51bb"
+  integrity sha512-TGdOKE+ZkJHHeC4aaoH85m8RnFyWqdqRfAGkhd6dirmATXMZWAxOpTLmw2Ll/jPTQ3eEG7ercFr/sbzdeYCJXA==
   dependencies:
     classnames "^2.2.5"
     enquire.js "^2.1.6"

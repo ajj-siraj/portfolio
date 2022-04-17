@@ -26,7 +26,7 @@
 .project-tab-underline {
   background-color: #0f6322;
   position: absolute;
-  top:90%;
+  top: 90%;
   z-index: 2;
   height: 5px;
   width: 200px;
@@ -51,6 +51,45 @@
   animation: tabBlink 0.3s linear;
   outline: none !important;
   border: none !important;
+}
+
+.project-slider-arrow {
+  position: absolute;
+  opacity: 0.5;
+  display: flex;
+  justify-items: center;
+  align-items:center;
+  text-align: center;
+  cursor: pointer;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  height: 100%;
+  width: 137px;
+  background-color: #1f1f1f;
+  color: #fff;
+}
+
+.project-slider-arrow:hover {
+  opacity: 0.7;
+}
+
+.project-slider-arrow svg {
+  transform-origin: center;
+}
+
+.project-slider-next {
+  right: -2rem;
+  justify-self: start;
+  padding-left: 3rem;
+}
+.project-slider-prev {
+  left: -2rem;
+  justify-self: end;
+  padding-left: 3rem;
+}
+.project-slider-prev svg {
+  transform: rotate(180deg);
 }
 
 @keyframes tabBlink {

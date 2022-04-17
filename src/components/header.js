@@ -34,14 +34,8 @@ const Header = props => {
 
   //handlers
 
-  //workaround to the gatsby anchor link scroll bug - probably a bad idea but using Refs requires re-configuring every component to forward refs.
-  // const scrollToRef = source => {
-  //   let alt = source.target.getAttribute("alt");
-  //   let target = document.getElementById(alt);
-  //   window.scrollTo(0, target.offsetTop - 100);
-  // };
-
   const handleHover = el => {
+    console.log(el.target)
     gsap.to(el.target, Animations.navLinkHover);
 
     //underline animation
@@ -49,6 +43,8 @@ const Header = props => {
   };
 
   const handleUnHover = el => {
+    console.log(el)
+
     //extract background color value to decide nav link's target color on mouse leave
     let rgb = navRef.current.style.backgroundColor.slice(4, -1);
     let res = rgb.split(", ");
