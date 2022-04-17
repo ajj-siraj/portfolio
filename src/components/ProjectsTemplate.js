@@ -22,22 +22,12 @@ const Technologies = (props) => {
   let techs = foundTechs.map((tech, idx) => {
     return (
       <OverlayTrigger
-      key={Math.ceil(Math.random() * 100000)} //randomize keys to avoid conflict between project templates
-      placement="top"
-      overlay={
-        <Tooltip>
-          {tech.fields.techTitle}
-        </Tooltip>
-      }
-    >
-      <img
-        className="techSvg"
-        src={getImgUrl(tech.fields.techImage)}
-       
-        alt="tech-svg"
-      />
-    </OverlayTrigger>
-      
+        key={Math.ceil(Math.random() * 100000)} //randomize keys to avoid conflict between project templates
+        placement="top"
+        overlay={<Tooltip>{tech.fields.techTitle}</Tooltip>}
+      >
+        <img className="techSvg" src={getImgUrl(tech.fields.techImage)} alt="tech-svg" />
+      </OverlayTrigger>
     );
   });
   return <div className="techsContainer">{techs}</div>;
@@ -77,8 +67,9 @@ const ProjectsTemplate = (props) => {
             <Technologies techs={project.technologies} skills={props.skills} />
             <div className="project-status">
               {/* Used two conditionals to avoid showing status when completed is undefined */}
-              {project.complete === true && `STATUS: ${<div className="complete">COMPLETE</div>}` }
-              {project.complete === false && `STATUS: ${<div className="incomplete">INCOMPLETE</div>}`}
+              {project.complete !== undefined && "STATUS: "}
+              {project.complete === true && <div className="complete">COMPLETE</div>}
+              {project.complete === false && <div className="incomplete">INCOMPLETE</div>}
             </div>
             <div
               dangerouslySetInnerHTML={{ __html: documentToHtmlString(project.description) }}
