@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import { getImgUrl } from "~/Utility.js";
+import { getImgUrl, trimTitle } from "~/Utility.js";
 import { NextArrow, PrevArrow } from "components/Arrows";
 
 //images & vectors
@@ -46,15 +46,14 @@ const ProjectsTemplate = (props) => {
       projectNavs = props.data.map((project, idx) => {
         return (
           <Nav.Item key={`project-nav-${idx}`}>
-            <Nav.Link eventKey={`project--${idx}`}>{project.title}</Nav.Link>
+            <Nav.Link eventKey={trimTitle(project.title)}>{project.title}</Nav.Link>
           </Nav.Item>
         );
       });
 
       projectTabs = props.data.map((project, idx) => {
-        console.log("project: ", project);
         return (
-          <Tab.Pane key={`project-tab-${idx}`} eventKey={`project--${idx}`}>
+          <Tab.Pane key={`project-tab-${idx}`} eventKey={trimTitle(project.title)}>
             <h2 className="tech-heading-large mt-3">{`{  ${project.title}  }`}</h2>
             <div>
               <Slider {...settings}>
@@ -122,8 +121,11 @@ const ProjectsTemplate = (props) => {
     }
   }
 
+  //always make sure default project is shown when switching tabs by only changing defaultActiveKey when query type and passed type are equal
+  const title = props?.query?.type === props?.type ? props?.query?.title : props?.data[0]?.title;
+
   return (
-    <Tab.Container defaultActiveKey={`project--0`}>
+    <Tab.Container defaultActiveKey={title ? trimTitle(title) : null}>
       <Row>
         <Col sm={3}>
           <Nav variant="pills" className="flex-column">

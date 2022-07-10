@@ -13,3 +13,9 @@ export const scrollToRef = source => {
 export const getImgUrl = (img) => {
   return img.fields.file.url;
 }
+
+export const trimTitle = (str) => {
+  if(!str) return;
+  let lower = str.toLowerCase().split(" ").join("-");
+  return lower;
+}

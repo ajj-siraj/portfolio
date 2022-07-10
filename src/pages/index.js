@@ -25,7 +25,7 @@ const IndexPage = props => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getServerSideProps({query}) {
   try {
     let projects = await client.getEntries({content_type: "projects", select: "fields", order: '-sys.createdAt'});
     let skills = await client.getEntries({content_type: "skills", select: "fields"});
@@ -38,6 +38,7 @@ export async function getServerSideProps() {
         skills: skills.items,
         services: services.items,
         content: sectionContent.items[0], //it's a single type so we don't need additional entries even if there are any
+        query
       },
     };
   } catch (ex) {

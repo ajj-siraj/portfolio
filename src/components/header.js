@@ -35,7 +35,6 @@ const Header = props => {
   //handlers
 
   const handleHover = el => {
-    console.log(el.target)
     gsap.to(el.target, Animations.navLinkHover);
 
     //underline animation
@@ -43,8 +42,6 @@ const Header = props => {
   };
 
   const handleUnHover = el => {
-    console.log(el)
-
     //extract background color value to decide nav link's target color on mouse leave
     let rgb = navRef.current.style.backgroundColor.slice(4, -1);
     let res = rgb.split(", ");

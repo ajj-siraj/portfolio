@@ -12,6 +12,7 @@ import * as Utility from "~/Utility.js";
 
 //animations
 import * as Animations from "components/animations.js";
+import { useLayoutEffect } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,9 +34,9 @@ const ProjectSection = (props) => {
     gsap.to(underline, Animations.lineUnhover);
   };
 
-  const fullWidth = typeof window !== 'undefined' && window.innerWidth;
+  const fullWidth = typeof window !== "undefined" && window.innerWidth;
   const oneWidth = fullWidth / 3;
-  const lineWidth = 200; //100px specified for the underline in projects.css
+  const lineWidth = 200; //200px specified for the underline in projects.css
   const correction = oneWidth / 2 - lineWidth / 2 - 5;
 
   const navUnderlineAnim = (eventKey, ev) => {
@@ -59,7 +60,6 @@ const ProjectSection = (props) => {
     gsap.to(underlineRef, { transform: `translateX(${distance}px)`, duration: "0.2" });
 
     // gsap.to(ev.target.childNodes[1], {'translate3d(' + idx * 100 + '%,0,0)'})
-    console.log(underlineRef, idx);
   };
 
   //on scroll animations
@@ -71,7 +71,12 @@ const ProjectSection = (props) => {
     gsap.from(underline, Animations.lineEnterRight(heading));
     gsap.from(".projects-body", Animations.fadeIn(".projects-body")); //using refs for this one didn't work for some reason so I'll just use classnames
 
-    gsap.to(underlineRef, { transform: `translateX(${correction}px)` }); //projects underline position on first load
+    //if coming from a query, animate the line according to default from the query
+    if (props?.query?.type) {
+      navUnderlineAnim(props.query.type);
+    } else {
+      gsap.to(underlineRef, { transform: `translateX(${correction}px)` }); //projects underline position on first load
+    }
   }, []);
 
   //divide each received project category into its own variable:
@@ -95,7 +100,7 @@ const ProjectSection = (props) => {
   let projectsBody = (
     <div className="projects-body mt-5">
       <Tab.Container
-        defaultActiveKey="front"
+        defaultActiveKey={props?.query?.type || "front"}
         variant="pills"
         onSelect={(eK, e) => navUnderlineAnim(eK, e)}
       >
@@ -128,17 +133,17 @@ const ProjectSection = (props) => {
             <Tab.Content>
               <Tab.Pane eventKey="front">
                 <div id="project-tab">
-                  <ProjectsTemplate data={front} skills={props.skills} />
+                  <ProjectsTemplate data={front} type="front" skills={props.skills} query={props.query}/>
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="full">
                 <div id="project-tab">
-                  <ProjectsTemplate data={full} skills={props.skills} />
+                  <ProjectsTemplate data={full} type="full" skills={props.skills} query={props.query}/>
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="misc">
                 <div id="project-tab">
-                  <ProjectsTemplate data={misc} skills={props.skills} />
+                  <ProjectsTemplate data={misc} type="misc" skills={props.skills} query={props.query}/>
                 </div>
               </Tab.Pane>
             </Tab.Content>

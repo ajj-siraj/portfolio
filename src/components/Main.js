@@ -42,7 +42,7 @@ const Main = (props) => {
         </Row>
         <Row>
           <Col className="m-0 p-0" id="projects">
-          {props.error ? "404" : <ProjectSection projects={props.projects} skills={props.skills}/>}
+          {props.error ? "404" : <ProjectSection projects={props.projects} skills={props.skills} query={props.query}/>}
           </Col>
         </Row>
         <Row>
