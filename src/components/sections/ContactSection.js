@@ -58,6 +58,11 @@ const ContactSection = (props) => {
     "https://linkedin.com/in/sirageldin-ahmed",
   ];
   let contactLinks = svgs.map((svg, idx) => {
+    let invert = true;
+    if (idx === 1) {
+      invert = false;
+    } else invert = true;
+
     return (
       <Col key={`svg-contact-${idx}`}>
         <a href={hrefs[idx]} target="_blank" rel="noopener noreferrer">
@@ -68,6 +73,7 @@ const ContactSection = (props) => {
             // ref={el => svgRefs.push(el)}
             onMouseEnter={handleSvgHover}
             onMouseLeave={handleSvgUnhover}
+            style={{ filter: invert ? "invert(1)" : "none" }}
           />
         </a>
       </Col>
